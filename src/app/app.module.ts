@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { InputTextComponent } from './components/input-text/input-text.component';
+import { LoginClienteComponent } from './pages/login-cliente/login-cliente.component';
+import { LabelTextComponent } from './components/label-text/label-text.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InputTextComponent,
+    LoginClienteComponent,
+    LabelTextComponent,
   ],
   imports: [
     BrowserModule,
