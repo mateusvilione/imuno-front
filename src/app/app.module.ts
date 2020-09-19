@@ -3,16 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InputTextComponent } from './components/input-text/input-text.component';
-import { LoginClienteComponent } from './pages/login-cliente/login-cliente.component';
-import { LabelTextComponent } from './components/label-text/label-text.component';
+import { LoginPacienteComponent } from './pages/login-paciente/login-paciente.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InputTextComponent,
-    LoginClienteComponent,
-    LabelTextComponent,
+    LoginPacienteComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

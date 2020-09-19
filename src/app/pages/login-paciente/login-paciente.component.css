@@ -1,0 +1,20 @@
+h1 {
+  text-align: center;
+}
+
+.btn-primary {
+  background-color:  rgba(169,232,167,1) !important;
+  border-color: rgba(169,232,167,1) !important;
+  color: black !important;
+  margin-right:30px;
+  margin-left:30px;
+}
+.btn-group {
+  display: flex;
+  justify-content: center !important;
+  padding-bottom: 30px;
+}
+.entrar {
+  background-color: var(--blue) !important;
+  color: white !important;
+}
