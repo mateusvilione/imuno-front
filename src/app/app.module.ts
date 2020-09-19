@@ -7,6 +7,7 @@ import { LoginPacienteComponent } from './pages/login-paciente/login-paciente.co
 import { HeaderComponent } from './components/header/header.component';
 import { LoginFuncionarioComponent } from './pages/login-funcionario/login-funcionario.component';
 import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
+import { CadastrarPacienteComponent } from './pages/cadastrar-paciente/cadastrar-paciente.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
     HeaderComponent,
     LoginFuncionarioComponent,
     LoginAdminComponent,
+    CadastrarPacienteComponent,
   ],
   imports: [
     BrowserModule,
