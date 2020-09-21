@@ -9,6 +9,7 @@ import { LoginFuncionarioComponent } from './pages/login-funcionario/login-funci
 import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
 import { CadastrarPacienteComponent } from './pages/cadastrar-paciente/cadastrar-paciente.component';
 import { CadernetaVacinacaoComponent } from './pages/caderneta-vacinacao/caderneta-vacinacao.component';
+import { CadastrarCampanhaComponent } from './pages/cadastrar-campanha/cadastrar-campanha.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CadernetaVacinacaoComponent } from './pages/caderneta-vacinacao/caderne
     LoginAdminComponent,
     CadastrarPacienteComponent,
     CadernetaVacinacaoComponent,
+    CadastrarCampanhaComponent,
   ],
   imports: [
     BrowserModule,
