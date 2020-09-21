@@ -1,0 +1,7 @@
+.notificações {
+    display: flex;
+    width: 100%;
+    border: thin black solid;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

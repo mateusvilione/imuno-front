@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "imuno-front"
+    }
+  },
+  "defaultProject": "imuno-front",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginFuncionarioComponent } from './pages/login-funcionario/login-funcionario.component';
 import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
 import { CadastrarPacienteComponent } from './pages/cadastrar-paciente/cadastrar-paciente.component';
+import { CadernetaVacinacaoComponent } from './pages/caderneta-vacinacao/caderneta-vacinacao.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CadastrarPacienteComponent } from './pages/cadastrar-paciente/cadastrar
     LoginFuncionarioComponent,
     LoginAdminComponent,
     CadastrarPacienteComponent,
+    CadernetaVacinacaoComponent,
   ],
   imports: [
     BrowserModule,
