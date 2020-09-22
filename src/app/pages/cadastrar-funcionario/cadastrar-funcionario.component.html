@@ -1,0 +1,88 @@
+<form style="background-color: rgba(183,225,228,0.4); padding: 30px; margin-top: 50px;">
+
+  <h2>Cadastrar Funcionário</h2>
+
+  <div class="form-group">
+    <label for="idNome" style="float: left;">Nome Completo:</label>
+    <input type="text" class="form-control" id="idNome">
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="idCpf" style="float: left;">CPF:</label>
+      <input type="number" class="form-control" id="idCpf" max="14" min="14">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="idCoren" style="float: left;">Número do COREN:</label>
+      <input type="text" class="form-control" id="idCoren">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="idEndereco">Logradouro:</label>
+    <input type="text" class="form-control" id="idEndereco">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label for="idNumero">Número:</label>
+      <input type="number" class="form-control" id="idNumero">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="idComplemento">Complemento:</label>
+      <input type="text" class="form-control" id="idComplemento">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="idBairro">Bairro:</label>
+      <input type="text" class="form-control" id="idBairro">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="idCidade">Cidade:</label>
+      <input type="text" class="form-control" id="idCidade">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="idEstado">Estado:</label>
+      <select id="idEstado" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="idCep">CEP:</label>
+      <input type="text" class="form-control" id="idCep">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="idEmail">E-mail:</label>
+      <input type="email" class="form-control" id="idEmail">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="idTelefone">Telefone:</label>
+      <input type="tel" class="form-control" id="idTelefone">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="idSenha">Senha:</label>
+      <input type="password" class="form-control" id="idSenha">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="idConfirmacaSenha">Confirmação de Senha:</label>
+      <input type="password" class="form-control" id="idConfirmacaSenha">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
+    </div>
+    <div class="form-group col-md-6">
+      <button routerLink="" type="submit" class="btn btn-success entrar col-12">Entrar</button>
+    </div>
+  </div>
+
+</form>
