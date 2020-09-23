@@ -1,0 +1,56 @@
+<form class="container-sm p-4 mt-5 bg-white">
+    <h2>Vacinar</h2>
+    <p></p>
+    <div class="form-row">
+        <div class="form-group col-md-2 pl-3">
+          <img src="../../../assets/images/avatar.png" alt="" class="rounded-circle" width="90" height="90">
+        </div>  
+        <div class="form-group col-md-8">
+          <label for="idNomePaciente" style="float: left;">Nome do Paciente:</label>
+          <input type="text" class="form-control" id="idNomePaciente">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="idIdentificacao" style="float: left;">Id:</label>
+          <input type="text" class="form-control" id="idIdentificacao">
+        </div>
+    </div>
+
+    <div class="form-row">  
+        <div class="form-group col-md-8">
+            <label for="idVacinar">Vacina:</label>
+            <select id="idVacinar" class="form-control">
+                <option selected>Vacina 1</option>
+                <option>Vacina 2</option>
+                <option>Vacina 3</option>
+        </select>
+        </div>
+        <div class="form-group  col-md-4">
+            <label for="idDataVacina" style="float: left;">Data Vacina:</label>
+            <input type="date" class="form-control" id="idDataVacina">
+        </div>
+    </div>
+    <div class="form-row">  
+        <div class="form-group  col-md-4">
+            <label for="idLocal" style="float: left;">Local:</label>
+            <input type="text" class="form-control" id="idLocal">
+        </div>
+        <div class="form-group  col-md-4">
+            <label for="idRubrica" style="float: left;">Rúbrica:</label>
+            <input type="text" class="form-control" id="idRubrica">
+        </div>
+        <div class="form-group  col-md-4">
+            <label for="idLote" style="float: left;">Lote:</label>
+            <input type="text" class="form-control" id="idLote">
+        </div>
+    </div>
+    <p></p>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
+      </div>
+      <div class="form-group col-md-6">
+        <button routerLink="" type="submit" class="btn btn-success entrar col-12">Vacinar</button>
+      </div>
+    </div>
+</form>
+

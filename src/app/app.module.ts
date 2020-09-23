@@ -12,6 +12,8 @@ import { CadernetaVacinacaoComponent } from './pages/caderneta-vacinacao/caderne
 import { CadastrarCampanhaComponent } from './pages/cadastrar-campanha/cadastrar-campanha.component';
 import { CadastrarFuncionarioComponent } from './pages/cadastrar-funcionario/cadastrar-funcionario.component';
 import { EditarPerfilPacienteComponent } from './pages/editar-perfil-paciente/editar-perfil-paciente.component';
+import { VacinarComponent } from './pages/vacinar/vacinar.component';
+import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { EditarPerfilPacienteComponent } from './pages/editar-perfil-paciente/ed
     CadastrarCampanhaComponent,
     CadastrarFuncionarioComponent,
     EditarPerfilPacienteComponent,
+    VacinarComponent,
+    DashboardFuncionarioComponent,
   ],
   imports: [
     BrowserModule,
