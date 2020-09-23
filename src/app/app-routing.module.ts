@@ -8,6 +8,8 @@ import { CadastrarPacienteComponent } from './pages/cadastrar-paciente/cadastrar
 import { CadernetaVacinacaoComponent } from './pages/caderneta-vacinacao/caderneta-vacinacao.component';
 import { CadastrarCampanhaComponent } from './pages/cadastrar-campanha/cadastrar-campanha.component';
 import { CadastrarFuncionarioComponent } from './pages/cadastrar-funcionario/cadastrar-funcionario.component';
+import { EditarPerfilPacienteComponent } from './pages/editar-perfil-paciente/editar-perfil-paciente.component';
+
 
 
 const routes: Routes = [
@@ -15,9 +17,11 @@ const routes: Routes = [
   { path: 'admin', component: LoginAdminComponent },
   { path: 'funcionario', component: LoginFuncionarioComponent },
   { path: 'caderneta-vacinacao', component: CadernetaVacinacaoComponent },
+  { path: 'editar/perfil', component: EditarPerfilPacienteComponent },
   { path: 'cadastro/paciente', component: CadastrarPacienteComponent },
   { path: 'cadastro/campanha', component: CadastrarCampanhaComponent },
   { path: 'cadastro/funcionario', component: CadastrarFuncionarioComponent }
+
 ];
 
 @NgModule({
