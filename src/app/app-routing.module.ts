@@ -11,6 +11,8 @@ import { CadastrarFuncionarioComponent } from './pages/cadastrar-funcionario/cad
 import { EditarPerfilPacienteComponent } from './pages/editar-perfil-paciente/editar-perfil-paciente.component';
 import { VacinarComponent } from './pages/vacinar/vacinar.component';
 import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
+import { CadastrarLoteVacinaComponent } from './pages/cadastrar-lote-vacina/cadastrar-lote-vacina.component';
+import { CampanhaVacinacaoComponent } from './pages/campanha-vacinacao/campanha-vacinacao.component';
 
 
 
@@ -24,7 +26,9 @@ const routes: Routes = [
   { path: 'cadastro/campanha', component: CadastrarCampanhaComponent },
   { path: 'cadastro/funcionario', component: CadastrarFuncionarioComponent },
   { path: 'vacinar', component: VacinarComponent},
-  { path: 'dashboard-funcionario', component: DashboardFuncionarioComponent}
+  { path: 'dashboard-funcionario', component: DashboardFuncionarioComponent},
+  { path: 'cadastrar-lote-vacina', component: CadastrarLoteVacinaComponent},
+  { path: 'campanha-vacinacao', component: CampanhaVacinacaoComponent}
 
 ];
 
