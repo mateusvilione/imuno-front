@@ -12,4 +12,6 @@ export class LoginPacienteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
 }

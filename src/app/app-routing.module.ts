@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'cadastro/funcionario', component: CadastrarFuncionarioComponent },
   { path: 'vacinar', component: VacinarComponent},
   { path: 'dashboard-funcionario', component: DashboardFuncionarioComponent},
-  { path: 'cadastrar-lote-vacina', component: CadastrarLoteVacinaComponent},
+  { path: 'cadastro-lote-vacina', component: CadastrarLoteVacinaComponent},
   { path: 'campanha-vacinacao', component: CampanhaVacinacaoComponent}
 
 ];
