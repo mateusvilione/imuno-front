@@ -13,6 +13,7 @@ import { VacinarComponent } from './pages/vacinar/vacinar.component';
 import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
 import { CadastrarLoteVacinaComponent } from './pages/cadastrar-lote-vacina/cadastrar-lote-vacina.component';
 import { CampanhaVacinacaoComponent } from './pages/campanha-vacinacao/campanha-vacinacao.component';
+import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard-paciente.component';
 
 
 
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'vacinar', component: VacinarComponent},
   { path: 'dashboard-funcionario', component: DashboardFuncionarioComponent},
   { path: 'cadastro-lote-vacina', component: CadastrarLoteVacinaComponent},
-  { path: 'campanha-vacinacao', component: CampanhaVacinacaoComponent}
+  { path: 'campanha-vacinacao', component: CampanhaVacinacaoComponent},
+  { path: 'dashboard-paciente', component: DashboardPacienteComponent }
 
 ];
 
