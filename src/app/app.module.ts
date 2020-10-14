@@ -1,8 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {InputMaskModule} from 'primeng/inputmask';
+import {FileUploadModule} from 'primeng/fileupload';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { LoginPacienteComponent } from './pages/login-paciente/login-paciente.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginFuncionarioComponent } from './pages/login-funcionario/login-funcionario.component';
@@ -38,7 +47,15 @@ import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MessagesModule,
+    MessageModule,
+    InputMaskModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
