@@ -13,7 +13,7 @@ import { BaseHttpService } from './../../../services/http/base-http.service';
     providedIn: 'root',
 })
 export class FuncionarioRepository {
-    
+
     mapper = new FuncionarioMapper();
 
     constructor(public http: BaseHttpService) { }
@@ -23,13 +23,13 @@ export class FuncionarioRepository {
           .getAll<FuncionarioModel>(`${environment.URLSERVIDOR}funcionario/${id}`)
           .pipe(map((x) => this.mapper.mapFrom(x.data)));
       }
-    
+
       postFuncionario(param: FuncionarioModel) {
         return this.http
-          .post<FuncionarioEntity>(`${environment.URLSERVIDOR}paciente`, this.mapper.mapTo(param))
+          .post<FuncionarioEntity>(`${environment.URLSERVIDOR}funcionario`, this.mapper.mapTo(param))
           .pipe(map((x) => this.mapper.mapFrom(x.data)));
       }
-    
+
       putFuncionario(param: FuncionarioModel) {
         return this.http
           .put<void>(
@@ -38,7 +38,7 @@ export class FuncionarioRepository {
           )
           .pipe(map((x) => x.data));
       }
-    
+
       deleteFuncionario(id: number): Observable<void> {
         return this.http
           .delete<void>(`${environment.URLSERVIDOR}funcionario/${id}`, id)
