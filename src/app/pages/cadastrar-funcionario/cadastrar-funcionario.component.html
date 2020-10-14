@@ -1,78 +1,80 @@
-<form class="container-sm p-4 mt-5 bg-white">
+<form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="cadastrar()">
 
   <h2>Cadastrar Funcionário</h2>
 
   <div class="form-group">
-    <label for="idNome" style="float: left;">Nome Completo:</label>
-    <input type="text" class="form-control" id="idNome">
+    <label for="nome" style="float: left;">Nome Completo:</label>
+    <input type="text" class="form-control" id="nome" formControlName="nome">
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="idCpf" style="float: left;">CPF:</label>
-      <input type="number" class="form-control" id="idCpf" max="14" min="14">
+      <label for="cpf" style="float: left;">CPF:</label>
+      <input type="test" class="form-control" id="cpf" formControlName="cpf">
     </div>
     <div class="form-group col-md-6">
-      <label for="idCoren" style="float: left;">Número do COREN:</label>
-      <input type="text" class="form-control" id="idCoren">
+      <label for="coren" style="float: left;">Número do COREN:</label>
+      <input type="text" class="form-control" id="coren" formControlName="coren">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="idEndereco">Logradouro:</label>
-    <input type="text" class="form-control" id="idEndereco">
+    <label for="logradouro">Logradouro:</label>
+    <input type="text" class="form-control" id="logradouro" formControlName="logradouro">
   </div>
   <div class="form-row">
     <div class="form-group col-md-2">
-      <label for="idNumero">Número:</label>
-      <input type="number" class="form-control" id="idNumero">
+      <label for="numero">Número:</label>
+      <input type="number" class="form-control" id="numero" formControlName="numero">
     </div>
     <div class="form-group col-md-4">
-      <label for="idComplemento">Complemento:</label>
-      <input type="text" class="form-control" id="idComplemento">
+      <label for="complemento">Complemento:</label>
+      <input type="text" class="form-control" id="complemento" formControlName="complemento">
     </div>
     <div class="form-group col-md-6">
-      <label for="idBairro">Bairro:</label>
-      <input type="text" class="form-control" id="idBairro">
+      <label for="bairro">Bairro:</label>
+      <input type="text" class="form-control" id="bairro" formControlName="bairro">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="idCidade">Cidade:</label>
-      <input type="text" class="form-control" id="idCidade">
+      <label for="cidade">Cidade:</label>
+      <input type="text" class="form-control" id="cidade" formControlName="cidade">
     </div>
     <div class="form-group col-md-2">
-      <label for="idEstado">Estado:</label>
-      <select id="idEstado" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
+      <label for="estado">Estado:</label>
+      <input type="text" class="form-control" id="estado" formControlName="estado">
+
     </div>
     <div class="form-group col-md-4">
-      <label for="idCep">CEP:</label>
-      <input type="text" class="form-control" id="idCep">
+      <label for="cep">CEP:</label>
+      <input type="text" class="form-control" id="cep" formControlName="cep">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="email">E-mail:</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="telefone">Telefone:</label>
+      <input type="tel" class="form-control" id="telefone" formControlName="telefone">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="telefoneEmergencia">Telefone de Emergência:</label>
+      <input type="tel" class="form-control" id="telefoneEmergencia" formControlName="telefoneEmergencia">
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="idEmail">E-mail:</label>
-      <input type="email" class="form-control" id="idEmail">
+      <label for="senha">Senha:</label>
+      <input type="password" class="form-control" id="senha" formControlName="senha">
     </div>
     <div class="form-group col-md-6">
-      <label for="idTelefone">Telefone:</label>
-      <input type="tel" class="form-control" id="idTelefone">
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="idSenha">Senha:</label>
-      <input type="password" class="form-control" id="idSenha">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="idConfirmacaSenha">Confirmação de Senha:</label>
-      <input type="password" class="form-control" id="idConfirmacaSenha">
+      <label for="confirmacaSenha">Confirmação de Senha:</label>
+      <input type="password" class="form-control" id="confirmacaSenha">
     </div>
   </div>
 
@@ -81,7 +83,9 @@
       <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
     </div>
     <div class="form-group col-md-6">
-      <button routerLink="" type="submit" class="btn btn-success entrar col-12">Entrar</button>
+      <button type="submit" class="btn btn-success entrar col-12"
+        [class]="operacao ? 'btn-primary' : 'btn-success'">{{operacao ? "Cadastrar" : "Atualizar" }}
+      </button>
     </div>
   </div>
 
