@@ -33,23 +33,50 @@ export class CadastrarFuncionarioComponent implements OnInit {
     this.formulario = this.fb.group({
       id: [null],
       nome: ['', Validators.required],
-      cpf: [''],
-      coren: [''],
-      telefone: [''],
+      cpf: ['', Validators.required],
+      coren: ['', Validators.required],
+      telefone: ['', Validators.required],
       telefoneEmergencia: [''],
       email: ['', Validators.email],
-      senha: [''],
-      logradouro: [''],
-      numero: [''],
+      senha: ['', Validators.required],
+      confirmacaoSenha: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      numero: ['', Validators.required],
       complemento: [''],
-      bairro: [''],
-      cidade: [''],
-      estado: [''],
+      bairro: ['', Validators.required],
+      cidade: ['', Validators.required],
+      estado: ['', Validators.required],
       cep: [''],
     });
     // this.formulario.controls.id.setValue('');
     // this.formulario.controls.nome.setValue('Rafael');
     // this.formulario.controls.sobrenome.setValue('Lopes');
+  }
+
+  public senhasIguais() {
+    var password = (<HTMLSelectElement>document.getElementById("senha")).value;
+    var confirm_password = (<HTMLSelectElement>document.getElementById("confirmacaoSenha")).value;
+
+    if (password == confirm_password) {
+      return true;
+
+    }
+    else {
+      return false;
+    }
+  }
+
+  public senhasDiferentes() {
+    var password = (<HTMLSelectElement>document.getElementById("senha")).value;
+    var confirm_password = (<HTMLSelectElement>document.getElementById("confirmacaoSenha")).value;
+
+    if (password != confirm_password) {
+      return true;
+
+    }
+    else {
+      return false;
+    }
   }
 
   cadastrar() {
@@ -67,6 +94,8 @@ export class CadastrarFuncionarioComponent implements OnInit {
     //     id:null,numero:element,tipo:'casa'
     //   })
     // });
+    var telefoneEmergencia = (<HTMLSelectElement>document.getElementById("telefoneEmergencia")).value;
+    console.log(telefoneEmergencia);
     const dados = {
 
       // id: this.formulario.value.id,

@@ -26,7 +26,7 @@ export class FuncionarioRepository {
     
       postFuncionario(param: FuncionarioModel) {
         return this.http
-          .post<FuncionarioEntity>(`${environment.URLSERVIDOR}paciente`, this.mapper.mapTo(param))
+          .post<FuncionarioEntity>(`${environment.URLSERVIDOR}funcionario`, this.mapper.mapTo(param))
           .pipe(map((x) => this.mapper.mapFrom(x.data)));
       }
     
