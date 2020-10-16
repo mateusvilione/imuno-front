@@ -26,6 +26,7 @@ import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/das
 import { CadastrarLoteVacinaComponent } from './pages/cadastrar-lote-vacina/cadastrar-lote-vacina.component';
 import { CampanhaVacinacaoComponent } from './pages/campanha-vacinacao/campanha-vacinacao.component';
 import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard-paciente.component';
+import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard
     CadastrarLoteVacinaComponent,
     CampanhaVacinacaoComponent,
     DashboardPacienteComponent,
+    DashboardAdminComponent,
   ],
   imports: [
     BrowserModule,

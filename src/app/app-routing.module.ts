@@ -1,3 +1,4 @@
+import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'dashboard-funcionario', component: DashboardFuncionarioComponent},
   { path: 'cadastro-lote-vacina', component: CadastrarLoteVacinaComponent},
   { path: 'campanha-vacinacao', component: CampanhaVacinacaoComponent},
-  { path: 'dashboard-paciente', component: DashboardPacienteComponent }
+  { path: 'dashboard-paciente', component: DashboardPacienteComponent },
+  { path: 'dashboard-admin', component: DashboardAdminComponent }
 
 ];
 
