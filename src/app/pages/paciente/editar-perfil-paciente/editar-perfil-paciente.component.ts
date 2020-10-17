@@ -1,32 +1,34 @@
-import { PacienteModel } from './model/paciente-model';
-import { PacienteRepository } from './repository/paciente-repository';
+import { PacienteEntity } from '../entity/paciente-entity';
+import { PacienteModel } from '../model/paciente-model';
+import { PacienteRepository } from '../repository/paciente-repository';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-cadastrar-paciente',
-  templateUrl: './cadastrar-paciente.component.html',
-  styleUrls: ['./cadastrar-paciente.component.css']
+  selector: 'app-editar-perfil-paciente',
+  templateUrl: './editar-perfil-paciente.component.html',
+  styleUrls: ['./editar-perfil-paciente.component.css']
 })
-export class CadastrarPacienteComponent implements OnInit {
+export class EditarPerfilPacienteComponent implements OnInit {
 
   public formulario: FormGroup;
-  // estados: any[] = [];
-  // cidades: any[] = [];
+
   public submitted: boolean = false;
 
   mensagem: Message[] = [];
 
   operacao: boolean = true;
 
+  paciente: PacienteModel;
+
   constructor(
     private repository: PacienteRepository,
     private fb: FormBuilder) { }
 
-  ngOnInit(): void {
-    this.iniciarFormulario();
-    // this.listarEstados();
+    ngOnInit(): void {
+      this.iniciarFormulario();
+      this.iniciarForm();
   }
 
   public iniciarFormulario() {
@@ -35,7 +37,7 @@ export class CadastrarPacienteComponent implements OnInit {
       nome: ['', Validators.required],
       dataNascimento: [''],
       genero: [''],
-      cpfRne: [''],
+      cpfRne: [this.paciente.cpfRne.valueOf],
       nomeMae: [''],
       nomePai: [''],
       nacionalidade: [''],
@@ -52,12 +54,9 @@ export class CadastrarPacienteComponent implements OnInit {
       estado: [''],
       cep: [''],
     });
-    // this.formulario.controls.id.setValue('');
-    // this.formulario.controls.nome.setValue('Rafael');
-    // this.formulario.controls.sobrenome.setValue('Lopes');
   }
 
-  cadastrar() {
+  atualizar() {
     this.submitted = true;
     if (this.formulario.invalid) {
       return;
@@ -101,10 +100,6 @@ export class CadastrarPacienteComponent implements OnInit {
 
     if (dados.id) {
       this.repository.putPaciente(dados).subscribe(resposta => {
-        this.limparFormulario();
-      });
-    } else {
-      this.repository.postPaciente(dados).subscribe(resposta => {
         this.mensagem = [
           {
             severity: 'success',
@@ -137,25 +132,15 @@ export class CadastrarPacienteComponent implements OnInit {
     }
   }
 
-  // listarEstados() {
-  //   this.repository.getAllEstados().subscribe(resposta => {
-  //     this.estados.push({ label: resposta.nome, value: resposta.id });
-  //   });
-  // }
-  // listarCidades() {
-  //   this.cidades = [];
-  //   let id: number = this.formulario.value.estado;
-  //   this.repository.getAllCidadesByEstado(id).subscribe(resposta => {
-  //     this.cidades.push({ label: resposta.nome, value: resposta.id });
-  //   });
-  // }
+  iniciarForm(){
+    this.repository.getPacienteById(5).subscribe(resposta => {
+      this.paciente = resposta as PacienteModel;
+    });
+  }
 
   limparFormulario() {
     this.submitted = false;
     this.formulario.reset();
-    // this.cidades = [];
-    // this.estados = [];
-    // this.listarEstados();
   }
 
 }
