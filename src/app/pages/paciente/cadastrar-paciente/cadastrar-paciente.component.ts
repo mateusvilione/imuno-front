@@ -33,28 +33,56 @@ export class CadastrarPacienteComponent implements OnInit {
     this.formulario = this.fb.group({
       id: [null],
       nome: ['', Validators.required],
-      dataNascimento: [''],
-      genero: [''],
-      cpfRne: [''],
+      dataNascimento: ['', Validators.required],
+      genero: ['', Validators.required],
+      cpfRne: ['', Validators.required],
       nomeMae: [''],
       nomePai: [''],
-      nacionalidade: [''],
-      telefone: [''],
+      telefone: ['', Validators.required],
       telefoneEmergencia: [''],
       email: ['', Validators.email],
-      senha: [''],
-      cartaoSus: [''],
-      logradouro: [''],
-      numero: [''],
+      senha: ['', Validators.required],
+      confirmacaoSenha: ['', Validators.required],
+      cartaoSus: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      numero: ['', Validators.required],
       complemento: [''],
-      bairro: [''],
-      cidade: [''],
-      estado: [''],
+      bairro: ['', Validators.required],
+      cidade: ['', Validators.required],
+      estado: ['', Validators.required],
       cep: [''],
     });
     // this.formulario.controls.id.setValue('');
     // this.formulario.controls.nome.setValue('Rafael');
     // this.formulario.controls.sobrenome.setValue('Lopes');
+  }
+
+  public senhasIguais() {
+    var password = (<HTMLSelectElement>document.getElementById("senha")).value;
+    var confirm_password = (<HTMLSelectElement>document.getElementById("confirmacaoSenha")).value;
+
+    if (password == confirm_password) {
+      console.log("senhas iguais");
+      return true;
+
+    }
+    else {
+      console.log("senhas diferentes")
+      return false;
+    }
+  }
+
+  public senhasDiferentes() {
+    var password = (<HTMLSelectElement>document.getElementById("senha")).value;
+    var confirm_password = (<HTMLSelectElement>document.getElementById("confirmacaoSenha")).value;
+
+    if (password != confirm_password) {
+      return true;
+
+    }
+    else {
+      return false;
+    }
   }
 
   cadastrar() {

@@ -7,14 +7,14 @@
     <input type="text" class="form-control" id="nome" formControlName="nome"
     [class]="(submitted && formulario.get('nome').errors) ||
             (formulario.get('nome').errors && formulario.get('nome').dirty) ? 'is-invalid' :
-            formulario.get('nome').dirty ? 'is-valid' : ''" />
+            formulario.get('nome').dirty ? 'is-valid' : ''">
     <div *ngIf="formulario.get('nome').errors?.required" class="invalid-feedback">Nome é obrigatório</div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="cpf" style="float: left;">CPF:</label>
-      <p-inputMask type="test" styleClass="form-control" id="cpf" formControlName="cpf" mask="999.999.999-99"
+      <p-inputMask type="text" styleClass="form-control" id="cpf" formControlName="cpf" mask="999.999.999-99"
       [class]="(submitted && formulario.get('cpf').errors) ||
             (formulario.get('cpf').errors && formulario.get('cpf').dirty) ? 'is-invalid' :
             formulario.get('cpf').dirty ? 'is-valid' : ''"></p-inputMask>
@@ -114,7 +114,7 @@
       [class]="(submitted && formulario.get('senha').errors) ||
             (formulario.get('senha').errors && formulario.get('senha').dirty) ? 'is-invalid' :
             formulario.get('senha').dirty ? 'is-valid' : ''">
-      <div *ngIf="formulario.get('senha').errors?.required" class="invalid-feedback">Senha é obrigatório</div>
+      <div *ngIf="formulario.get('senha').errors?.required" class="invalid-feedback">Senha é obrigatória</div>
     </div>
     <div class="form-group col-md-6">
       <label for="confirmacaoSenha">Confirmação de Senha:</label>
