@@ -12,13 +12,14 @@ import { Message, MessageService } from 'primeng/api';
 export class CadastrarPacienteComponent implements OnInit {
 
   public formulario: FormGroup;
-  // estados: any[] = [];
-  // cidades: any[] = [];
+
   public submitted: boolean = false;
 
   mensagem: Message[] = [];
 
   operacao: boolean = true;
+
+  paciente: PacienteModel;
 
   constructor(
     private repository: PacienteRepository,
@@ -33,28 +34,55 @@ export class CadastrarPacienteComponent implements OnInit {
     this.formulario = this.fb.group({
       id: [null],
       nome: ['', Validators.required],
-      dataNascimento: [''],
-      genero: [''],
-      cpfRne: [''],
-      nomeMae: [''],
+      dataNascimento: ['', Validators.required],
+      genero: ['', Validators.required],
+      cpfRne: ['', Validators.required],
+      nomeMae: ['', Validators.required],
       nomePai: [''],
-      nacionalidade: [''],
-      telefone: [''],
-      telefoneEmergencia: [''],
+      nacionalidade: ['', Validators.required],
+      telefone: ['', Validators.required],
+      telefoneEmergencia: ['', Validators.required],
       email: ['', Validators.email],
-      senha: [''],
-      cartaoSus: [''],
-      logradouro: [''],
-      numero: [''],
-      complemento: [''],
-      bairro: [''],
-      cidade: [''],
-      estado: [''],
-      cep: [''],
+      senha: ['', Validators.required],
+      confirmacaoSenha: ['', Validators.required],
+      cartaoSus: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      numero: ['', Validators.required],
+      complemento: ['', Validators.required],
+      bairro: ['', Validators.required],
+      cidade: ['', Validators.required],
+      estado: ['', Validators.required],
+      cep: ['', Validators.required],
     });
     // this.formulario.controls.id.setValue('');
     // this.formulario.controls.nome.setValue('Rafael');
     // this.formulario.controls.sobrenome.setValue('Lopes');
+  }
+
+  public senhasIguais() {
+    var password = (<HTMLSelectElement>document.getElementById("senha")).value;
+    var confirm_password = (<HTMLSelectElement>document.getElementById("confirmacaoSenha")).value;
+
+    if (password == confirm_password) {
+      return true;
+
+    }
+    else {
+      return false;
+    }
+  }
+
+  public senhasDiferentes() {
+    var password = (<HTMLSelectElement>document.getElementById("senha")).value;
+    var confirm_password = (<HTMLSelectElement>document.getElementById("confirmacaoSenha")).value;
+
+    if (password != confirm_password) {
+      return true;
+
+    }
+    else {
+      return false;
+    }
   }
 
   cadastrar() {

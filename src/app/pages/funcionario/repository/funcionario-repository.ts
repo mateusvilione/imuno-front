@@ -18,7 +18,7 @@ export class FuncionarioRepository {
 
     constructor(public http: BaseHttpService) { }
 
-    getFuncionarioById(id: number): Observable<FuncionarioModel> {
+      getFuncionarioById(id: number): Observable<FuncionarioModel> {
         return this.http
           .getAll<FuncionarioModel>(`${environment.URLSERVIDOR}funcionario/${id}`)
           .pipe(map((x) => this.mapper.mapFrom(x.data)));

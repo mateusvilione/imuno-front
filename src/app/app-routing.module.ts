@@ -8,8 +8,9 @@ import { LoginFuncionarioComponent } from './pages/login-funcionario/login-funci
 import { CadastrarPacienteComponent } from './pages/paciente/cadastrar-paciente/cadastrar-paciente.component';
 import { CadernetaVacinacaoComponent } from './pages/caderneta-vacinacao/caderneta-vacinacao.component';
 import { CadastrarCampanhaComponent } from './pages/cadastrar-campanha/cadastrar-campanha.component';
-import { CadastrarFuncionarioComponent } from './pages/cadastrar-funcionario/cadastrar-funcionario.component';
+import { CadastrarFuncionarioComponent } from './pages/funcionario/cadastrar-funcionario/cadastrar-funcionario.component';
 import { EditarPerfilPacienteComponent } from './pages/paciente/editar-perfil-paciente/editar-perfil-paciente.component';
+import { EditarPerfilFuncionarioComponent } from './pages/funcionario/editar-perfil-funcionario/editar-perfil-funcionario.component';
 import { VacinarComponent } from './pages/vacinar/vacinar.component';
 import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
 import { CadastrarLoteVacinaComponent } from './pages/cadastrar-lote-vacina/cadastrar-lote-vacina.component';
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'admin', component: LoginAdminComponent },
   { path: 'funcionario', component: LoginFuncionarioComponent },
   { path: 'caderneta-vacinacao', component: CadernetaVacinacaoComponent },
-  { path: 'editar/perfil', component: EditarPerfilPacienteComponent },
+  { path: 'editar/perfil/paciente', component: EditarPerfilPacienteComponent },
+  { path: 'editar/perfil/funcionario', component: EditarPerfilFuncionarioComponent },
   { path: 'cadastro/paciente', component: CadastrarPacienteComponent },
   { path: 'cadastro/campanha', component: CadastrarCampanhaComponent },
   { path: 'cadastro/funcionario', component: CadastrarFuncionarioComponent },
@@ -33,7 +35,6 @@ const routes: Routes = [
   { path: 'campanha-vacinacao', component: CampanhaVacinacaoComponent},
   { path: 'dashboard-paciente', component: DashboardPacienteComponent },
   { path: 'dashboard-admin', component: DashboardAdminComponent }
-
 ];
 
 @NgModule({

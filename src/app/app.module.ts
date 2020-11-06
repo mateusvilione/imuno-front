@@ -19,8 +19,9 @@ import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
 import { CadastrarPacienteComponent } from './pages/paciente/cadastrar-paciente/cadastrar-paciente.component';
 import { CadernetaVacinacaoComponent } from './pages/caderneta-vacinacao/caderneta-vacinacao.component';
 import { CadastrarCampanhaComponent } from './pages/cadastrar-campanha/cadastrar-campanha.component';
-import { CadastrarFuncionarioComponent } from './pages/cadastrar-funcionario/cadastrar-funcionario.component';
+import { CadastrarFuncionarioComponent } from './pages/funcionario/cadastrar-funcionario/cadastrar-funcionario.component';
 import { EditarPerfilPacienteComponent } from './pages/paciente/editar-perfil-paciente/editar-perfil-paciente.component';
+import { EditarPerfilFuncionarioComponent } from './pages/funcionario/editar-perfil-funcionario/editar-perfil-funcionario.component';
 import { VacinarComponent } from './pages/vacinar/vacinar.component';
 import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
 import { CadastrarLoteVacinaComponent } from './pages/cadastrar-lote-vacina/cadastrar-lote-vacina.component';
@@ -40,6 +41,7 @@ import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin
     CadastrarCampanhaComponent,
     CadastrarFuncionarioComponent,
     EditarPerfilPacienteComponent,
+    EditarPerfilFuncionarioComponent,
     VacinarComponent,
     DashboardFuncionarioComponent,
     CadastrarLoteVacinaComponent,

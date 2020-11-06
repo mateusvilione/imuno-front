@@ -1,16 +1,23 @@
 <form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="atualizar()">
 
-  <h2>Editar perfil Paciente</h2>
+  <h2>Cadastrar Paciente</h2>
 
   <div class="form-group">
     <label for="nome" style="float: left;">Nome Completo:</label>
-    <input type="text" class="form-control" id="nome" formControlName="nome">
+    <input type="text" class="form-control" id="nome" formControlName="nome" [class]="(submitted && formulario.get('nome').errors) ||
+            (formulario.get('nome').errors && formulario.get('nome').dirty) ? 'is-invalid' :
+            formulario.get('nome').dirty ? 'is-valid' : ''" />
+    <div *ngIf="formulario.get('nome').errors?.required" class="invalid-feedback">Nome é obrigatório</div>
   </div>
 
   <div class="form-row">
     <div class="form-group  col-md-6">
       <label for="dataNascimento" style="float: left;">Data de Nascimento:</label>
-      <input type="date" class="form-control" id="dataNascimento" formControlName="dataNascimento">
+      <input type="test" class="form-control" id="dataNascimento" formControlName="dataNascimento" [class]="(submitted && formulario.get('dataNascimento').errors) ||
+            (formulario.get('dataNascimento').errors && formulario.get('dataNascimento').dirty) ? 'is-invalid' :
+            formulario.get('dataNascimento').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('dataNascimento').errors?.required" class="invalid-feedback">Data de Nascimento é
+        obrigatório</div>
     </div>
     <div class="form-group  col-md-6">
       <label for="genero" style="float: left;">Gênero:</label>
@@ -25,85 +32,133 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="cpfRne" style="float: left;">CPF ou RNE:</label>
-      <input type="text" class="form-control" id="cpfRne" formControlName="cpfRne">
+      <input type="text" class="form-control" id="cpfRne" formControlName="cpfRne" [class]="(submitted && formulario.get('cpfRne').errors) ||
+            (formulario.get('cpfRne').errors && formulario.get('cpfRne').dirty) ? 'is-invalid' :
+            formulario.get('cpfRne').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('cpfRne').errors?.required" class="invalid-feedback">CPF é obrigatório</div>
     </div>
     <div class="form-group col-md-6">
       <label for="cartaoSus" style="float: left;">Cartão SUS:</label>
-      <input type="text" class="form-control" id="cartaoSus" formControlName="cartaoSus">
+      <input type="text" class="form-control" id="cartaoSus" formControlName="cartaoSus" [class]="(submitted && formulario.get('cartaoSus').errors) ||
+            (formulario.get('cartaoSus').errors && formulario.get('cartaoSus').dirty) ? 'is-invalid' :
+            formulario.get('cartaoSus').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('cartaoSus').errors?.required" class="invalid-feedback">Cartão SUS é obrigatório</div>
     </div>
   </div>
 
   <div class="form-group">
     <label for="nomeMae" style="float: left;">Nome da Mãe:</label>
-    <input type="text" class="form-control" id="nomeMae" formControlName="nomeMae">
+    <input type="text" class="form-control" id="nomeMae" formControlName="nomeMae" [class]="(submitted && formulario.get('nomeMae').errors) ||
+          (formulario.get('nomeMae').errors && formulario.get('nomeMae').dirty) ? 'is-invalid' :
+          formulario.get('nomeMae').dirty ? 'is-valid' : ''">
+    <div *ngIf="formulario.get('nomeMae').errors?.required" class="invalid-feedback">Nome Mãe é obrigatório</div>
   </div>
   <div class="form-group">
     <label for="nomePai" style="float: left;">Nome do Pai:</label>
-    <input type="text" class="form-control" id="nomePai" formControlName="nomePai">
+    <input type="text" class="form-control" id="nomePai" formControlName="nomePai" [class]="(submitted && formulario.get('nomePai').errors) ||
+          (formulario.get('nomePai').errors && formulario.get('nomePai').dirty) ? 'is-invalid' :
+          formulario.get('nomePai').dirty ? 'is-valid' : ''">
+    <div *ngIf="formulario.get('nomePai').errors?.required" class="invalid-feedback">Nome Mãe é obrigatório</div>
   </div>
 
   <div class="form-group">
     <label for="logradouro">Logradouro:</label>
-    <input type="text" class="form-control" id="logradouro" formControlName="logradouro">
+    <input type="text" class="form-control" id="logradouro" formControlName="logradouro" [class]="(submitted && formulario.get('logradouro').errors) ||
+            (formulario.get('logradouro').errors && formulario.get('logradouro').dirty) ? 'is-invalid' :
+            formulario.get('logradouro').dirty ? 'is-valid' : ''">
+    <div *ngIf="formulario.get('logradouro').errors?.required" class="invalid-feedback">Logradouro é obrigatório</div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-2">
       <label for="numero">Número:</label>
-      <input type="number" class="form-control" id="numero" formControlName="numero">
+      <input type="number" class="form-control" id="numero" formControlName="numero" [class]="(submitted && formulario.get('numero').errors) ||
+            (formulario.get('numero').errors && formulario.get('numero').dirty) ? 'is-invalid' :
+            formulario.get('numero').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('numero').errors?.required" class="invalid-feedback">Número é obrigatório</div>
     </div>
     <div class="form-group col-md-4">
       <label for="complemento">Complemento:</label>
-      <input type="text" class="form-control" id="complemento" formControlName="complemento">
+      <input type="number" class="form-control" id="complemento" formControlName="complemento" [class]="(submitted && formulario.get('complemento').errors) ||
+            (formulario.get('complemento').errors && formulario.get('complemento').dirty) ? 'is-invalid' :
+            formulario.get('complemento').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('complemento').errors?.required" class="invalid-feedback">Complemento é obrigatório
+      </div>
     </div>
     <div class="form-group col-md-6">
       <label for="bairro">Bairro:</label>
-      <input type="text" class="form-control" id="bairro" formControlName="bairro">
+      <input type="text" class="form-control" id="bairro" formControlName="bairro" [class]="(submitted && formulario.get('bairro').errors) ||
+            (formulario.get('bairro').errors && formulario.get('bairro').dirty) ? 'is-invalid' :
+            formulario.get('bairro').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('bairro').errors?.required" class="invalid-feedback">Bairro é obrigatório</div>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="cidade">Cidade:</label>
-      <input type="text" class="form-control" id="cidade" formControlName="cidade">
+      <input type="text" class="form-control" id="cidade" formControlName="cidade" [class]="(submitted && formulario.get('cidade').errors) ||
+            (formulario.get('cidade').errors && formulario.get('cidade').dirty) ? 'is-invalid' :
+            formulario.get('cidade').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('cidade').errors?.required" class="invalid-feedback">Cidade é obrigatório</div>
     </div>
     <div class="form-group col-md-2">
       <label for="estado">Estado:</label>
-      <input type="text" class="form-control" id="estado" formControlName="estado">
-      <!-- <select id="idEstado" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select> -->
+      <input type="text" class="form-control" id="estado" formControlName="estado" [class]="(submitted && formulario.get('estado').errors) ||
+            (formulario.get('estado').errors && formulario.get('estado').dirty) ? 'is-invalid' :
+            formulario.get('estado').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('estado').errors?.required" class="invalid-feedback">Estado é obrigatório</div>
     </div>
     <div class="form-group col-md-4">
       <label for="cep">CEP:</label>
-      <input type="text" class="form-control" id="cep" formControlName="cep">
+      <input type="text" class="form-control" id="cep" formControlName="cep" [class]="(submitted && formulario.get('cep').errors) ||
+            (formulario.get('cep').errors && formulario.get('cep').dirty) ? 'is-invalid' :
+            formulario.get('cep').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('cep').errors?.required" class="invalid-feedback">CEP é obrigatório</div>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="email">E-mail:</label>
-      <input type="email" class="form-control" id="email" formControlName="email">
+      <input type="email" class="form-control" id="email" formControlName="email" [class]="(submitted && formulario.get('email').errors) ||
+            (formulario.get('email').errors && formulario.get('email').dirty) ? 'is-invalid' :
+            formulario.get('email').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('email').errors?.email" class="invalid-feedback">Digite um e-mail válido</div>
     </div>
     <div class="form-group col-md-4">
       <label for="telefone">Telefone:</label>
-      <input type="tel" class="form-control" id="telefone" placeholder="(XX) XXXXX-XXXX"
-        mask="(99) 99999-9999" formControlName="telefone">
+      <input type="tel" class="form-control" id="telefone" formControlName="telefone" mask="(99)99999-9999" [class]="(submitted && formulario.get('telefone').errors) ||
+            (formulario.get('telefone').errors && formulario.get('telefone').dirty) ? 'is-invalid' :
+            formulario.get('telefone').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('telefone').errors?.required" class="invalid-feedback">Telefone é obrigatório</div>
     </div>
     <div class="form-group col-md-4">
       <label for="telefoneEmergencia">Telefone de Ermegencia:</label>
-      <input type="tel" class="form-control" id="telefoneEmergencia" placeholder="(XX) XXXXX-XXXX"
-        mask="(99) 99999-9999" formControlName="telefoneEmergencia">
+      <input type="tel" class="form-control" id="telefoneEmergencia" formControlName="telefoneEmergencia"
+        mask="(99)99999-9999" [class]="(submitted && formulario.get('telefoneEmergencia').errors) ||
+            (formulario.get('telefoneEmergencia').errors && formulario.get('telefoneEmergencia').dirty) ? 'is-invalid' :
+            formulario.get('telefoneEmergencia').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('telefoneEmergencia').errors?.required" class="invalid-feedback">Telefone Emergencia é
+        obrigatório</div>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="senha">Senha:</label>
-      <input type="password" class="form-control" id="senha" formControlName="senha">
+      <input type="password" class="form-control" id="senha" formControlName="senha" [class]="(submitted && formulario.get('senha').errors) ||
+            (formulario.get('senha').errors && formulario.get('senha').dirty) ? 'is-invalid' :
+            formulario.get('senha').dirty ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('senha').errors?.required" class="invalid-feedback">Senha é obrigatório</div>
     </div>
     <div class="form-group col-md-6">
-      <label for="confirmacaSenha">Confirmação de Senha:</label>
-      <input type="password" class="form-control" id="confirmacaSenha">
+      <label for="confirmacaoSenha">Confirmação de Senha:</label>
+      <input type="password" class="form-control" id="confirmacaoSenha" formControlName="confirmacaoSenha" [class]="(submitted && formulario.get('confirmacaoSenha').errors) ||
+            (formulario.get('confirmacaoSenha').errors && formulario.get('confirmacaoSenha').dirty) ||
+            (senhasDiferentes()) ? 'is-invalid' :
+            (formulario.get('confirmacaoSenha').dirty && senhasIguais()) ? 'is-valid' : ''">
+      <div *ngIf="formulario.get('confirmacaoSenha').errors?.required" class="invalid-feedback">A confirmação da senha é
+        obrigatória</div>
+      <div *ngIf="senhasDiferentes()" class="invalid-feedback">A confirmação da senha precisa ser igual a senha</div>
     </div>
   </div>
 
@@ -112,8 +167,8 @@
       <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
     </div>
     <div class="form-group col-md-6">
-      <button type="submit" class="btn"
-        [class]="operacao ? 'btn-primary col-12' : 'btn-success col-12'">{{ operacao ? "Cadastrar" : "Atualizar" }}
+      <button type="submit" class="btn btn-success entrar col-12"
+        [class]="operacao ? 'btn-primary' : 'btn-success'">{{operacao ? "Cadastrar" : "Atualizar" }}
       </button>
     </div>
   </div>

@@ -36,17 +36,17 @@ export class CadastrarFuncionarioComponent implements OnInit {
       cpf: ['', Validators.required],
       coren: ['', Validators.required],
       telefone: ['', Validators.required],
-      telefoneEmergencia: [''],
+      telefoneEmergencia: ['', Validators.required],
       email: ['', Validators.email],
       senha: ['', Validators.required],
       confirmacaoSenha: ['', Validators.required],
       logradouro: ['', Validators.required],
       numero: ['', Validators.required],
-      complemento: [''],
+      complemento: ['', Validators.required],
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       estado: ['', Validators.required],
-      cep: [''],
+      cep: ['', Validators.required],
     });
     // this.formulario.controls.id.setValue('');
     // this.formulario.controls.nome.setValue('Rafael');

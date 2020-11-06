@@ -35,25 +35,52 @@ export class EditarPerfilPacienteComponent implements OnInit {
     this.formulario = this.fb.group({
       id: [null],
       nome: ['', Validators.required],
-      dataNascimento: [''],
-      genero: [''],
-      cpfRne: [this.paciente.cpfRne.valueOf],
-      nomeMae: [''],
+      dataNascimento: ['', Validators.required],
+      genero: ['', Validators.required],
+      cpfRne: ['', Validators.required],
+      nomeMae: ['', Validators.required],
       nomePai: [''],
-      nacionalidade: [''],
-      telefone: [''],
-      telefoneEmergencia: [''],
+      nacionalidade: ['', Validators.required],
+      telefone: ['', Validators.required],
+      telefoneEmergencia: ['', Validators.required],
       email: ['', Validators.email],
-      senha: [''],
-      cartaoSus: [''],
-      logradouro: [''],
-      numero: [''],
-      complemento: [''],
-      bairro: [''],
-      cidade: [''],
-      estado: [''],
-      cep: [''],
+      senha: ['', Validators.required],
+      confirmacaoSenha: ['', Validators.required],
+      cartaoSus: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      numero: ['', Validators.required],
+      complemento: ['', Validators.required],
+      bairro: ['', Validators.required],
+      cidade: ['', Validators.required],
+      estado: ['', Validators.required],
+      cep: ['', Validators.required],
     });
+  }
+
+  public senhasIguais() {
+    var password = (<HTMLSelectElement>document.getElementById("senha")).value;
+    var confirm_password = (<HTMLSelectElement>document.getElementById("confirmacaoSenha")).value;
+
+    if (password == confirm_password) {
+      return true;
+
+    }
+    else {
+      return false;
+    }
+  }
+
+  public senhasDiferentes() {
+    var password = (<HTMLSelectElement>document.getElementById("senha")).value;
+    var confirm_password = (<HTMLSelectElement>document.getElementById("confirmacaoSenha")).value;
+
+    if (password != confirm_password) {
+      return true;
+
+    }
+    else {
+      return false;
+    }
   }
 
   atualizar() {
