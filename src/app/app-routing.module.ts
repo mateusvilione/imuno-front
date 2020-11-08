@@ -9,6 +9,7 @@ import { CadastrarPacienteComponent } from './pages/paciente/cadastrar-paciente/
 import { CadernetaVacinacaoComponent } from './pages/caderneta-vacinacao/caderneta-vacinacao.component';
 import { CadastrarCampanhaComponent } from './pages/cadastrar-campanha/cadastrar-campanha.component';
 import { CadastrarFuncionarioComponent } from './pages/funcionario/cadastrar-funcionario/cadastrar-funcionario.component';
+import { CadastrarPostoComponent } from './pages/posto/cadastrar-posto/cadastrar-posto.component';
 import { EditarPerfilPacienteComponent } from './pages/paciente/editar-perfil-paciente/editar-perfil-paciente.component';
 import { EditarPerfilFuncionarioComponent } from './pages/funcionario/editar-perfil-funcionario/editar-perfil-funcionario.component';
 import { VacinarComponent } from './pages/vacinar/vacinar.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'editar/perfil/funcionario', component: EditarPerfilFuncionarioComponent },
   { path: 'cadastro/paciente', component: CadastrarPacienteComponent },
   { path: 'cadastro/campanha', component: CadastrarCampanhaComponent },
+  { path: 'cadastro/posto', component: CadastrarPostoComponent },
   { path: 'cadastro/funcionario', component: CadastrarFuncionarioComponent },
   { path: 'vacinar', component: VacinarComponent},
   { path: 'dashboard-funcionario', component: DashboardFuncionarioComponent},

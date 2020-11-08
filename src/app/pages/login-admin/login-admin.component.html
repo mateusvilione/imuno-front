@@ -1,18 +1,14 @@
 <div class="card text-center" style="width: 18rem; margin: 50px;">
   <div class="card-body">
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <a routerLink="/admin"><button type="button" class="btn btn-primary" style="margin-right: 5px;">Administrador</button></a>
-      <a routerLink="/funcionario"><button type="button" class="btn btn-primary">Funcionário</button></a>
-    </div>
     <h2 class="card-title">Login Adminstrador</h2>
     <div class="card-text">
       <form>
         <div class="form-group">
-          <label for="exampleInputEmail1" style="float: left;">ID</label>
+          <label for="exampleInputEmail1" style="float: left;" required>E-mail:</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1" style="float: left;">Senha</label>
+          <label for="exampleInputPassword1" style="float: left;">Senha:</label>
           <input type="password" class="form-control" id="exampleInputPassword1">
         </div>
         <a routerLink="/dashboard-admin"><button type="submit" class="btn btn-primary entrar" style="width: 100%; margin-left: 0px;">Entrar</button></a>

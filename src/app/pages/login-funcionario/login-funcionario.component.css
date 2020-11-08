@@ -1,0 +1,11 @@
+.card-title{
+    text-align: center;
+    padding: 5% 5% 10%;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    margin-top: 5%;
+}
