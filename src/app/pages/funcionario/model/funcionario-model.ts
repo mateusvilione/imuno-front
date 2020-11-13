@@ -8,6 +8,7 @@ export interface FuncionarioModel{
     telefone?: string;
     telefoneEmergencia?: string;
     senha?: string;
+    usuarioId?: string;
 }
 
 export interface EnderecoModel {

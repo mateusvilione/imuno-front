@@ -4,6 +4,8 @@ import { PacienteRepository } from '../repository/paciente-repository';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-editar-perfil-paciente',
@@ -24,16 +26,29 @@ export class EditarPerfilPacienteComponent implements OnInit {
 
   constructor(
     private repository: PacienteRepository,
+    private route: ActivatedRoute,
+    private title: Title,
     private fb: FormBuilder) { }
 
-    ngOnInit(): void {
-      this.iniciarFormulario();
-      this.iniciarForm();
+  ngOnInit(): void {
+    const codigoCliente = this.route.snapshot.params['codigo'];
+
+    // const codigo = this.service.jwtPayload.usuario_id;
+
+    this.iniciarFormulario();
+
+    this.title.setTitle('Editar Perfil');
+
+    if (codigoCliente) {
+      this.operacao = false;
+      this.carregarCliente(codigoCliente);
+    }
   }
 
   public iniciarFormulario() {
     this.formulario = this.fb.group({
       id: [null],
+      usuarioId: [null],
       nome: ['', Validators.required],
       dataNascimento: ['', Validators.required],
       genero: ['', Validators.required],
@@ -43,17 +58,42 @@ export class EditarPerfilPacienteComponent implements OnInit {
       nacionalidade: ['', Validators.required],
       telefone: ['', Validators.required],
       telefoneEmergencia: ['', Validators.required],
-      email: ['', Validators.email],
+      email: ['', [Validators.email, Validators.required]],
       senha: ['', Validators.required],
       confirmacaoSenha: ['', Validators.required],
       cartaoSus: ['', Validators.required],
       logradouro: ['', Validators.required],
       numero: ['', Validators.required],
-      complemento: ['', Validators.required],
+      complemento: [''],
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       estado: ['', Validators.required],
       cep: ['', Validators.required],
+    });
+  }
+
+  carregarCliente(codigoCliente: number){
+    this.repository.getPacienteById(codigoCliente).subscribe(resposta => {
+      this.formulario.controls.id.setValue(resposta.id);
+      this.formulario.controls.nome.setValue(resposta.nome);
+      this.formulario.controls.dataNascimento.setValue(resposta.dataNascimento);
+      this.formulario.controls.genero.setValue(resposta.genero);
+      this.formulario.controls.cpfRne.setValue(resposta.cpfRne);
+      this.formulario.controls.nomeMae.setValue(resposta.nomeMae);
+      this.formulario.controls.nomePai.setValue(resposta.nomePai);
+      this.formulario.controls.nacionalidade.setValue(resposta.nacionalidade);
+      this.formulario.controls.telefone.setValue(resposta.telefone);
+      this.formulario.controls.telefoneEmergencia.setValue(resposta.telefoneEmergencia);
+      this.formulario.controls.email.setValue(resposta.email);
+      this.formulario.controls.cartaoSus.setValue(resposta.cartaoSus);
+      this.formulario.controls.logradouro.setValue(resposta.endereco.logradouro);
+      this.formulario.controls.numero.setValue(resposta.endereco.numero);
+      this.formulario.controls.complemento.setValue(resposta.endereco.complemento);
+      this.formulario.controls.bairro.setValue(resposta.endereco.bairro);
+      this.formulario.controls.cidade.setValue(resposta.endereco.cidade);
+      this.formulario.controls.estado.setValue(resposta.endereco.estado);
+      this.formulario.controls.cep.setValue(resposta.endereco.cep);
+      this.formulario.controls.usuarioId.setValue(resposta.usuarioId);
     });
   }
 
@@ -84,23 +124,16 @@ export class EditarPerfilPacienteComponent implements OnInit {
   }
 
   atualizar() {
-    this.submitted = true;
-    if (this.formulario.invalid) {
-      return;
-    }
+    // this.submitted = true;
+    // if (this.formulario.invalid) {
+    //   return;
+    // }
     this.salvar();
   };
 
   salvar() {
-    // const listaTelefones = [];
-    // this.formulario.value.telefones.forEach(element => {
-    //   listaTelefones.push({
-    //     id:null,numero:element,tipo:'casa'
-    //   })
-    // });
     const dados = {
-
-      // id: this.formulario.value.id,
+      id : this.formulario.value.id,
       nome: this.formulario.value.nome,
       dataNascimento: this.formulario.value.dataNascimento,
       genero: this.formulario.value.genero,
@@ -120,10 +153,11 @@ export class EditarPerfilPacienteComponent implements OnInit {
         cidade: this.formulario.value.cidade,
         estado: this.formulario.value.estado,
         cep: this.formulario.value.cep,
-      }
+      },
+      usuarioId: this.formulario.value.usuarioId,
     } as PacienteModel;
 
-    console.log("dados" + dados);
+    console.log("dados" + dados.nome);
 
     if (dados.id) {
       this.repository.putPaciente(dados).subscribe(resposta => {
@@ -157,12 +191,6 @@ export class EditarPerfilPacienteComponent implements OnInit {
         }
       );
     }
-  }
-
-  iniciarForm(){
-    this.repository.getPacienteById(5).subscribe(resposta => {
-      this.paciente = resposta as PacienteModel;
-    });
   }
 
   limparFormulario() {

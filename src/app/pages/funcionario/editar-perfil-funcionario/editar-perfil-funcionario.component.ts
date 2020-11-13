@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuncionarioRepository } from '../repository/funcionario-repository';
 import { Component, OnInit } from '@angular/core';
 import { FuncionarioModel } from '../model/funcionario-model';
+import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-editar-perfil-funcionario',
@@ -20,21 +22,33 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
 
   constructor(
     private repository: FuncionarioRepository,
+    private route: ActivatedRoute,
+    private title: Title,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    const codigoFuncionario = this.route.snapshot.params['codigo'];
+
     this.iniciarFormulario();
+
+    this.title.setTitle('Editar Perfil');
+
+    if (codigoFuncionario) {
+      this.operacao = false;
+      this.carregarFuncionario(codigoFuncionario);
+    }
   }
 
   public iniciarFormulario() {
     this.formulario = this.fb.group({
       id: [null],
+      usuarioId: [null],
       nome: ['', Validators.required],
       cpf: ['', Validators.required],
       coren: ['', Validators.required],
       telefone: ['', Validators.required],
       telefoneEmergencia: ['', Validators.required],
-      email: ['', Validators.email],
+      email: ['', [Validators.email, Validators.required]],
       senha: ['', Validators.required],
       confirmacaoSenha: ['', Validators.required],
       logradouro: ['', Validators.required],
@@ -46,6 +60,27 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
       cep: ['', Validators.required],
     });
   }
+
+  carregarFuncionario(codigoCliente: number){
+    this.repository.getFuncionarioById(codigoCliente).subscribe(resposta => {
+      this.formulario.controls.id.setValue(resposta.id);
+      this.formulario.controls.nome.setValue(resposta.nome);
+      this.formulario.controls.cpf.setValue(resposta.cpf);
+      this.formulario.controls.coren.setValue(resposta.coren);
+      this.formulario.controls.telefone.setValue(resposta.telefone);
+      this.formulario.controls.telefoneEmergencia.setValue(resposta.telefoneEmergencia);
+      this.formulario.controls.email.setValue(resposta.email);
+      this.formulario.controls.logradouro.setValue(resposta.endereco.logradouro);
+      this.formulario.controls.numero.setValue(resposta.endereco.numero);
+      this.formulario.controls.complemento.setValue(resposta.endereco.complemento);
+      this.formulario.controls.bairro.setValue(resposta.endereco.bairro);
+      this.formulario.controls.cidade.setValue(resposta.endereco.cidade);
+      this.formulario.controls.estado.setValue(resposta.endereco.estado);
+      this.formulario.controls.cep.setValue(resposta.endereco.cep);
+      this.formulario.controls.usuarioId.setValue(resposta.usuarioId);
+    });
+  }
+
 
   public senhasIguais() {
     var password = (<HTMLSelectElement>document.getElementById("senha")).value;
@@ -82,11 +117,9 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
   };
 
   salvar() {
-    var telefoneEmergencia = (<HTMLSelectElement>document.getElementById("telefoneEmergencia")).value;
-    console.log(telefoneEmergencia);
     const dados = {
 
-      // id: this.formulario.value.id,
+      id: this.formulario.value.id,
       nome: this.formulario.value.nome,
       cpf: this.formulario.value.cpf,
       coren: this.formulario.value.coren,
@@ -102,7 +135,8 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
         cidade: this.formulario.value.cidade,
         estado: this.formulario.value.estado,
         cep: this.formulario.value.cep,
-      }
+      },
+      usuarioId: this.formulario.value.usuarioId,
     } as FuncionarioModel;
 
     console.log("dados" + dados);

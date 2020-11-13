@@ -1,4 +1,6 @@
 <form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="atualizar()">
+  <input type="hidden" id="id" formControlName="id"/>
+  <input type="hidden" id="usuarioId" formControlName="usuarioId"/>
 
   <h2>Editar perfil Funcionário</h2>
 
@@ -103,7 +105,7 @@
         [class]="(submitted && formulario.get('telefoneEmergencia').errors) ||
             (formulario.get('telefoneEmergencia').errors && formulario.get('telefoneEmergencia').dirty) ? 'is-invalid' :
             formulario.get('telefoneEmergencia').dirty ? 'is-valid' : ''">
-      <div *ngIf="formulario.get('telefoneEmergencia').errors?.required" class="invalid-feedback">Telefone Emergencia é obrigatório</div>
+      <div *ngIf="formulario.get('telefoneEmergencia').errors?.required" class="invalid-feedback">Telefone de Emergencia é obrigatório</div>
     </div>
   </div>
 

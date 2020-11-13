@@ -12,6 +12,7 @@ export interface PacienteEntity {
   email?: string;
   senha?: string;
   cartaoSus?: string;
+  usuarioId?: string;
   endereco?: EnderecoEntity;
 }
 

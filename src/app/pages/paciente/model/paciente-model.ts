@@ -13,6 +13,7 @@ export interface PacienteModel {
   senha?: string;
   cartaoSus?: string;
   endereco?: EnderecoEntity;
+  usuarioId?: string;
 }
 
 export interface EnderecoEntity {

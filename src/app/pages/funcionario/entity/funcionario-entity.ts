@@ -8,6 +8,7 @@ export interface FuncionarioEntity {
     telefone?: string;
     telefoneEmergencia?: string;
     senha?: string;
+    usuarioId?: string;
 }
 
 export interface EnderecoEntity {
