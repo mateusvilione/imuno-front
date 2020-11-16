@@ -1,47 +1,46 @@
 import { Observable } from 'rxjs';
-import { PostoMapper } from './../mapper/posto-mapper';
-import { PostoModel } from './../model/posto-model';
-import { PostoEntity } from './../entity/posto-entity';
+import { VacinaMapper } from '../mapper/vacina-mapper';
+import { VacinaModel } from '../model/vacina-model';
+import { VacinaEntity } from '../entity/vacina-entity';
 import { environment } from '../../../../environments/environment';
 import { Injectable } from "@angular/core";
-
 import { BaseHttpService } from '../../../services/http/base-http.service';
 import { map } from 'rxjs/operators';
-
 
 @Injectable({
   providedIn: 'root',
 })
-export class PostoRepository {
 
-  mapper = new PostoMapper();
+export class VacinaRepository {
+
+  mapper = new VacinaMapper();
 
   constructor(public http: BaseHttpService) { }
 
-  getPostoById(id: number): Observable<PostoModel> {
+  getVacinaById(id: number): Observable<VacinaModel> {
     return this.http
-      .getAll<PostoModel>(`${environment.URLSERVIDOR}posto/${id}`)
+      .getAll<VacinaModel>(`${environment.URLSERVIDOR}vacina/${id}`)
       .pipe(map((x) => this.mapper.mapFrom(x.data)));
   }
 
-  postPosto(param: PostoModel) {
+  postVacina(param: VacinaModel) {
     return this.http
-      .post<PostoEntity>(`${environment.URLSERVIDOR}posto`, this.mapper.mapTo(param))
+      .post<VacinaEntity>(`${environment.URLSERVIDOR}vacina`, this.mapper.mapTo(param))
       .pipe(map((x) => this.mapper.mapFrom(x.data)));
   }
 
-  putPosto(param: PostoModel) {
+  putVacina(param: VacinaModel) {
     return this.http
       .put<void>(
-        `${environment.URLSERVIDOR}posto/${param.id}`,
+        `${environment.URLSERVIDOR}vacina/${param.id}`,
         this.mapper.mapTo(param)
       )
       .pipe(map((x) => x.data));
   }
 
-  deletePosto(id: number): Observable<void> {
+  deleteVacina(id: number): Observable<void> {
     return this.http
-      .delete<void>(`${environment.URLSERVIDOR}posto/${id}`, id)
+      .delete<void>(`${environment.URLSERVIDOR}vacina/${id}`, id)
       .pipe(map((x) => x.data));
   }
 }

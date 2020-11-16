@@ -1,15 +1,15 @@
-import { PostoModel } from '../model/posto-model';
-import { PostoRepository } from '../repository/posto-repository';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { VacinaModel } from './model/vacina-model';
+import { VacinaRepository } from './repository/vacina-repository';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-cadastrar-posto',
-  templateUrl: './cadastrar-posto.component.html',
-  styleUrls: ['./cadastrar-posto.component.css']
+  selector: 'app-vacina',
+  templateUrl: './vacina.component.html',
+  styleUrls: ['./vacina.component.css']
 })
-export class CadastrarPostoComponent implements OnInit {
+export class VacinaComponent implements OnInit {
 
   public formulario: FormGroup;
 
@@ -19,10 +19,10 @@ export class CadastrarPostoComponent implements OnInit {
 
   operacao: boolean = true;
 
-  posto: PostoModel;
+  posto: VacinaModel;
 
   constructor(
-    private repository: PostoRepository,
+    private repository: VacinaRepository,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -34,15 +34,7 @@ export class CadastrarPostoComponent implements OnInit {
     //   id: [null],
     //   administrador: [null],
       nome: ['', Validators.required],
-      cnes: ['', Validators.required],
-      telefone: ['', Validators.required],
-      logradouro: ['', Validators.required],
-      numero: ['', Validators.required],
-      complemento: ['', Validators.required],
-      bairro: ['', Validators.required],
-      cidade: ['', Validators.required],
-      estado: ['', Validators.required],
-      cep: ['', Validators.required],
+      prevencao: ['', Validators.required]
     });
   }
 
@@ -57,33 +49,22 @@ export class CadastrarPostoComponent implements OnInit {
   salvar() {
     const dados = {
       // id: this.formulario.value.id,
-      administradorId: 1,   //this.formulario.value.administrador,
       nome: this.formulario.value.nome,
-      cnes: this.formulario.value.cnes,
-      telefone: this.formulario.value.telefone,
-      endereco: {
-        logradouro: this.formulario.value.logradouro,
-        numero: this.formulario.value.numero,
-        complemento: this.formulario.value.complemento,
-        bairro: this.formulario.value.bairro,
-        cidade: this.formulario.value.cidade,
-        estado: this.formulario.value.estado,
-        cep: this.formulario.value.cep,
-      }
-    } as PostoModel;
+      prevencao: this.formulario.value.prevencao
+    } as VacinaModel;
 
     console.log("dados" + dados);
 
     if (dados.id) {
-      this.repository.putPosto(dados).subscribe(resposta => {
+      this.repository.putVacina(dados).subscribe(resposta => {
         this.limparFormulario();
       });
     } else {
-      this.repository.postPosto(dados).subscribe(resposta => {
+      this.repository.postVacina(dados).subscribe(resposta => {
         this.mensagem = [
           {
             severity: 'success',
-            summary: 'Posto',
+            summary: 'Vacina',
             detail: 'cadastrado com sucesso!'
           }];
         this.limparFormulario();

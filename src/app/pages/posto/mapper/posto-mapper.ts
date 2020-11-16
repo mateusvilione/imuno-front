@@ -7,11 +7,10 @@ export class PostoMapper extends Mapper<PostoEntity, PostoModel> {
     mapFrom(param: PostoEntity): PostoModel {
         return {
           id: param.id,
+          administradorId: param.administradorId,
           nome: param.nome ? param.nome : '',
-          cnpjRne: param.cnpjRne,
+          cnes: param.cnes,
           telefone: param.telefone,
-          email: param.email,
-          senha: param.senha,
           endereco: param.endereco
         };
     }
@@ -19,11 +18,10 @@ export class PostoMapper extends Mapper<PostoEntity, PostoModel> {
     mapTo(param: PostoModel): PostoEntity {
         return {
           id: param.id,
-          nome: param.nome,
-          cnpjRne: param.cnpjRne,
+          administradorId: param.administradorId,
+          nome: param.nome ? param.nome : '',
+          cnes: param.cnes,
           telefone: param.telefone,
-          email: param.email,
-          senha: param.senha,
           endereco: param.endereco
         };
     }

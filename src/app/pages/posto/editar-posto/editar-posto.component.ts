@@ -4,13 +4,15 @@ import { PostoRepository } from '../repository/posto-repository';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-editar-perfil-posto',
-  templateUrl: './editar-perfil-posto.component.html',
-  styleUrls: ['./editar-perfil-posto.component.css']
+  selector: 'app-editar-posto',
+  templateUrl: './editar-posto.component.html',
+  styleUrls: ['./editar-posto.component.css']
 })
-export class EditarPerfilPostoComponent implements OnInit {
+export class EditarPostoComponent implements OnInit {
 
   public formulario: FormGroup;
 
@@ -24,22 +26,32 @@ export class EditarPerfilPostoComponent implements OnInit {
 
   constructor(
     private repository: PostoRepository,
+    private route: ActivatedRoute,
+    private title: Title,
     private fb: FormBuilder) { }
 
-    ngOnInit(): void {
-      this.iniciarFormulario();
-      this.iniciarForm();
+  ngOnInit(): void {
+    const codigoPosto = this.route.snapshot.params['codigo'];
+
+    // const codigo = this.service.jwtPayload.usuario_id;
+
+    this.iniciarFormulario();
+
+    this.title.setTitle('Editar Posto');
+
+    if (codigoPosto) {
+      this.operacao = false;
+      this.carregarPosto(codigoPosto);
+    }
   }
 
   public iniciarFormulario() {
     this.formulario = this.fb.group({
       id: [null],
+      administradorId: [null],
       nome: ['', Validators.required],
-      cnpjRne: ['', Validators.required],
+      cnes: ['', Validators.required],
       telefone: ['', Validators.required],
-      email: ['', Validators.email],
-      senha: ['', Validators.required],
-      confirmacaoSenha: ['', Validators.required],
       logradouro: ['', Validators.required],
       numero: ['', Validators.required],
       complemento: ['', Validators.required],
@@ -50,30 +62,21 @@ export class EditarPerfilPostoComponent implements OnInit {
     });
   }
 
-  public senhasIguais() {
-    var password = (<HTMLSelectElement>document.getElementById("senha")).value;
-    var confirm_password = (<HTMLSelectElement>document.getElementById("confirmacaoSenha")).value;
-
-    if (password == confirm_password) {
-      return true;
-
-    }
-    else {
-      return false;
-    }
-  }
-
-  public senhasDiferentes() {
-    var password = (<HTMLSelectElement>document.getElementById("senha")).value;
-    var confirm_password = (<HTMLSelectElement>document.getElementById("confirmacaoSenha")).value;
-
-    if (password != confirm_password) {
-      return true;
-
-    }
-    else {
-      return false;
-    }
+  carregarPosto(codigoPosto: number){
+    this.repository.getPostoById(codigoPosto).subscribe(resposta => {
+      this.formulario.controls.id.setValue(resposta.id);
+      this.formulario.controls.nome.setValue(resposta.nome);
+      this.formulario.controls.cnes.setValue(resposta.cnes);
+      this.formulario.controls.telefone.setValue(resposta.telefone);
+      this.formulario.controls.logradouro.setValue(resposta.endereco.logradouro);
+      this.formulario.controls.numero.setValue(resposta.endereco.numero);
+      this.formulario.controls.complemento.setValue(resposta.endereco.complemento);
+      this.formulario.controls.bairro.setValue(resposta.endereco.bairro);
+      this.formulario.controls.cidade.setValue(resposta.endereco.cidade);
+      this.formulario.controls.estado.setValue(resposta.endereco.estado);
+      this.formulario.controls.cep.setValue(resposta.endereco.cep);
+      this.formulario.controls.administradorId.setValue(resposta.administradorId);
+    });
   }
 
   atualizar() {
@@ -85,20 +88,11 @@ export class EditarPerfilPostoComponent implements OnInit {
   };
 
   salvar() {
-    // const listaTelefones = [];
-    // this.formulario.value.telefones.forEach(element => {
-    //   listaTelefones.push({
-    //     id:null,numero:element,tipo:'casa'
-    //   })
-    // });
     const dados = {
-
-      // id: this.formulario.value.id,
+      id: this.formulario.value.id,
       nome: this.formulario.value.nome,
-      cnpjRne: this.formulario.value.cnpjRne,
+      cnes: this.formulario.value.cnes,
       telefone: this.formulario.value.telefone,
-      email: this.formulario.value.email,
-      senha: this.formulario.value.senha,
       endereco: {
         logradouro: this.formulario.value.logradouro,
         numero: this.formulario.value.numero,
@@ -107,13 +101,14 @@ export class EditarPerfilPostoComponent implements OnInit {
         cidade: this.formulario.value.cidade,
         estado: this.formulario.value.estado,
         cep: this.formulario.value.cep,
-      }
+      },
+      administradorId: 1 // this.formulario.value.administradorId,
     } as PostoModel;
 
     console.log("dados" + dados);
 
     if (dados.id) {
-      this.repository.putPosto(dados).subscribe(resposta => {
+      this.repository.postPosto(dados).subscribe(resposta => {
         this.mensagem = [
           {
             severity: 'success',
@@ -144,12 +139,6 @@ export class EditarPerfilPostoComponent implements OnInit {
         }
       );
     }
-  }
-
-  iniciarForm(){
-    this.repository.getPostoById(5).subscribe(resposta => {
-      this.posto = resposta as PostoModel;
-    });
   }
 
   limparFormulario() {

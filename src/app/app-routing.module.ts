@@ -7,7 +7,6 @@ import { LoginPacienteComponent } from './pages/login-paciente/login-paciente.co
 import { LoginFuncionarioComponent } from './pages/login-funcionario/login-funcionario.component';
 import { CadastrarPacienteComponent } from './pages/paciente/cadastrar-paciente/cadastrar-paciente.component';
 import { CadernetaVacinacaoComponent } from './pages/caderneta-vacinacao/caderneta-vacinacao.component';
-import { CadastrarCampanhaComponent } from './pages/cadastrar-campanha/cadastrar-campanha.component';
 import { CadastrarFuncionarioComponent } from './pages/funcionario/cadastrar-funcionario/cadastrar-funcionario.component';
 import { CadastrarPostoComponent } from './pages/posto/cadastrar-posto/cadastrar-posto.component';
 import { EditarPerfilPacienteComponent } from './pages/paciente/editar-perfil-paciente/editar-perfil-paciente.component';
@@ -15,28 +14,31 @@ import { EditarPerfilFuncionarioComponent } from './pages/funcionario/editar-per
 import { VacinarComponent } from './pages/vacinar/vacinar.component';
 import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
 import { CadastrarLoteVacinaComponent } from './pages/cadastrar-lote-vacina/cadastrar-lote-vacina.component';
-import { CampanhaVacinacaoComponent } from './pages/campanha-vacinacao/campanha-vacinacao.component';
 import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard-paciente.component';
-
-
+import { VacinaComponent } from './pages/vacina/vacina.component';
+import { EditarPostoComponent } from './pages/posto/editar-posto/editar-posto.component';
 
 const routes: Routes = [
   { path: '', component: LoginPacienteComponent },
   { path: 'admin', component: LoginAdminComponent },
   { path: 'funcionario', component: LoginFuncionarioComponent },
-  { path: 'caderneta-vacinacao', component: CadernetaVacinacaoComponent },
-  { path: 'editar/perfil/paciente/:codigo', component: EditarPerfilPacienteComponent },
-  { path: 'editar/perfil/funcionario/:codigo', component: EditarPerfilFuncionarioComponent },
-  { path: 'cadastro/paciente', component: CadastrarPacienteComponent },
-  { path: 'cadastro/campanha', component: CadastrarCampanhaComponent },
-  { path: 'cadastro/posto', component: CadastrarPostoComponent },
-  { path: 'cadastro/funcionario', component: CadastrarFuncionarioComponent },
+  { path: 'caderneta', component: CadernetaVacinacaoComponent },
   { path: 'vacinar', component: VacinarComponent},
   { path: 'dashboard-funcionario', component: DashboardFuncionarioComponent},
   { path: 'cadastro-lote-vacina', component: CadastrarLoteVacinaComponent},
-  { path: 'campanha-vacinacao', component: CampanhaVacinacaoComponent},
   { path: 'dashboard-paciente', component: DashboardPacienteComponent },
-  { path: 'dashboard-admin', component: DashboardAdminComponent }
+  { path: 'dashboard-admin', component: DashboardAdminComponent },
+
+  { path: 'vacina', component: VacinaComponent },
+
+  { path: 'cadastro/posto', component: CadastrarPostoComponent },
+  { path: 'editar/posto/:codigo', component: EditarPostoComponent },
+
+  { path: 'cadastro/paciente', component: CadastrarPacienteComponent },
+  { path: 'editar/paciente/:codigo', component: EditarPerfilPacienteComponent },
+
+  { path: 'cadastro/funcionario', component: CadastrarFuncionarioComponent },
+  { path: 'editar/funcionario/:codigo', component: EditarPerfilFuncionarioComponent }
 ];
 
 @NgModule({

@@ -1,11 +1,10 @@
 export interface PostoEntity {
   id?: number;
   nome?: string;
-  cnpjRne?: string;
+  cnes?: string;
   telefone?: string;
-  email?: string;
-  senha?: string;
   endereco?: EnderecoEntity;
+  administradorId?: number;
 }
 
 export interface EnderecoEntity {
