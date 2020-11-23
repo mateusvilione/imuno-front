@@ -53,7 +53,7 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
       confirmacaoSenha: ['', Validators.required],
       logradouro: ['', Validators.required],
       numero: ['', Validators.required],
-      complemento: ['', Validators.required],
+      complemento: [''],
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       estado: ['', Validators.required],
@@ -150,6 +150,7 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
             detail: 'cadastrado com sucesso!'
           }];
         this.limparFormulario();
+        this.carregarFuncionario(dados.id);
       },
         (e) => {
           var msg: any[] = [];

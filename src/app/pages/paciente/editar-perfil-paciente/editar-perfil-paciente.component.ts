@@ -41,7 +41,7 @@ export class EditarPerfilPacienteComponent implements OnInit {
 
     if (codigoCliente) {
       this.operacao = false;
-      this.carregarCliente(codigoCliente);
+      this.carregarPaciente(codigoCliente);
     }
   }
 
@@ -72,7 +72,7 @@ export class EditarPerfilPacienteComponent implements OnInit {
     });
   }
 
-  carregarCliente(codigoCliente: number){
+  carregarPaciente(codigoCliente: number){
     this.repository.getPacienteById(codigoCliente).subscribe(resposta => {
       this.formulario.controls.id.setValue(resposta.id);
       this.formulario.controls.nome.setValue(resposta.nome);
@@ -81,7 +81,6 @@ export class EditarPerfilPacienteComponent implements OnInit {
       this.formulario.controls.cpfRne.setValue(resposta.cpfRne);
       this.formulario.controls.nomeMae.setValue(resposta.nomeMae);
       this.formulario.controls.nomePai.setValue(resposta.nomePai);
-      this.formulario.controls.nacionalidade.setValue(resposta.nacionalidade);
       this.formulario.controls.telefone.setValue(resposta.telefone);
       this.formulario.controls.telefoneEmergencia.setValue(resposta.telefoneEmergencia);
       this.formulario.controls.email.setValue(resposta.email);
@@ -168,6 +167,7 @@ export class EditarPerfilPacienteComponent implements OnInit {
             detail: 'cadastrado com sucesso!'
           }];
         this.limparFormulario();
+        this.carregarPaciente(dados.id);
       },
         (e) => {
           var msg: any[] = [];

@@ -38,7 +38,7 @@ export class CadastrarPostoComponent implements OnInit {
       telefone: ['', Validators.required],
       logradouro: ['', Validators.required],
       numero: ['', Validators.required],
-      complemento: ['', Validators.required],
+      complemento: [''],
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       estado: ['', Validators.required],

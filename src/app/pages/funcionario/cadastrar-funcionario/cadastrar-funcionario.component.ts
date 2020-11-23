@@ -40,7 +40,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
       confirmacaoSenha: ['', Validators.required],
       logradouro: ['', Validators.required],
       numero: ['', Validators.required],
-      complemento: ['', Validators.required],
+      complemento: [''],
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       estado: ['', Validators.required],
@@ -83,10 +83,6 @@ export class CadastrarFuncionarioComponent implements OnInit {
   }
 
   salvar() {
-    var telefoneEmergencia = (<HTMLSelectElement>(
-      document.getElementById('telefoneEmergencia')
-    )).value;
-    console.log(telefoneEmergencia);
     const dados = {
       // id: this.formulario.value.id,
       nome: this.formulario.value.nome,

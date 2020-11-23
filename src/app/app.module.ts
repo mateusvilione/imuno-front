@@ -22,12 +22,13 @@ import { EditarPerfilPacienteComponent } from './pages/paciente/editar-perfil-pa
 import { EditarPerfilFuncionarioComponent } from './pages/funcionario/editar-perfil-funcionario/editar-perfil-funcionario.component';
 import { VacinarComponent } from './pages/vacinar/vacinar.component';
 import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
-import { CadastrarLoteVacinaComponent } from './pages/cadastrar-lote-vacina/cadastrar-lote-vacina.component';
 import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard-paciente.component';
 import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component';
 import { CadastrarPostoComponent } from './pages/posto/cadastrar-posto/cadastrar-posto.component';
 import { EditarPostoComponent } from './pages/posto/editar-posto/editar-posto.component';
 import { VacinaComponent } from './pages/vacina/vacina.component';
+import { CadastrarLoteComponent } from './pages/lote/cadastrar-lote/cadastrar-lote.component';
+import { EditarLoteComponent } from './pages/lote/editar-lote/editar-lote.component';
 
 @NgModule({
   declarations: [
@@ -44,11 +45,12 @@ import { VacinaComponent } from './pages/vacina/vacina.component';
     VacinarComponent,
     VacinaComponent,
     DashboardFuncionarioComponent,
-    CadastrarLoteVacinaComponent,
     DashboardPacienteComponent,
     DashboardAdminComponent,
     CadastrarPostoComponent,
     EditarPostoComponent,
+    CadastrarLoteComponent,
+    EditarLoteComponent,
   ],
   imports: [
     BrowserModule,

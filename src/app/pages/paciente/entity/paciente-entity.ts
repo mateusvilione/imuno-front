@@ -6,7 +6,6 @@ export interface PacienteEntity {
   cpfRne?: string;
   nomeMae?: string;
   nomePai?: string;
-  nacionalidade?: string;
   telefone?: string;
   telefoneEmergencia?: string;
   email?: string;

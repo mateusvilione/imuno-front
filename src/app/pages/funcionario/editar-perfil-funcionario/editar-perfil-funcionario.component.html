@@ -2,7 +2,7 @@
   <input type="hidden" id="id" formControlName="id"/>
   <input type="hidden" id="usuarioId" formControlName="usuarioId"/>
 
-  <h2>Editar perfil Funcionário</h2>
+  <h2>Editar</h2>
 
   <div class="form-group">
     <label for="nome" style="float: left;">Nome Completo:</label>
@@ -44,7 +44,7 @@
     </div>
     <div class="form-group col-md-4">
       <label for="complemento">Complemento:</label>
-      <input type="number" class="form-control" id="complemento" formControlName="complemento" [class]="(submitted && formulario.get('complemento').errors) ||
+      <input type="text" class="form-control" id="complemento" formControlName="complemento" [class]="(submitted && formulario.get('complemento').errors) ||
             (formulario.get('complemento').errors && formulario.get('complemento').dirty) ? 'is-invalid' :
             formulario.get('complemento').dirty ? 'is-valid' : ''">
       <div *ngIf="formulario.get('complemento').errors?.required" class="invalid-feedback">Complemento é obrigatório</div>
@@ -134,9 +134,7 @@
       <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
     </div>
     <div class="form-group col-md-6">
-      <button type="submit" class="btn btn-success entrar col-12"
-        [class]="operacao ? 'btn-primary' : 'btn-success'">{{operacao ? "Cadastrar" : "Atualizar" }}
-      </button>
+      <button type="submit" class="btn btn-success entrar col-12">Atualizar</button>
     </div>
   </div>
 

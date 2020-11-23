@@ -68,7 +68,7 @@
   <div class="form-row">
     <div class="form-group col-md-2">
       <label for="numero">Número:</label>
-      <input type="number" class="form-control" id="numero" formControlName="numero" [class]="(submitted && formulario.get('numero').errors) ||
+      <input type="number" class="form-control" min="0" id="numero" formControlName="numero" [class]="(submitted && formulario.get('numero').errors) ||
             (formulario.get('numero').errors && formulario.get('numero').dirty) ? 'is-invalid' :
             formulario.get('numero').dirty ? 'is-valid' : ''">
       <div *ngIf="formulario.get('numero').errors?.required" class="invalid-feedback">Número é obrigatório</div>

@@ -3,19 +3,17 @@ import { VacinaMapper } from '../mapper/vacina-mapper';
 import { VacinaModel } from '../model/vacina-model';
 import { VacinaEntity } from '../entity/vacina-entity';
 import { environment } from '../../../../environments/environment';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { BaseHttpService } from '../../../services/http/base-http.service';
-import { map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class VacinaRepository {
-
   mapper = new VacinaMapper();
 
-  constructor(public http: BaseHttpService) { }
+  constructor(public http: BaseHttpService) {}
 
   getVacinaById(id: number): Observable<VacinaModel> {
     return this.http
@@ -23,9 +21,20 @@ export class VacinaRepository {
       .pipe(map((x) => this.mapper.mapFrom(x.data)));
   }
 
+  getAllVacinas(): Promise<VacinaModel[]> {
+    return this.http
+      .getAll<VacinaEntity[]>(`${environment.URLSERVIDOR}vacina`)
+      .toPromise().then((x) => {
+        return x.data.map(this.mapper.mapFrom);
+      });
+  }
+
   postVacina(param: VacinaModel) {
     return this.http
-      .post<VacinaEntity>(`${environment.URLSERVIDOR}vacina`, this.mapper.mapTo(param))
+      .post<VacinaEntity>(
+        `${environment.URLSERVIDOR}vacina`,
+        this.mapper.mapTo(param)
+      )
       .pipe(map((x) => this.mapper.mapFrom(x.data)));
   }
 

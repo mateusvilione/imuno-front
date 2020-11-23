@@ -37,14 +37,14 @@
   <div class="form-row">
     <div class="form-group col-md-2">
       <label for="numero">Número:</label>
-      <input type="number" class="form-control" id="numero" formControlName="numero" [class]="(submitted && formulario.get('numero').errors) ||
+      <input type="number" class="form-control"  min="0" id="numero" formControlName="numero" [class]="(submitted && formulario.get('numero').errors) ||
             (formulario.get('numero').errors && formulario.get('numero').dirty) ? 'is-invalid' :
             formulario.get('numero').dirty ? 'is-valid' : ''">
       <div *ngIf="formulario.get('numero').errors?.required" class="invalid-feedback">Número é obrigatório</div>
     </div>
     <div class="form-group col-md-4">
       <label for="complemento">Complemento:</label>
-      <input type="number" class="form-control" id="complemento" formControlName="complemento" [class]="(submitted && formulario.get('complemento').errors) ||
+      <input type="text" class="form-control" id="complemento" formControlName="complemento" [class]="(submitted && formulario.get('complemento').errors) ||
             (formulario.get('complemento').errors && formulario.get('complemento').dirty) ? 'is-invalid' :
             formulario.get('complemento').dirty ? 'is-valid' : ''">
       <div *ngIf="formulario.get('complemento').errors?.required" class="invalid-feedback">Complemento é obrigatório

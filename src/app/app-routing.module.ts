@@ -13,32 +13,38 @@ import { EditarPerfilPacienteComponent } from './pages/paciente/editar-perfil-pa
 import { EditarPerfilFuncionarioComponent } from './pages/funcionario/editar-perfil-funcionario/editar-perfil-funcionario.component';
 import { VacinarComponent } from './pages/vacinar/vacinar.component';
 import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
-import { CadastrarLoteVacinaComponent } from './pages/cadastrar-lote-vacina/cadastrar-lote-vacina.component';
 import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard-paciente.component';
 import { VacinaComponent } from './pages/vacina/vacina.component';
+import { CadastrarLoteComponent } from './pages/lote/cadastrar-lote/cadastrar-lote.component';
+import { EditarLoteComponent } from './pages/lote/editar-lote/editar-lote.component';
 import { EditarPostoComponent } from './pages/posto/editar-posto/editar-posto.component';
 
 const routes: Routes = [
   { path: '', component: LoginPacienteComponent },
-  { path: 'admin', component: LoginAdminComponent },
-  { path: 'funcionario', component: LoginFuncionarioComponent },
-  { path: 'caderneta', component: CadernetaVacinacaoComponent },
-  { path: 'vacinar', component: VacinarComponent},
+  { path: 'login/admin', component: LoginAdminComponent },
+  { path: 'login/funcionario', component: LoginFuncionarioComponent },
+
   { path: 'dashboard-funcionario', component: DashboardFuncionarioComponent},
-  { path: 'cadastro-lote-vacina', component: CadastrarLoteVacinaComponent},
+  { path: 'vacinar', component: VacinarComponent},
+
   { path: 'dashboard-paciente', component: DashboardPacienteComponent },
+  { path: 'caderneta', component: CadernetaVacinacaoComponent },
+
   { path: 'dashboard-admin', component: DashboardAdminComponent },
 
   { path: 'vacina', component: VacinaComponent },
 
-  { path: 'cadastro/posto', component: CadastrarPostoComponent },
-  { path: 'editar/posto/:codigo', component: EditarPostoComponent },
+  { path: 'lote', component: CadastrarLoteComponent },
+  { path: 'lote/:codigo', component: EditarLoteComponent },
 
-  { path: 'cadastro/paciente', component: CadastrarPacienteComponent },
-  { path: 'editar/paciente/:codigo', component: EditarPerfilPacienteComponent },
+  { path: 'posto', component: CadastrarPostoComponent },
+  { path: 'posto/:codigo', component: EditarPostoComponent },
 
-  { path: 'cadastro/funcionario', component: CadastrarFuncionarioComponent },
-  { path: 'editar/funcionario/:codigo', component: EditarPerfilFuncionarioComponent }
+  { path: 'paciente', component: CadastrarPacienteComponent },
+  { path: 'paciente/:codigo', component: EditarPerfilPacienteComponent },
+
+  { path: 'funcionario', component: CadastrarFuncionarioComponent },
+  { path: 'funcionario/:codigo', component: EditarPerfilFuncionarioComponent }
 ];
 
 @NgModule({

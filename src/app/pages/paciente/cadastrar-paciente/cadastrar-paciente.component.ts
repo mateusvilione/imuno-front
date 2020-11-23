@@ -37,7 +37,6 @@ export class CadastrarPacienteComponent implements OnInit {
       cpfRne: ['', Validators.required],
       nomeMae: ['', Validators.required],
       nomePai: [''],
-      nacionalidade: ['', Validators.required],
       telefone: ['', Validators.required],
       telefoneEmergencia: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
@@ -46,7 +45,7 @@ export class CadastrarPacienteComponent implements OnInit {
       cartaoSus: ['', Validators.required],
       logradouro: ['', Validators.required],
       numero: ['', Validators.required],
-      complemento: ['', Validators.required],
+      complemento: [''],
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       estado: ['', Validators.required],
@@ -83,6 +82,7 @@ export class CadastrarPacienteComponent implements OnInit {
   cadastrar() {
     this.submitted = true;
     if (this.formulario.invalid) {
+      console.log('deu ruim');
       return;
     }
     this.salvar();
