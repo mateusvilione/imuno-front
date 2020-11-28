@@ -11,8 +11,8 @@
     <div *ngIf="formulario.get('codigo').errors?.required" class="invalid-feedback">Código do lote é obrigatório</div>
     </div>
     <div class="form-group  col-md-6">
-      <label for="dataEntrada" style="float: left;">Vacinas:</label>
-      <select class="form-control" name="vacina" id="vacina">
+      <label for="vacinaId" style="float: left;">Vacinas:</label>
+      <select class="form-control" formControlName="vacinaId" name="vacinaId" id="vacinaId">
         <option *ngFor="let vacina of vacinas" [value]="vacina.id">{{vacina.nome}}</option>
       </select>
     </div>

@@ -1,56 +1,57 @@
-<form class="container-sm p-4 mt-5 bg-white">
-    <h2>Vacinar</h2>
-    <p></p>
-    <div class="form-row">
-        <div class="form-group col-md-2 pl-3">
-          <img src="../../../assets/images/avatar.png" alt="" class="rounded-circle" width="90" height="90">
-        </div>  
-        <div class="form-group col-md-8">
-          <label for="idNomePaciente" style="float: left;">Nome do Paciente:</label>
-          <input type="text" class="form-control" id="idNomePaciente">
-        </div>
-        <div class="form-group col-md-2">
-          <label for="idIdentificacao" style="float: left;">Id:</label>
-          <input type="text" class="form-control" id="idIdentificacao">
-        </div>
-    </div>
+<form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="cadastrar()">
 
-    <div class="form-row">  
-        <div class="form-group col-md-8">
-            <label for="idVacinar">Vacina:</label>
-            <select id="idVacinar" class="form-control">
-                <option selected>Vacina 1</option>
-                <option>Vacina 2</option>
-                <option>Vacina 3</option>
-        </select>
-        </div>
-        <div class="form-group  col-md-4">
-            <label for="idDataVacina" style="float: left;">Data Vacina:</label>
-            <input type="date" class="form-control" id="idDataVacina">
-        </div>
+  <h2>Vacinar</h2>
+  <p></p>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="cpfRne" style="float: left;">CPF ou RNE:</label>
+      <input type="text" class="form-control" id="cpfRne">
     </div>
-    <div class="form-row">  
-        <div class="form-group  col-md-4">
-            <label for="idLocal" style="float: left;">Local:</label>
-            <input type="text" class="form-control" id="idLocal">
-        </div>
-        <div class="form-group  col-md-4">
-            <label for="idRubrica" style="float: left;">Rúbrica:</label>
-            <input type="text" class="form-control" id="idRubrica">
-        </div>
-        <div class="form-group  col-md-4">
-            <label for="idLote" style="float: left;">Lote:</label>
-            <input type="text" class="form-control" id="idLote">
-        </div>
+    <div class="form-group  col-md-6">
+      <label for="pacienteId" style="float: left;">Pacientes:</label>
+      <select class="form-control" formControlName="pacienteId" name="pacienteId" id="pacienteId">
+        <option *ngFor="let paciente of pacientes" [value]="paciente.id">{{paciente.nome}}</option>
+      </select>
     </div>
-    <p></p>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
-      </div>
-      <div class="form-group col-md-6">
-        <button routerLink="" type="submit" class="btn btn-success entrar col-12">Vacinar</button>
-      </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group  col-md-6">
+      <label for="vacinaId" style="float: left;">Vacinas:</label>
+      <select class="form-control" formControlName="vacinaId" name="vacinaId" id="vacinaId">
+        <option *ngFor="let vacina of vacinas" [value]="vacina.id">{{vacina.nome}}</option>
+      </select>
     </div>
+    <div class="form-group col-md-6">
+      <label for="doseId">Dose:</label>
+      <select id="doseId" class="form-control" formControlName="doseId">
+        <option selected value="1">Dose 1</option>
+        <option value="2">Dose 2</option>
+        <option value="3">Dose 3</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="dataVacinacao" style="float: left">Data Vacina:</label>
+      <input type="date" class="form-control" formControlName="dataVacinacao" id="dataVacinacao" />
+    </div>
+    <div class="form-group  col-md-6">
+      <label for="loteId" style="float: left;">lotes:</label>
+      <select class="form-control" formControlName="loteId" name="loteId" id="loteId">
+        <option *ngFor="let lote of lotes" [value]="lote.id">{{lote.codigo}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
+    </div>
+    <div class="form-group col-md-6">
+      <button type="submit" class="btn btn-success entrar col-12">Salvar</button>
+    </div>
+  </div>
+
 </form>
-

@@ -18,6 +18,14 @@ export class PacienteRepository {
 
   constructor(public http: BaseHttpService) { }
 
+  getAllPaciente(): Promise<PacienteModel[]> {
+    return this.http
+      .getAll<PacienteEntity[]>(`${environment.URLSERVIDOR}paciente`)
+      .toPromise().then((x) => {
+        return x.data.map(this.mapper.mapFrom);
+      });
+  }
+
   getPacienteById(id: number): Observable<PacienteModel> {
     return this.http
       .getAll<PacienteModel>(`${environment.URLSERVIDOR}paciente/${id}`)

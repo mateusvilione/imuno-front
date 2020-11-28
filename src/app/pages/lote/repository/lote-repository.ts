@@ -17,6 +17,14 @@ export class LoteRepository {
 
   constructor(public http: BaseHttpService) { }
 
+  getAllLote(): Promise<LoteModel[]> {
+    return this.http
+      .getAll<LoteEntity[]>(`${environment.URLSERVIDOR}lote`)
+      .toPromise().then((x) => {
+        return x.data.map(this.mapper.mapFrom);
+      });
+  }
+
   getLoteById(id: number): Observable<LoteModel> {
     return this.http
       .getAll<LoteModel>(`${environment.URLSERVIDOR}lote/${id}`)

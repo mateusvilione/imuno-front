@@ -30,9 +30,8 @@ export class CadastrarLoteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.iniciarFormulario();
     this.listarVacinas();
-    console.log(this.vacinas);
+    this.iniciarFormulario();
   }
 
   public iniciarFormulario() {
@@ -50,15 +49,14 @@ export class CadastrarLoteComponent implements OnInit {
   }
 
   cadastrar() {
-    // this.submitted = true;
-    // if (this.formulario.invalid) {
-    //   return;
-    // }
+    this.submitted = true;
+    if (this.formulario.invalid) {
+      return;
+    }
     this.salvar();
   }
 
   salvar() {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaa"+this.formulario.value.vacinaId);
 
     const dados = {
       // id: this.formulario.value.id,

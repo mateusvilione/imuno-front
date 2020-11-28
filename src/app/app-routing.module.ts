@@ -25,12 +25,12 @@ const routes: Routes = [
   { path: 'login/funcionario', component: LoginFuncionarioComponent },
 
   { path: 'dashboard-funcionario', component: DashboardFuncionarioComponent},
+  { path: 'dashboard-admin', component: DashboardAdminComponent },
+  { path: 'dashboard-paciente', component: DashboardPacienteComponent },
+
   { path: 'vacinar', component: VacinarComponent},
 
-  { path: 'dashboard-paciente', component: DashboardPacienteComponent },
   { path: 'caderneta', component: CadernetaVacinacaoComponent },
-
-  { path: 'dashboard-admin', component: DashboardAdminComponent },
 
   { path: 'vacina', component: VacinaComponent },
 
