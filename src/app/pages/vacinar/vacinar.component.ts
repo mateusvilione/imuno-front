@@ -49,8 +49,9 @@ export class VacinarComponent implements OnInit {
 
   public iniciarFormulario() {
     this.formulario = this.fb.group({
-      doseId: ['', Validators.required],
-      dataVacinacao: ['', Validators.required],
+      cpfRne: ['', Validators.required],
+      dose: ['', Validators.required],
+      dataVacinacao: ['' , Validators.required],
       funcionarioId: ['', Validators.required],
       loteId: ['', Validators.required],
       pacienteId: ['', Validators.required],
@@ -59,16 +60,16 @@ export class VacinarComponent implements OnInit {
   }
 
   cadastrar() {
-    // this.submitted = true;
-    // if (this.formulario.invalid) {
-    //   return;
-    // }
+    this.submitted = true;
+    if (this.formulario.invalid) {
+      return;
+    }
     this.salvar();
   }
 
   salvar() {
     const dados = {
-      doseId: this.formulario.value.doseId,
+      dose: this.formulario.value.dose,
       dataVacinacao: this.formulario.value.dataVacinacao,
       funcionarioId: 1, //this.formulario.value.funcionarioId,
       loteId: this.formulario.value.loteId,

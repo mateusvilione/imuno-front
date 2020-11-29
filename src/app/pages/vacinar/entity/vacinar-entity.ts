@@ -1,7 +1,7 @@
 export interface VacinarEntity {
   id?: number;
   dataVacinacao?: string;
-  doseId?: number;
+  dose?: string;
   funcionarioId?: number;
   loteId?: number;
   pacienteId?: number;

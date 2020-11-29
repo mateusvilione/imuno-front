@@ -8,7 +8,7 @@ export class VacinarMapper extends Mapper<VacinarEntity, VacinarModel> {
     return {
       id: param.id,
       dataVacinacao: param.dataVacinacao,
-      doseId: param.doseId,
+      dose: param.dose,
       funcionarioId: param.funcionarioId,
       loteId: param.loteId,
       pacienteId: param.pacienteId,
@@ -20,7 +20,7 @@ export class VacinarMapper extends Mapper<VacinarEntity, VacinarModel> {
     return {
       id: param.id,
       dataVacinacao: param.dataVacinacao,
-      doseId: param.doseId,
+      dose: param.dose,
       funcionarioId: param.funcionarioId,
       loteId: param.loteId,
       pacienteId: param.pacienteId,

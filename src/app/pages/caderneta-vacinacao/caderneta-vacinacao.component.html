@@ -1,4 +1,4 @@
-<div class="container-sm p-4 mt-5 bg-white">
+<!-- <div class="container-sm p-4 mt-5 bg-white">
   <h2 style="text-align: center; margin-top: 20px;">Caderneta de Vacinação</h2>
 
   <h3>Histórico de vacinas</h3>
@@ -14,8 +14,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">Poliomelite</th>
+        <tr *ngFor="let vacina of vacinas" >
+          <th scope="row">{vacina}</th>
           <td type="date">10/02/2020</td>
           <td>São Paulo</td>
           <td>Márcia</td>
@@ -44,4 +44,4 @@
         </tr>
       </tbody>
     </table>
-</div>
+</div> -->
