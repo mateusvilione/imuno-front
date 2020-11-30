@@ -6,6 +6,7 @@ export interface CadernetaModel {
   dose?: string;
   paciente?: PacienteModel;
   dataVacinacao?: string;
+  posto?: PostoModel;
 }
 
 export interface LoteModel {
@@ -54,6 +55,15 @@ export interface PacienteModel {
   cartaoSus?: string;
   usuarioId?: string;
   endereco?: EnderecoModel;
+}
+
+export interface PostoModel {
+  id?: number;
+  nome?: string;
+  cnes?: string;
+  telefone?: string;
+  endereco?: EnderecoModel;
+  administradorId?: number;
 }
 
 export interface EnderecoModel {

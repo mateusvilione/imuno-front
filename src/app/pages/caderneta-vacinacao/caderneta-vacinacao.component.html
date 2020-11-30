@@ -1,12 +1,14 @@
-<!-- <div class="container-sm p-4 mt-5 bg-white">
-  <h2 style="text-align: center; margin-top: 20px;">Caderneta de Vacinação</h2>
+<app-header [caminho]="1" [caminhoLogout]="1"></app-header>
 
-  <h3>Histórico de vacinas</h3>
+<div class="container">
+  <div class="container-sm p-4 mt-5 bg-white">
+    <h2 style="text-align: center; margin-top: 20px;">Caderneta de Vacinação</h2>
 
-  <table class="table table-striped">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">Vacina</th>
+          <th scope="col">Dose</th>
           <th scope="col">Data da aplicação</th>
           <th scope="col">Local</th>
           <th scope="col">Rúbrica</th>
@@ -14,34 +16,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let vacina of vacinas" >
-          <th scope="row">{vacina}</th>
-          <td type="date">10/02/2020</td>
-          <td>São Paulo</td>
-          <td>Márcia</td>
-          <td>57239</td>
-        </tr>
-        <tr>
-          <th scope="row">Pneumo 23</th>
-          <td type="date">10/12/2019</td>
-          <td>São Paulo</td>
-          <td>Márcia</td>
-          <td>59842</td>
-        </tr>
-        <tr>
-          <th scope="row">Tríplice Viral</th>
-          <td type="date">23/05/2020</td>
-          <td>São Paulo</td>
-          <td>Márcia</td>
-          <td>47823</td>
-        </tr>
-        <tr>
-          <th scope="row">COVID-19</th>
-          <td type="date">19/09/2020</td>
-          <td>São Paulo</td>
-          <td>Márcia</td>
-          <td>17264</td>
+        <tr *ngFor="let vacina of vacinas">
+          <th scope="row">{{vacina.vacina.nome}}</th>
+          <td *ngIf="vacina.dose == 'DOSEUNICA'">Dose única</td>
+          <td *ngIf="vacina.dose == 'PRIMEIRADOSE'">1° Dose</td>
+          <td *ngIf="vacina.dose == 'SEGUNDADOSE'">2° Dose</td>
+          <td *ngIf="vacina.dose == 'TERCEIRAADOSE'">3° Dose</td>
+          <td *ngIf="vacina.dose == 'REFORCO'">Reforço</td>
+          <td type="date">{{vacina.dataVacinacao}}</td>
+          <td>{{vacina.posto.nome}}</td>
+          <td>{{vacina.funcionario.nome}}</td>
+          <td>{{vacina.lote.codigo}}</td>
         </tr>
       </tbody>
     </table>
-</div> -->
+  </div>
+</div>

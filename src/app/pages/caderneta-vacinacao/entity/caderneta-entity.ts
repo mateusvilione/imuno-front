@@ -6,6 +6,7 @@ export interface CadernetaEntity {
   dose?: string;
   paciente?: PacienteEntity;
   dataVacinacao?: string;
+  posto?: PostoEntity;
 }
 
 export interface LoteEntity {
@@ -55,6 +56,16 @@ export interface PacienteEntity {
   usuarioId?: string;
   endereco?: EnderecoEntity;
 }
+
+export interface PostoEntity {
+  id?: number;
+  nome?: string;
+  cnes?: string;
+  telefone?: string;
+  endereco?: EnderecoEntity;
+  administradorId?: number;
+}
+
 
 export interface EnderecoEntity {
   logradouro?: string;

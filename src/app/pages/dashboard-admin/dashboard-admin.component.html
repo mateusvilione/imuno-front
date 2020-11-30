@@ -1,61 +1,16 @@
-<form class="container-sm p-4 mt-5  bg-white">
-    <div class="form-row">
-        <button type="button" routerLink="/cadastro/funcionario" class="btn btn-success btn-lg btn-block">Cadastrar Funcionário</button>
-<!--        <button type="button" routerLink="/cadastro/posto" routerLinkActive="selected" class="btn btn-success btn-lg btn-block">Vacinar</button>-->
-        <button type="button" routerLink="/cadastro-lote-vacina" class="btn btn-success btn-lg btn-block">Cadastrar Lote de Vacina</button>
-        <button type="button" routerLink="/campanha-vacinacao" class="btn btn-success btn-lg btn-block">Campanhas de Vacinação</button>
-    </div>    
-</form>
+<app-header [caminho]="3" [caminhoLogout]="3"></app-header>
 
-<!-- <div class="container-fluid">
-    <div class="row">
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="sidebar-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/cadastro/paciente" routerLinkActive="selected" href="#">
-                <span ></span>Cadastrar Paciente<span></span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/cadastro/funcionario" routerLinkActive="selected" href="#">
-                <span ></span>Cadastrar Funcionário</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/cadastro/paciente" routerLinkActive="selected" href="#">
-                <span ></span>Cadastrar Vacina</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/cadastro-lote-vacina" routerLinkActive="selected" href="#">
-                <span ></span>Cadastrar Lote de Vacina</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/cadastro/campanha" routerLinkActive="selected" href="#">
-                <span ></span>Campanha de Vacinação</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/vacinar" routerLinkActive="selected" href="#">
-                  <span ></span>Vacinar</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link hoverable" routerLink="" routerLinkActive="selected" href="#">
-                <span ></span>Notícias</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-  
-  
-  
-          <canvas class="my-4 w-100" id="myChart" width="900" height="380">
-          <a class="navbar-brand" href="/">
-              <img class="logo" src="assets/images/logo01.png" alt="" loading="lazy">
-          </a>
-        </canvas>
-  
-       
-        
-  
+<div class="container">
+
+  <form class="container-sm p-4 mt-5  bg-white">
+    <div class="form-row">
+      <button type="button" routerLink="/funcionario" class="btn btn-success btn-lg btn-block">Cadastrar
+        Funcionário</button>
+      <button type="button" routerLink="/lote" class="btn btn-success btn-lg btn-block">Cadastrar Lote de
+        Vacina</button>
+      <button type="button" routerLink="/posto" class="btn btn-success btn-lg btn-block">Cadastrar Posto</button>
+      <button type="button" routerLink="/posto/1" class="btn btn-success btn-lg btn-block">Editar Posto</button>
+      <button type="button" routerLink="/vacina" class="btn btn-success btn-lg btn-block">Cadastrar Vacina</button>
     </div>
-  </div> -->
-  
+  </form>
+</div>

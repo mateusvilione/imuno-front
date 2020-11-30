@@ -6,4 +6,5 @@ export interface VacinarEntity {
   loteId?: number;
   pacienteId?: number;
   vacinaId?: number;
+  postoId?: number;
 }

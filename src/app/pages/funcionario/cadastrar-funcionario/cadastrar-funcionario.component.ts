@@ -101,6 +101,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
         estado: this.formulario.value.estado,
         cep: this.formulario.value.cep,
       },
+      postoId: 1,
     } as FuncionarioModel;
 
     console.log('dados' + dados);

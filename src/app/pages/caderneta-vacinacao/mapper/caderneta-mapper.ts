@@ -12,7 +12,8 @@ export class CadernetaMapper extends Mapper<CadernetaEntity, CadernetaModel> {
       vacina: param.vacina,
       dose: param.dose,
       paciente: param.paciente,
-      dataVacinacao: param.dataVacinacao
+      dataVacinacao: param.dataVacinacao,
+      posto: param.posto
     };
   }
 
@@ -24,7 +25,8 @@ export class CadernetaMapper extends Mapper<CadernetaEntity, CadernetaModel> {
       vacina: param.vacina,
       dose: param.dose,
       paciente: param.paciente,
-      dataVacinacao: param.dataVacinacao
+      dataVacinacao: param.dataVacinacao,
+      posto: param.posto
     };
   }
 }

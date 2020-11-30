@@ -1,3 +1,4 @@
+import { PostoModel } from './../../posto/model/posto-model';
 export interface FuncionarioModel{
     id?: number;
     nome?: string;
@@ -9,6 +10,21 @@ export interface FuncionarioModel{
     telefoneEmergencia?: string;
     senha?: string;
     usuarioId?: string;
+    postoId?: number;
+}
+
+export interface FuncionarioCompletoModel{
+    id?: number;
+    nome?: string;
+    cpf?: string;
+    coren?: string;
+    endereco?: EnderecoModel;
+    email?: string;
+    telefone?: string;
+    telefoneEmergencia?: string;
+    senha?: string;
+    usuarioId?: string;
+    posto?: PostoModel;
 }
 
 export interface EnderecoModel {

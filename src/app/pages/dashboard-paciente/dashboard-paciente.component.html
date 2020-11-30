@@ -1,10 +1,14 @@
-<div class="row" style="justify-content: center; margin-top: 15%;">
+<app-header [caminho]="1" [caminhoLogout]="1"></app-header>
+
+<div class="container">
+  <div class="row" style="justify-content: center; margin-top: 15%;">
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Editar dados pessoais</h5>
-          <p class="card-text">Caso tenha mudado de endereço ou e-mail, clique aqui para atualizar seus dados pessoais</p>
-          <a routerLink="/editar/perfil" class="btn btn-success entrar">Editar dados pessoais</a>
+          <p class="card-text">Caso tenha mudado de endereço ou e-mail, clique aqui para atualizar seus dados pessoais
+          </p>
+          <a routerLink="/paciente/1" class="btn btn-success entrar">Editar dados pessoais</a>
         </div>
       </div>
     </div>
@@ -12,9 +16,11 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Caderneta de Vacinação</h5>
-          <p class="card-text">Clique aqui para ver a situação da sua caderneta de vacinação e as vacinas que ainda deverão ser tomadas</p>
-          <a routerLink="/caderneta-vacinacao" class="btn btn-success entrar">Ver caderneta</a>
+          <p class="card-text">Clique aqui para ver a situação da sua caderneta de vacinação e as vacinas que ainda
+            deverão ser tomadas</p>
+          <a routerLink="/caderneta" class="btn btn-success entrar">Ver caderneta</a>
         </div>
       </div>
     </div>
   </div>
+</div>

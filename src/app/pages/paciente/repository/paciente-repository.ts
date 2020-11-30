@@ -4,6 +4,7 @@ import { PacienteModel } from './../model/paciente-model';
 import { PacienteEntity } from './../entity/paciente-entity';
 import { environment } from './../../../../environments/environment';
 import { Injectable } from "@angular/core";
+import { HttpParams } from '@angular/common/http';
 
 import { BaseHttpService } from './../../../services/http/base-http.service';
 import { map } from 'rxjs/operators';
@@ -24,6 +25,12 @@ export class PacienteRepository {
       .toPromise().then((x) => {
         return x.data.map(this.mapper.mapFrom);
       });
+  }
+
+  getPaciente(cpfRne: string): Observable<PacienteModel> {
+    return this.http
+      .getAll<PacienteModel>(`${environment.URLSERVIDOR}paciente/filtro/${cpfRne}`)
+      .pipe(map((x) => this.mapper.mapFrom(x.data)));
   }
 
   getPacienteById(id: number): Observable<PacienteModel> {

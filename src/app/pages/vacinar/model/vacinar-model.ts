@@ -6,4 +6,5 @@ export interface VacinarModel {
   loteId?: number;
   pacienteId?: number;
   vacinaId?: number;
+  postoId?: number;
 }

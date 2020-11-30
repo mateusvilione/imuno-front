@@ -1,3 +1,4 @@
+import { HeaderAuthComponent } from './components/headerAuth/header-auth.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -35,6 +36,7 @@ import { EditarLoteComponent } from './pages/lote/editar-lote/editar-lote.compon
     AppComponent,
     LoginPacienteComponent,
     HeaderComponent,
+    HeaderAuthComponent,
     LoginFuncionarioComponent,
     LoginAdminComponent,
     CadastrarPacienteComponent,

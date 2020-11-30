@@ -1,4 +1,4 @@
-import { FuncionarioEntity } from './../entity/funcionario-entity';
+import { FuncionarioEntity, FuncionarioCompletoEntity } from './../entity/funcionario-entity';
 import { map } from 'rxjs/operators';
 import { environment } from './../../../../environments/environment';
 import { FuncionarioModel } from './../model/funcionario-model';
@@ -18,10 +18,10 @@ export class FuncionarioRepository {
 
     constructor(public http: BaseHttpService) { }
 
-      getFuncionarioById(id: number): Observable<FuncionarioModel> {
+      getFuncionarioById(id: number): Observable<FuncionarioCompletoEntity> {
         return this.http
-          .getAll<FuncionarioModel>(`${environment.URLSERVIDOR}funcionario/${id}`)
-          .pipe(map((x) => this.mapper.mapFrom(x.data)));
+          .getAll<FuncionarioCompletoEntity>(`${environment.URLSERVIDOR}funcionario/${id}`)
+          .pipe(map((x) => this.mapper.mapFrom2(x.data)));
       }
 
       postFuncionario(param: FuncionarioModel) {

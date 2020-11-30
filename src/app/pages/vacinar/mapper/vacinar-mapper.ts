@@ -12,7 +12,8 @@ export class VacinarMapper extends Mapper<VacinarEntity, VacinarModel> {
       funcionarioId: param.funcionarioId,
       loteId: param.loteId,
       pacienteId: param.pacienteId,
-      vacinaId: param.vacinaId
+      vacinaId: param.vacinaId,
+      postoId: param.postoId,
     };
   }
 
@@ -24,7 +25,8 @@ export class VacinarMapper extends Mapper<VacinarEntity, VacinarModel> {
       funcionarioId: param.funcionarioId,
       loteId: param.loteId,
       pacienteId: param.pacienteId,
-      vacinaId: param.vacinaId
+      vacinaId: param.vacinaId,
+      postoId: param.postoId,
     };
   }
 }

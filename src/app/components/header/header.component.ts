@@ -8,11 +8,17 @@ import { LoginPacienteComponent } from 'src/app/pages/login-paciente/login-pacie
 })
 export class HeaderComponent implements OnInit {
 
+  @Input()
+  caminho: string
+
+  @Input()
+  caminhoLogout: string
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  
+
 
 }

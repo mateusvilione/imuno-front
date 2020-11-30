@@ -1,67 +1,77 @@
-<form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="cadastrar()">
+<app-header [caminho]="3" [caminhoLogout]="3"></app-header>
 
-  <h2>Cadastrar Lote</h2>
+<div class="container">
+  <form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="cadastrar()">
 
-  <div class="form-row">
-    <div class="form-group  col-md-6">
-    <label for="codigo" style="float: left;">Código do lote:</label>
-    <input type="text" class="form-control" id="codigo" formControlName="codigo" [class]="(submitted && formulario.get('codigo').errors) ||
+    <h2>Cadastrar Lote</h2>
+
+    <div class="form-row">
+      <div class="form-group  col-md-6">
+        <label for="codigo" style="float: left;">Código do lote:</label>
+        <input type="text" class="form-control" id="codigo" formControlName="codigo" [class]="(submitted && formulario.get('codigo').errors) ||
             (formulario.get('codigo').errors && formulario.get('codigo').dirty) ? 'is-invalid' :
             formulario.get('codigo').dirty ? 'is-valid' : ''" />
-    <div *ngIf="formulario.get('codigo').errors?.required" class="invalid-feedback">Código do lote é obrigatório</div>
-    </div>
-    <div class="form-group  col-md-6">
-      <label for="vacinaId" style="float: left;">Vacinas:</label>
-      <select class="form-control" formControlName="vacinaId" name="vacinaId" id="vacinaId">
-        <option *ngFor="let vacina of vacinas" [value]="vacina.id">{{vacina.nome}}</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group  col-md-6">
-      <label for="dataFabricacao" style="float: left;">Data de Fabricação:</label>
-      <input type="date" class="form-control" id="dataFabricacao" formControlName="dataFabricacao" [class]="(submitted && formulario.get('dataFabricacao').errors) ||
-            (formulario.get('dataFabricacao').errors && formulario.get('dataFabricacao').dirty) ? 'is-invalid' :
-            formulario.get('dataFabricacao').dirty ? 'is-valid' : ''">
-      <div *ngIf="formulario.get('dataFabricacao').errors?.required" class="invalid-feedback">Data de Nascimento é
-        obrigatório</div>
-    </div>
-    <div class="form-group  col-md-6">
-      <label for="quantidade" style="float: left;">Quantidade:</label>
-      <input type="number" class="form-control" min="1" id="quantidade" formControlName="quantidade" [class]="(submitted && formulario.get('quantidade').errors) ||
-            (formulario.get('quantidade').errors && formulario.get('quantidade').dirty) ? 'is-invalid' :
-            formulario.get('quantidade').dirty ? 'is-valid' : ''">
-      <div *ngIf="formulario.get('quantidade').errors?.required" class="invalid-feedback">Quantidade é obrigatório</div>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group  col-md-6">
-      <label for="dataEntrada" style="float: left;">Data de Entrada:</label>
-      <input type="date" class="form-control" id="dataEntrada" formControlName="dataEntrada" [class]="(submitted && formulario.get('dataEntrada').errors) ||
-      (formulario.get('dataEntrada').errors && formulario.get('dataEntrada').dirty) ? 'is-invalid' :
-      formulario.get('dataEntrada').dirty ? 'is-valid' : ''">
-      <div *ngIf="formulario.get('dataEntrada').errors?.required" class="invalid-feedback">Data de Entrada é obrigatório
+        <div *ngIf="formulario.get('codigo').errors?.required" class="invalid-feedback">Código do lote é obrigatório
+        </div>
+      </div>
+      <div class="form-group  col-md-6">
+        <label for="vacinaId" style="float: left;">Vacinas:</label>
+        <select class="form-control" formControlName="vacinaId" name="vacinaId" id="vacinaId">
+          <option *ngFor="let vacina of vacinas" [value]="vacina.id">{{vacina.nome}}</option>
+        </select>
       </div>
     </div>
-    <div class="form-group  col-md-6">
-      <label for="dataValidade" style="float: left;">Data de Validade:</label>
-      <input type="date" class="form-control" id="dataValidade" formControlName="dataValidade" [class]="(submitted && formulario.get('dataValidade').errors) ||
+
+    <div class="form-row">
+      <div class="form-group  col-md-6">
+        <label for="dataFabricacao" style="float: left;">Data de Fabricação:</label>
+        <input type="date" class="form-control" id="dataFabricacao" formControlName="dataFabricacao" [class]="(submitted && formulario.get('dataFabricacao').errors) ||
+            (formulario.get('dataFabricacao').errors && formulario.get('dataFabricacao').dirty) ? 'is-invalid' :
+            formulario.get('dataFabricacao').dirty ? 'is-valid' : ''">
+        <div *ngIf="formulario.get('dataFabricacao').errors?.required" class="invalid-feedback">Data de Nascimento é
+          obrigatório</div>
+      </div>
+      <div class="form-group  col-md-6">
+        <label for="quantidade" style="float: left;">Quantidade:</label>
+        <input type="number" class="form-control" min="1" id="quantidade" formControlName="quantidade" [class]="(submitted && formulario.get('quantidade').errors) ||
+            (formulario.get('quantidade').errors && formulario.get('quantidade').dirty) ? 'is-invalid' :
+            formulario.get('quantidade').dirty ? 'is-valid' : ''">
+        <div *ngIf="formulario.get('quantidade').errors?.required" class="invalid-feedback">Quantidade é obrigatório
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group  col-md-6">
+        <label for="dataEntrada" style="float: left;">Data de Entrada:</label>
+        <input type="date" class="form-control" id="dataEntrada" formControlName="dataEntrada" [class]="(submitted && formulario.get('dataEntrada').errors) ||
+      (formulario.get('dataEntrada').errors && formulario.get('dataEntrada').dirty) ? 'is-invalid' :
+      formulario.get('dataEntrada').dirty ? 'is-valid' : ''">
+        <div *ngIf="formulario.get('dataEntrada').errors?.required" class="invalid-feedback">Data de Entrada é
+          obrigatório
+        </div>
+      </div>
+      <div class="form-group  col-md-6">
+        <label for="dataValidade" style="float: left;">Data de Validade:</label>
+        <input type="date" class="form-control" id="dataValidade" formControlName="dataValidade" [class]="(submitted && formulario.get('dataValidade').errors) ||
       (formulario.get('dataValidade').errors && formulario.get('dataValidade').dirty) ? 'is-invalid' :
       formulario.get('dataValidade').dirty ? 'is-valid' : ''">
-      <div *ngIf="formulario.get('dataValidade').errors?.required" class="invalid-feedback">Data de Validade é
-        obrigatório</div>
+        <div *ngIf="formulario.get('dataValidade').errors?.required" class="invalid-feedback">Data de Validade é
+          obrigatório</div>
+      </div>
     </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
+      </div>
+      <div class="form-group col-md-6">
+        <button type="submit" class="btn btn-success entrar col-12">Cadastrar</button>
+      </div>
     </div>
-    <div class="form-group col-md-6">
-      <button type="submit" class="btn btn-success entrar col-12">Cadastrar</button>
-    </div>
-  </div>
 
-</form>
+
+
+  </form>
+
+</div>
