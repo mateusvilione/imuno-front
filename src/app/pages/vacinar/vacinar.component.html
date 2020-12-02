@@ -2,86 +2,96 @@
 
 <div class="container">
 
+  <div class="container-sm p-4 mt-5 bg-white">
 
-  <form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="cadastrar()">
+    <form [formGroup]="pesquisa">
+      <h2>Vacinar</h2>
 
-    <h2>Vacinar</h2>
+      <div class="form-row">
+        <div class="form-group col-md-10">
+          <label for="cpfRne" style="float: left;">CPF ou RNE:</label>
+          <input type="text" class="form-control" id="cpfRne" formControlName="cpfRne">
+        </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-10">
-        <label for="cpfRne" style="float: left;">CPF ou RNE:</label>
-        <input type="text" class="form-control" id="cpfRne" formControlName="cpfRne">
+        <div class="form-group col-md-2" style="display: flex;">
+          <a (click)="carregarPaciente()" id="pesquisar" style="align-self: flex-end;"
+            class="btn btn-success entrar col-12">Pesquisar</a>
+        </div>
       </div>
 
-      <div class="form-group col-md-2" style="display: flex;">
-        <a (click)="carregarPaciente()" id="pesquisar" style="align-self: flex-end;"
-          class="btn btn-success entrar col-12">Pesquisar</a>
+      <div class="form-row">
+        <div class="form-group  col-md-12">
+          <label for="pacienteId" style="float: left;">Pacientes:</label>
+          <select class="form-control" formControlName="pacienteId" (change)="carregarVacinas()" name="pacienteId"
+            id="pacienteId" [class]="(submitted && pesquisa.get('pacienteId').errors) ||
+            (pesquisa.get('pacienteId').errors && pesquisa.get('pacienteId').dirty) ? 'is-invalid' :
+            pesquisa.get('pacienteId').dirty ? 'is-valid' : ''">
+            <option value="0">Escolha um paciente</option>
+            <option *ngFor="let paciente of pacientes" [value]="paciente.id">{{paciente.nome}}</option>
+          </select>
+          <div *ngIf="pesquisa.get('pacienteId').errors?.required" class="invalid-feedback">Paciente é obrigatório
+          </div>
+        </div>
       </div>
-    </div>
+    </form>
 
-    <div class="form-row">
-      <div class="form-group  col-md-12">
-        <label for="pacienteId" style="float: left;">Pacientes:</label>
-        <select class="form-control" formControlName="pacienteId" (change)="carregarVacinas()"
-          name="pacienteId" id="pacienteId" [class]="(submitted && formulario.get('pacienteId').errors) ||
-      (formulario.get('pacienteId').errors && formulario.get('pacienteId').dirty) ? 'is-invalid' :
-      formulario.get('pacienteId').dirty ? 'is-valid' : ''">
-          <option>Escolha um paciente</option>
-          <option *ngFor="let paciente of pacientes" [value]="paciente.id">{{paciente.nome}}</option>
-        </select>
-        <div *ngIf="formulario.get('pacienteId').errors?.required" class="invalid-feedback">Paciente é obrigatório</div>
-      </div>
-    </div>
 
-    <div class="form-row">
-      <div class="form-group  col-md-6">
-        <label for="vacinaId" style="float: left;">Vacinas:</label>
-        <select class="form-control" formControlName="vacinaId" name="vacinaId" id="vacinaId" [class]="(submitted && formulario.get('vacinaId').errors) ||
+    <form [formGroup]="formulario" (ngSubmit)="cadastrar()">
+
+      <div class="form-row">
+        <div class="form-group  col-md-6">
+          <label for="vacinaId" style="float: left;">Vacinas:</label>
+          <select class="form-control" formControlName="vacinaId" (change)="listarLotes()" name="vacinaId" id="vacinaId" [class]="(submitted && formulario.get('vacinaId').errors) ||
       (formulario.get('vacinaId').errors && formulario.get('vacinaId').dirty) ? 'is-invalid' :
       formulario.get('vacinaId').dirty ? 'is-valid' : ''">
-          <option *ngFor="let vacina of vacinas" [value]="vacina.id">{{vacina.nome}}</option>
-        </select>
-        <div *ngIf="formulario.get('vacinaId').errors?.required" class="invalid-feedback">Vacina é obrigatório</div>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="dose">Dose:</label>
-        <select id="dose" class="form-control" formControlName="dose" [class]="(submitted && formulario.get('dose').errors) ||
+            <option value="0">Escolha uma vacina</option>
+            <option *ngFor="let vacina of vacinas" [value]="vacina.id">{{vacina.nome}}</option>
+          </select>
+          <div *ngIf="formulario.get('vacinaId').errors?.required" class="invalid-feedback">Vacina é obrigatório</div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="dose">Dose:</label>
+          <select id="dose" class="form-control" formControlName="dose" [class]="(submitted && formulario.get('dose').errors) ||
       (formulario.get('dose').errors && formulario.get('dose').dirty) ? 'is-invalid' :
       formulario.get('dose').dirty ? 'is-valid' : ''">
-          <option selected value="DOSEUNICA">Dose única</option>
-          <option value="PRIMEIRADOSE">1° Dose</option>
-          <option value="SEGUNDADOSE">2° Dose</option>
-          <option value="TERCEIRAADOSE">3° Dose</option>
-          <option value="REFORCO">Reforço</option>
-        </select>
-        <div *ngIf="formulario.get('dose').errors?.required" class="invalid-feedback">Dose é obrigatório</div>
+            <option value="0">Escolha uma Dose</option>
+            <option value="DOSEUNICA">Dose única</option>
+            <option value="PRIMEIRADOSE">1° Dose</option>
+            <option value="SEGUNDADOSE">2° Dose</option>
+            <option value="TERCEIRAADOSE">3° Dose</option>
+            <option value="REFORCO">Reforço</option>
+          </select>
+          <div *ngIf="formulario.get('dose').errors?.required" class="invalid-feedback">Dose é obrigatório</div>
+        </div>
       </div>
-    </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="dataVacinacao" style="float: left">Data Vacina:</label>
-        <input type="date" class="form-control" formControlName="dataVacinacao" id="dataVacinacao" />
-      </div>
-      <div class="form-group  col-md-6">
-        <label for="loteId" style="float: left;">Lotes:</label>
-        <select class="form-control" formControlName="loteId" name="loteId" id="loteId" [class]="(submitted && formulario.get('loteId').errors) ||
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="dataVacinacao" style="float: left">Data Vacina:</label>
+          <input type="date" class="form-control" formControlName="dataVacinacao" id="dataVacinacao" />
+        </div>
+        <div class="form-group  col-md-6">
+          <label for="loteId" style="float: left;">Lotes:</label>
+          <select class="form-control" formControlName="loteId" name="loteId" id="loteId" [class]="(submitted && formulario.get('loteId').errors) ||
       (formulario.get('loteId').errors && formulario.get('loteId').dirty) ? 'is-invalid' :
       formulario.get('loteId').dirty ? 'is-valid' : ''">
-          <option *ngFor="let lote of lotes" [value]="lote.id">{{lote.codigo}}</option>
-        </select>
-        <div *ngIf="formulario.get('loteId').errors?.required" class="invalid-feedback">Lote é obrigatório</div>
+            <option value="0">Escolha um Lote</option>
+            <option *ngFor="let lote of lotes" [value]="lote.id">{{lote.codigo}}</option>
+          </select>
+          <div *ngIf="formulario.get('loteId').errors?.required" class="invalid-feedback">Lote é obrigatório</div>
+        </div>
       </div>
-    </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <a (click)="limparFormularios()" class="btn btn-secondary entrar col-12">Limpar</a>
+        </div>
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success entrar col-12">Salvar</button>
+        </div>
       </div>
-      <div class="form-group col-md-6">
-        <button type="submit" class="btn btn-success entrar col-12">Salvar</button>
-      </div>
-    </div>
+
+    </form>
 
     <table class="table table-striped">
       <thead>
@@ -110,7 +120,6 @@
       </tbody>
     </table>
 
-  </form>
 
-
+  </div>
 </div>

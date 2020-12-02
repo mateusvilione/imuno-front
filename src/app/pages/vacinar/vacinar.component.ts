@@ -16,6 +16,7 @@ import { VacinarRepository } from './repository/vacinar-repository';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 import { stringify } from '@angular/compiler/src/util';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-vacinar',
@@ -55,25 +56,29 @@ export class VacinarComponent implements OnInit {
     private cadernetaRepository: CadernetaRepository,
     private funcionarioRepository: FuncionarioRepository,
     private loteRepository: LoteRepository,
+    private messageService: MessageService,
     private fb: FormBuilder
-    ) {}
+  ) { }
 
   ngOnInit(): void {
     this.listarVacinas();
-    this.listarLotes();
     this.listarfuncionario(1);
     this.iniciarFormulario();
   }
 
   public iniciarFormulario() {
+    this.pesquisa = this.fb.group({
+      cpfRne: ['', Validators.required],
+      pacienteId: ['0', Validators.required],
+    });
     this.formulario = this.fb.group({
       cpfRne: ['', Validators.required],
-      dose: ['', Validators.required],
-      dataVacinacao: ['' , Validators.required],
+      dose: ['0', Validators.required],
+      dataVacinacao: ['', Validators.required],
       funcionarioId: ['', Validators.required],
-      loteId: ['', Validators.required],
-      pacienteId: ['', Validators.required],
-      vacinaId: ['', Validators.required]
+      loteId: ['0', Validators.required],
+      pacienteId: ['0', Validators.required],
+      vacinaId: ['0', Validators.required]
     });
   }
 
@@ -92,7 +97,7 @@ export class VacinarComponent implements OnInit {
       dataVacinacao: this.formulario.value.dataVacinacao,
       funcionarioId: 1, //this.formulario.value.funcionarioId,
       loteId: this.formulario.value.loteId,
-      pacienteId: this.formulario.value.pacienteId,
+      pacienteId: this.pesquisa.value.pacienteId,
       vacinaId: this.formulario.value.vacinaId,
       postoId: this.funcionario.posto.id,
     } as VacinarModel;
@@ -101,15 +106,14 @@ export class VacinarComponent implements OnInit {
 
     this.repository.postVacinar(dados).subscribe(
       (resposta) => {
-        this.mensagem = [
+        this.messageService.add(
           {
             severity: 'success',
             summary: 'Vacina',
             detail: 'cadastrado com sucesso!',
-          },
-        ];
-        this.limparFormulario();
-        this.caderneta = [];
+          });
+        this.limparCampos();
+        this.carregarVacinas();
       },
       (e) => {
         var msg: any[] = [];
@@ -117,18 +121,19 @@ export class VacinarComponent implements OnInit {
         msg.push({
           severity: 'error',
           summary: 'ERRO',
-          detail: e.error.userMessage,
+          detail: e.error.userMessage
         });
         //Erro de cada atributo
         var erros = e.error.objects;
-        erros.forEach(function (value) {
-          msg.push({
-            severity: 'error',
-            summary: 'ERRO',
-            detail: value.userMessage,
-          });
+        erros.forEach(function (elemento) {
+          msg.push(
+            {
+              severity: 'error',
+              summary: 'ERRO',
+              detail: elemento.userMessage
+            });
         });
-        this.mensagem = msg;
+        this.messageService.addAll(msg);
       }
     );
   }
@@ -146,34 +151,44 @@ export class VacinarComponent implements OnInit {
   }
 
   listarLotes() {
-    this.loteRepository.getAllLote().then(resposta => {
+    this.loteRepository.getAllLoteByVacina(this.formulario.value.vacinaId).then(resposta => {
       this.lotes = resposta;
     });
   }
 
-  carregarPaciente(){
-    this.cpf = this.formulario.value.cpfRne;
+  carregarPaciente() {
+    this.pacientes = [];
 
-    this.cpf = this.cpf.replace(".","");
-    this.cpf = this.cpf.replace(".","");
-    this.cpf = this.cpf.replace("-","");
+    this.cpf = this.pesquisa.value.cpfRne;
+
+    this.cpf = this.cpf.replace(".", "");
+    this.cpf = this.cpf.replace(".", "");
+    this.cpf = this.cpf.replace("-", "");
 
     console.log(this.cpf);
     this.pacienteRepository.getPaciente(this.cpf).subscribe(resposta => {
-      this.pacientes = [];
       this.caderneta = [];
-      this.formulario.value.pacienteId = "";
       this.pacientes.push(resposta);
     });
   }
 
-  limparFormulario() {
+  limparFormularios() {
     this.submitted = false;
     this.formulario.reset();
+    this.pesquisa.reset();
+    this.caderneta = [];
+
+    this.iniciarFormulario();
   }
 
-  carregarVacinas(){
-    this.id = this.formulario.value.pacienteId;
+  limparCampos() {
+    this.submitted = false;
+    this.formulario.reset();
+    this.formulario.value.pacienteId = this.pesquisa.value.pacienteId;
+  }
+
+  carregarVacinas() {
+    this.id = this.pesquisa.value.pacienteId;
     this.cadernetaRepository.getCadernetaByPaciente(this.id).then((resposta) => {
       console.log(resposta);
       this.caderneta = resposta;

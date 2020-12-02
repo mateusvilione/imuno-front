@@ -25,6 +25,14 @@ export class LoteRepository {
       });
   }
 
+  getAllLoteByVacina(id: number): Promise<LoteModel[]> {
+    return this.http
+      .getAll<LoteEntity[]>(`${environment.URLSERVIDOR}lote/filtro/${id}`)
+      .toPromise().then((x) => {
+        return x.data.map(this.mapper.mapFrom);
+      });
+  }
+
   getLoteById(id: number): Observable<LoteModel> {
     return this.http
       .getAll<LoteModel>(`${environment.URLSERVIDOR}lote/${id}`)

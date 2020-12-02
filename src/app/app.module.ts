@@ -30,6 +30,7 @@ import { EditarPostoComponent } from './pages/posto/editar-posto/editar-posto.co
 import { VacinaComponent } from './pages/vacina/vacina.component';
 import { CadastrarLoteComponent } from './pages/lote/cadastrar-lote/cadastrar-lote.component';
 import { EditarLoteComponent } from './pages/lote/editar-lote/editar-lote.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,9 @@ import { EditarLoteComponent } from './pages/lote/editar-lote/editar-lote.compon
     InputMaskModule,
     FileUploadModule
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

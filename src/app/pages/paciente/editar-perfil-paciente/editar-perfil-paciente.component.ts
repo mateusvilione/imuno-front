@@ -27,6 +27,7 @@ export class EditarPerfilPacienteComponent implements OnInit {
   constructor(
     private repository: PacienteRepository,
     private route: ActivatedRoute,
+    private messageService: MessageService,
     private title: Title,
     private fb: FormBuilder) { }
 
@@ -72,7 +73,7 @@ export class EditarPerfilPacienteComponent implements OnInit {
     });
   }
 
-  carregarPaciente(codigoCliente: number){
+  carregarPaciente(codigoCliente: number) {
     this.repository.getPacienteById(codigoCliente).subscribe(resposta => {
       this.formulario.controls.id.setValue(resposta.id);
       this.formulario.controls.nome.setValue(resposta.nome);
@@ -132,7 +133,7 @@ export class EditarPerfilPacienteComponent implements OnInit {
 
   salvar() {
     const dados = {
-      id : this.formulario.value.id,
+      id: this.formulario.value.id,
       nome: this.formulario.value.nome,
       dataNascimento: this.formulario.value.dataNascimento,
       genero: this.formulario.value.genero,
@@ -160,12 +161,13 @@ export class EditarPerfilPacienteComponent implements OnInit {
 
     if (dados.id) {
       this.repository.putPaciente(dados).subscribe(resposta => {
-        this.mensagem = [
+        this.messageService.add(
           {
+            key: 'toast',
             severity: 'success',
             summary: 'Paciente',
-            detail: 'cadastrado com sucesso!'
-          }];
+            detail: 'Alterado com sucesso!'
+          });
         this.limparFormulario();
         this.carregarPaciente(dados.id);
       },
@@ -179,15 +181,15 @@ export class EditarPerfilPacienteComponent implements OnInit {
           });
           //Erro de cada atributo
           var erros = e.error.objects;
-          erros.forEach(function (value) {
+          erros.forEach(function (elemento) {
             msg.push(
               {
                 severity: 'error',
                 summary: 'ERRO',
-                detail: value.userMessage
+                detail: elemento.userMessage
               });
           });
-          this.mensagem = msg;
+          this.messageService.addAll(msg);
         }
       );
     }
