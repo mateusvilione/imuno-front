@@ -16,7 +16,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     SegurancaRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule           
+    ReactiveFormsModule
   ],
   providers:[
     AuthService,

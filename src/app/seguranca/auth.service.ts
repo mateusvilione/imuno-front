@@ -7,31 +7,39 @@ import { AuthRepository } from './auth-repository';
 })
 export class AuthService {
 
-  jwtPayload: any; 
+  jwtPayload: any;
 
-  constructor(public repository: AuthRepository, private router: Router) { 
+  constructor(public repository: AuthRepository, private router: Router) {
     this.carregarToken();
   }
 
-  login(login: string, senha: string){
-    
+  login(login: string, senha: string) {
+
     return this.repository.postLogin(login, senha).subscribe(resposta => {
-        
-        const json: JSON = JSON.parse(JSON.stringify(resposta));
-        console.log(json);
-        this.armazenarToken(json['access_token']);
-        
-        console.log('Novo access token criado!'+JSON.stringify(this.jwtPayload));
-        this.router.navigate(['/listar/cliente']);        
-      },
-        (e) => {
-          console.log(e.error.error_description);      
-        });    
+
+      const json: JSON = JSON.parse(JSON.stringify(resposta));
+      console.log(json);
+      this.armazenarToken(json['access_token']);
+
+      console.log('Novo access token criado!' + JSON.stringify(this.jwtPayload));
+
+      if (this.temPermissao('DH01'))
+        this.router.navigate(['/dashboard-admin']);
+
+      if (this.temPermissao('DH02'))
+        this.router.navigate(['/dashboard-funcionario']);
+
+      if (this.temPermissao('DH03'))
+        this.router.navigate(['/caderneta']);
+    },
+      (e) => {
+        console.log(e.error.error_description);
+      });
   }
 
   private armazenarToken(token: string) {
     this.jwtPayload = JSON.parse(atob(token.split('.')[1]));
-    
+
     localStorage.setItem('token', token);
   }
 
@@ -45,12 +53,12 @@ export class AuthService {
 
   logout() {
     return this.repository.postLogout().subscribe(resposta => {
-        this.limparAccessToken();
-        this.router.navigate(['/login']);
-      },
+      this.limparAccessToken();
+      this.router.navigate(['/login']);
+    },
       (e) => {
-        console.log(e.error.error_description);      
-      }); 
+        console.log(e.error.error_description);
+      });
   }
 
   limparAccessToken() {
@@ -60,33 +68,33 @@ export class AuthService {
 
   isAccessTokenInvalido() {
     const token = localStorage.getItem('token');
-    
+
     return !token || this.isTokenExpired();
   }
 
-  isTokenExpired(){
-    this.repository.postCheckToken().subscribe(resposta => {        
-      const json: JSON = JSON.parse(JSON.stringify(resposta));      
-      if(json['active']){
+  isTokenExpired() {
+    this.repository.postCheckToken().subscribe(resposta => {
+      const json: JSON = JSON.parse(JSON.stringify(resposta));
+      if (json['active']) {
         return false;
-      }    
+      }
     },
-    ( e ) => {
-        this.obterNovoAccessToken();           
-    });
+      (e) => {
+        this.obterNovoAccessToken();
+      });
   }
 
-  obterNovoAccessToken(){    
+  obterNovoAccessToken() {
     return this.repository.postRefreshToken().subscribe(resposta => {
       const json: JSON = JSON.parse(JSON.stringify(resposta));
       this.armazenarToken(json['access_token']);
-      console.log('Novo access token criado pelo refresh token! '+JSON.stringify(this.jwtPayload));
-      },
+      console.log('Novo access token criado pelo refresh token! ' + JSON.stringify(this.jwtPayload));
+    },
       (e) => {
-        console.log(e.error.error_description);  
+        console.log(e.error.error_description);
         this.logout();
-        this.router.navigate(['/login']);    
-      });  
+        this.router.navigate(['/login']);
+      });
   }
 
   temPermissao(permissao: string) {

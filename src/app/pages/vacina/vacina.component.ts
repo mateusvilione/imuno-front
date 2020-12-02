@@ -39,10 +39,10 @@ export class VacinaComponent implements OnInit {
   }
 
   cadastrar() {
-    this.submitted = true;
-    if (this.formulario.invalid) {
-      return;
-    }
+    // this.submitted = true;
+    // if (this.formulario.invalid) {
+    //   return;
+    // }
     this.salvar();
   };
 

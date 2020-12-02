@@ -1,5 +1,6 @@
-import { HeaderAuthComponent } from './components/headerAuth/header-auth.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { TemplateModule } from './template/template.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,10 +14,6 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CadastrarFuncionarioComponent } from './pages/funcionario/cadastrar-funcionario/cadastrar-funcionario.component';
-import { LoginPacienteComponent } from './pages/login-paciente/login-paciente.component';
-import { HeaderComponent } from './components/header/header.component';
-import { LoginFuncionarioComponent } from './pages/login-funcionario/login-funcionario.component';
-import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
 import { CadastrarPacienteComponent } from './pages/paciente/cadastrar-paciente/cadastrar-paciente.component';
 import { CadernetaVacinacaoComponent } from './pages/caderneta-vacinacao/caderneta-vacinacao.component';
 import { EditarPerfilPacienteComponent } from './pages/paciente/editar-perfil-paciente/editar-perfil-paciente.component';
@@ -30,16 +27,11 @@ import { EditarPostoComponent } from './pages/posto/editar-posto/editar-posto.co
 import { VacinaComponent } from './pages/vacina/vacina.component';
 import { CadastrarLoteComponent } from './pages/lote/cadastrar-lote/cadastrar-lote.component';
 import { EditarLoteComponent } from './pages/lote/editar-lote/editar-lote.component';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPacienteComponent,
-    HeaderComponent,
-    HeaderAuthComponent,
-    LoginFuncionarioComponent,
-    LoginAdminComponent,
     CadastrarPacienteComponent,
     CadernetaVacinacaoComponent,
     CadastrarFuncionarioComponent,
@@ -65,10 +57,14 @@ import { MessageService } from 'primeng/api';
     MessagesModule,
     MessageModule,
     InputMaskModule,
-    FileUploadModule
+    FileUploadModule,
+    SegurancaModule,
+    TemplateModule,
   ],
   providers: [
-    MessageService
+    MessageService,
+    Title,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
