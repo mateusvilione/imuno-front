@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { VacinaModel } from './model/vacina-model';
-import { VacinaRepository } from './repository/vacina-repository';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
+import { VacinaModel } from '../model/vacina-model';
+import { VacinaRepository } from '../repository/vacina-repository';
+
 
 @Component({
-  selector: 'app-vacina',
-  templateUrl: './vacina.component.html',
-  styleUrls: ['./vacina.component.css']
+  selector: 'app-cadastrar-vacina',
+  templateUrl: './cadastrar-vacina.component.html',
+  styleUrls: ['./cadastrar-vacina.component.css']
 })
-export class VacinaComponent implements OnInit {
+export class CadastrarVacinaComponent implements OnInit {
 
   public formulario: FormGroup;
 
@@ -32,8 +34,6 @@ export class VacinaComponent implements OnInit {
 
   public iniciarFormulario() {
     this.formulario = this.fb.group({
-    //   id: [null],
-    //   administrador: [null],
       nome: ['', Validators.required],
       prevencao: ['', Validators.required]
     });
@@ -57,13 +57,13 @@ export class VacinaComponent implements OnInit {
     console.log("dados" + dados);
 
 
-    this.repository.putVacina(dados).subscribe(resposta => {
+    this.repository.postVacina(dados).subscribe(resposta => {
         this.messageService.add(
           {
             key: 'toast',
             severity: 'success',
             summary: 'Vacina',
-            detail: 'alterado com sucesso!',
+            detail: 'cadastrada com sucesso!',
           },
         );
         this.limparFormulario();

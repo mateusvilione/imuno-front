@@ -1,3 +1,5 @@
+import { CadastrarVacinaComponent } from './pages/vacina/cadastrar-vacina/cadastrar-vacina.component';
+import { EditarVacinaComponent } from './pages/vacina/editar-vacina/editar-vacina.component';
 import { TabelaLotesComponent } from './pages/tabela-lotes/tabela-lotes.component';
 import { TabelaVacinasComponent } from './pages/tabela-vacinas/tabela-vacinas.component';
 import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component';
@@ -13,7 +15,6 @@ import { EditarPerfilFuncionarioComponent } from './pages/funcionario/editar-per
 import { VacinarComponent } from './pages/vacinar/vacinar.component';
 import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
 import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard-paciente.component';
-import { VacinaComponent } from './pages/vacina/vacina.component';
 import { CadastrarLoteComponent } from './pages/lote/cadastrar-lote/cadastrar-lote.component';
 import { EditarLoteComponent } from './pages/lote/editar-lote/editar-lote.component';
 import { EditarPostoComponent } from './pages/posto/editar-posto/editar-posto.component';
@@ -49,11 +50,11 @@ const routes: Routes = [
     data: { roles: ['DH03'] }
   },
   {
-    path: 'vacina', component: VacinaComponent, canActivate: [AuthGuard],
+    path: 'vacina', component: CadastrarVacinaComponent, canActivate: [AuthGuard],
     data: { roles: ['DH01'] }
   },
   {
-    path: 'vacina/:codigo', component: VacinaComponent, canActivate: [AuthGuard],
+    path: 'vacina/:codigo', component: EditarVacinaComponent, canActivate: [AuthGuard],
     data: { roles: ['DH01'] }
   },
   {

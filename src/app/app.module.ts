@@ -25,12 +25,13 @@ import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard
 import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component';
 import { CadastrarPostoComponent } from './pages/posto/cadastrar-posto/cadastrar-posto.component';
 import { EditarPostoComponent } from './pages/posto/editar-posto/editar-posto.component';
-import { VacinaComponent } from './pages/vacina/vacina.component';
 import { CadastrarLoteComponent } from './pages/lote/cadastrar-lote/cadastrar-lote.component';
 import { EditarLoteComponent } from './pages/lote/editar-lote/editar-lote.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TabelaVacinasComponent } from './pages/tabela-vacinas/tabela-vacinas.component';
 import { TabelaLotesComponent } from './pages/tabela-lotes/tabela-lotes.component';
+import { EditarVacinaComponent } from './pages/vacina/editar-vacina/editar-vacina.component';
+import { CadastrarVacinaComponent } from './pages/vacina/cadastrar-vacina/cadastrar-vacina.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,6 @@ import { TabelaLotesComponent } from './pages/tabela-lotes/tabela-lotes.componen
     EditarPerfilPacienteComponent,
     EditarPerfilFuncionarioComponent,
     VacinarComponent,
-    VacinaComponent,
     DashboardFuncionarioComponent,
     DashboardPacienteComponent,
     DashboardAdminComponent,
@@ -51,6 +51,8 @@ import { TabelaLotesComponent } from './pages/tabela-lotes/tabela-lotes.componen
     EditarLoteComponent,
     TabelaVacinasComponent,
     TabelaLotesComponent,
+    EditarVacinaComponent,
+    CadastrarVacinaComponent,
   ],
   imports: [
     BrowserModule,
