@@ -20,8 +20,9 @@ export class CadastrarPacienteComponent implements OnInit {
 
   constructor(
     private repository: PacienteRepository,
+    private messageService: MessageService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.iniciarFormulario();
@@ -115,37 +116,37 @@ export class CadastrarPacienteComponent implements OnInit {
 
     console.log('dados' + dados);
 
-    this.repository.postPaciente(dados).subscribe(
-      (resposta) => {
-        this.mensagem = [
-          {
-            severity: 'success',
-            summary: 'Paciente',
-            detail: 'cadastrado com sucesso!',
-          },
-        ];
-        this.limparFormulario();
-      },
+    this.repository.postPaciente(dados).subscribe(resposta => {
+      this.messageService.add(
+        {
+          key: 'toast',
+          severity: 'success',
+          summary: 'Paciente',
+          detail: 'cadastrado com sucesso!',
+        },
+      );
+      this.limparFormulario();
+    },
       (e) => {
         var msg: any[] = [];
         //Erro Principal
         msg.push({
           severity: 'error',
           summary: 'ERRO',
-          detail: e.error.userMessage,
+          detail: e.error.userMessage
         });
         //Erro de cada atributo
         var erros = e.error.objects;
-        erros.forEach(function (value) {
-          msg.push({
-            severity: 'error',
-            summary: 'ERRO',
-            detail: value.userMessage,
-          });
+        erros.forEach(function (elemento) {
+          msg.push(
+            {
+              severity: 'error',
+              summary: 'ERRO',
+              detail: elemento.userMessage
+            });
         });
-        this.mensagem = msg;
-      }
-    );
+        this.messageService.addAll(msg);
+      });
   }
 
   limparFormulario() {

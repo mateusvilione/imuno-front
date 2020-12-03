@@ -110,6 +110,7 @@ export class VacinarComponent implements OnInit {
       (resposta) => {
         this.messageService.add(
           {
+            key: 'toast',
             severity: 'success',
             summary: 'Vacina',
             detail: 'cadastrado com sucesso!',

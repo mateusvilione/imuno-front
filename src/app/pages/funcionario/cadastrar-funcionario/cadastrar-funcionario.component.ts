@@ -1,4 +1,4 @@
-import { Message } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuncionarioRepository } from '../repository/funcionario-repository';
 import { Component, OnInit } from '@angular/core';
@@ -14,14 +14,13 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   public submitted: boolean = false;
 
-  mensagem: Message[] = [];
-
   operacao: boolean = true;
 
   constructor(
     private repository: FuncionarioRepository,
+    private messageService: MessageService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.iniciarFormulario();
@@ -54,7 +53,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
       document.getElementById('confirmacaoSenha')
     )).value;
 
-    if (password == confirm_password) {
+    if (password === confirm_password) {
       return true;
     } else {
       return false;
@@ -67,7 +66,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
       document.getElementById('confirmacaoSenha')
     )).value;
 
-    if (password != confirm_password) {
+    if (password !== confirm_password) {
       return true;
     } else {
       return false;
@@ -106,37 +105,36 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
     console.log('dados' + dados);
 
-    this.repository.postFuncionario(dados).subscribe(
-      (resposta) => {
-        this.mensagem = [
-          {
-            severity: 'success',
-            summary: 'Funcionario',
-            detail: 'cadastrado com sucesso!',
-          },
-        ];
-        this.limparFormulario();
-      },
+    this.repository.postFuncionario(dados).subscribe(resposta => {
+      this.messageService.add(
+        {
+          key: 'toast',
+          severity: 'success',
+          summary: 'Funcionario',
+          detail: 'cadastrado com sucesso!'
+        });
+      this.limparFormulario();
+    },
       (e) => {
         var msg: any[] = [];
         //Erro Principal
         msg.push({
           severity: 'error',
           summary: 'ERRO',
-          detail: e.error.userMessage,
+          detail: e.error.userMessage
         });
         //Erro de cada atributo
         var erros = e.error.objects;
-        erros.forEach(function (value) {
-          msg.push({
-            severity: 'error',
-            summary: 'ERRO',
-            detail: value.userMessage,
-          });
+        erros.forEach(function (elemento) {
+          msg.push(
+            {
+              severity: 'error',
+              summary: 'ERRO',
+              detail: elemento.userMessage
+            });
         });
-        this.mensagem = msg;
-      }
-    );
+        this.messageService.addAll(msg);
+      });
   }
 
   limparFormulario() {

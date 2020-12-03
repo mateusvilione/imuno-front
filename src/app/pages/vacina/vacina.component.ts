@@ -23,6 +23,7 @@ export class VacinaComponent implements OnInit {
 
   constructor(
     private repository: VacinaRepository,
+    private messageService: MessageService,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -55,42 +56,38 @@ export class VacinaComponent implements OnInit {
 
     console.log("dados" + dados);
 
-    if (dados.id) {
-      this.repository.putVacina(dados).subscribe(resposta => {
-        this.limparFormulario();
-      });
-    } else {
-      this.repository.postVacina(dados).subscribe(resposta => {
-        this.mensagem = [
+
+    this.repository.putVacina(dados).subscribe(resposta => {
+        this.messageService.add(
           {
+            key: 'toast',
             severity: 'success',
             summary: 'Vacina',
-            detail: 'cadastrado com sucesso!'
-          }];
+            detail: 'alterado com sucesso!',
+          },
+        );
         this.limparFormulario();
       },
-        (e) => {
-          var msg: any[] = [];
-          //Erro Principal
-          msg.push({
-            severity: 'error',
-            summary: 'ERRO',
-            detail: e.error.userMessage
-          });
-          //Erro de cada atributo
-          var erros = e.error.objects;
-          erros.forEach(function (value) {
-            msg.push(
-              {
-                severity: 'error',
-                summary: 'ERRO',
-                detail: value.userMessage
-              });
-          });
-          this.mensagem = msg;
-        }
-      );
-    }
+      (e) => {
+        var msg: any[] = [];
+        //Erro Principal
+        msg.push({
+          severity: 'error',
+          summary: 'ERRO',
+          detail: e.error.userMessage
+        });
+        //Erro de cada atributo
+        var erros = e.error.objects;
+        erros.forEach(function (elemento) {
+          msg.push(
+            {
+              severity: 'error',
+              summary: 'ERRO',
+              detail: elemento.userMessage
+            });
+        });
+        this.messageService.addAll(msg);
+      });
   }
 
   limparFormulario() {

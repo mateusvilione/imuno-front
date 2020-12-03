@@ -9,10 +9,9 @@ import { ParsedVariable } from '@angular/compiler';
 @Component({
   selector: 'app-cadastrar-posto',
   templateUrl: './cadastrar-posto.component.html',
-  styleUrls: ['./cadastrar-posto.component.css']
+  styleUrls: ['./cadastrar-posto.component.css'],
 })
 export class CadastrarPostoComponent implements OnInit {
-
   public formulario: FormGroup;
 
   public submitted: boolean = false;
@@ -25,8 +24,10 @@ export class CadastrarPostoComponent implements OnInit {
 
   constructor(
     private repository: PostoRepository,
+    private messageService: MessageService,
     public service: AuthService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.iniciarFormulario();
@@ -34,8 +35,8 @@ export class CadastrarPostoComponent implements OnInit {
 
   public iniciarFormulario() {
     this.formulario = this.fb.group({
-    //   id: [null],
-    //   administrador: [null],
+      //   id: [null],
+      //   administrador: [null],
       nome: ['', Validators.required],
       cnes: ['', Validators.required],
       telefone: ['', Validators.required],
@@ -55,7 +56,7 @@ export class CadastrarPostoComponent implements OnInit {
       return;
     }
     this.salvar();
-  };
+  }
 
   salvar() {
     const dados = {
@@ -72,52 +73,43 @@ export class CadastrarPostoComponent implements OnInit {
         cidade: this.formulario.value.cidade,
         estado: this.formulario.value.estado,
         cep: this.formulario.value.cep,
-      }
+      },
     } as PostoModel;
 
-    console.log("dados" + dados);
-
-    if (dados.id) {
-      this.repository.putPosto(dados).subscribe(resposta => {
-        this.limparFormulario();
-      });
-    } else {
-      this.repository.postPosto(dados).subscribe(resposta => {
-        this.mensagem = [
-          {
-            severity: 'success',
-            summary: 'Posto',
-            detail: 'cadastrado com sucesso!'
-          }];
+    this.repository.postPosto(dados).subscribe(
+      (resposta) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'success',
+          summary: 'Posto',
+          detail: 'cadastrado com sucesso!',
+        });
         this.limparFormulario();
       },
-        (e) => {
-          var msg: any[] = [];
-          //Erro Principal
+      (e) => {
+        var msg: any[] = [];
+        //Erro Principal
+        msg.push({
+          severity: 'error',
+          summary: 'ERRO',
+          detail: e.error.userMessage,
+        });
+        //Erro de cada atributo
+        var erros = e.error.objects;
+        erros.forEach(function (elemento) {
           msg.push({
             severity: 'error',
             summary: 'ERRO',
-            detail: e.error.userMessage
+            detail: elemento.userMessage,
           });
-          //Erro de cada atributo
-          var erros = e.error.objects;
-          erros.forEach(function (value) {
-            msg.push(
-              {
-                severity: 'error',
-                summary: 'ERRO',
-                detail: value.userMessage
-              });
-          });
-          this.mensagem = msg;
-        }
-      );
-    }
+        });
+        this.messageService.addAll(msg);
+      }
+    );
   }
 
   limparFormulario() {
     this.submitted = false;
     this.formulario.reset();
   }
-
 }

@@ -29,6 +29,7 @@ export class EditarPostoComponent implements OnInit {
     private repository: PostoRepository,
     private route: ActivatedRoute,
     public service: AuthService,
+    private messageService: MessageService,
     private title: Title,
     private fb: FormBuilder) { }
 
@@ -109,39 +110,38 @@ export class EditarPostoComponent implements OnInit {
 
     console.log("dados" + dados);
 
-    if (dados.id) {
-      this.repository.postPosto(dados).subscribe(resposta => {
-        this.mensagem = [
+
+    this.repository.postPosto(dados).subscribe(resposta => {
+        this.messageService.add(
           {
+            key: 'toast',
             severity: 'success',
             summary: 'Posto',
-            detail: 'cadastrado com sucesso!'
-          }];
+            detail: 'alterado com sucesso!',
+          },
+        );
         this.limparFormulario();
-        this.carregarPosto(dados.id);
       },
-        (e) => {
-          var msg: any[] = [];
-          //Erro Principal
-          msg.push({
-            severity: 'error',
-            summary: 'ERRO',
-            detail: e.error.userMessage
-          });
-          //Erro de cada atributo
-          var erros = e.error.objects;
-          erros.forEach(function (value) {
-            msg.push(
-              {
-                severity: 'error',
-                summary: 'ERRO',
-                detail: value.userMessage
-              });
-          });
-          this.mensagem = msg;
-        }
-      );
-    }
+      (e) => {
+        var msg: any[] = [];
+        //Erro Principal
+        msg.push({
+          severity: 'error',
+          summary: 'ERRO',
+          detail: e.error.userMessage
+        });
+        //Erro de cada atributo
+        var erros = e.error.objects;
+        erros.forEach(function (elemento) {
+          msg.push(
+            {
+              severity: 'error',
+              summary: 'ERRO',
+              detail: elemento.userMessage
+            });
+        });
+        this.messageService.addAll(msg);
+      });
   }
 
   limparFormulario() {

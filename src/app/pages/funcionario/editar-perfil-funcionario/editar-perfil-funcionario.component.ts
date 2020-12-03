@@ -1,4 +1,4 @@
-import { Message } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuncionarioRepository } from '../repository/funcionario-repository';
 import { Component, OnInit } from '@angular/core';
@@ -25,6 +25,7 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
     private repository: FuncionarioRepository,
     private route: ActivatedRoute,
     public service: AuthService,
+    private messageService: MessageService,
     private title: Title,
     private fb: FormBuilder) { }
 
@@ -63,7 +64,7 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
     });
   }
 
-  carregarFuncionario(codigoCliente: number){
+  carregarFuncionario(codigoCliente: number) {
     this.repository.getFuncionarioById(codigoCliente).subscribe(resposta => {
       this.formulario.controls.id.setValue(resposta.id);
       this.formulario.controls.nome.setValue(resposta.nome);
@@ -145,12 +146,13 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
 
     if (dados.id) {
       this.repository.putFuncionario(dados).subscribe(resposta => {
-        this.mensagem = [
+        this.messageService.add(
           {
+            key: 'toast',
             severity: 'success',
             summary: 'Funcionario',
-            detail: 'cadastrado com sucesso!'
-          }];
+            detail: 'atualizado com sucesso!'
+          });
         this.limparFormulario();
         this.carregarFuncionario(dados.id);
       },
@@ -164,17 +166,16 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
           });
           //Erro de cada atributo
           var erros = e.error.objects;
-          erros.forEach(function (value) {
+          erros.forEach(function (elemento) {
             msg.push(
               {
                 severity: 'error',
                 summary: 'ERRO',
-                detail: value.userMessage
+                detail: elemento.userMessage
               });
           });
-          this.mensagem = msg;
-        }
-      );
+          this.messageService.addAll(msg);
+        });
     }
   }
 

@@ -27,9 +27,10 @@ export class CadastrarLoteComponent implements OnInit {
   constructor(
     private repository: LoteRepository,
     private vacinaRepository: VacinaRepository,
+    private messageService: MessageService,
     public service: AuthService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.listarVacinas();
@@ -41,7 +42,7 @@ export class CadastrarLoteComponent implements OnInit {
       id: [null],
       administradorId: [null],
       codigo: ['', Validators.required],
-      dataEntrada: [ '', Validators.required],
+      dataEntrada: ['', Validators.required],
       dataFabricacao: ['', Validators.required],
       dataValidade: ['', Validators.required],
       postoId: ['', Validators.required],
@@ -74,15 +75,15 @@ export class CadastrarLoteComponent implements OnInit {
 
     console.log('dados' + dados);
 
-    this.repository.postLote(dados).subscribe(
-      (resposta) => {
-        this.mensagem = [
+    this.repository.postLote(dados).subscribe(resposta => {
+        this.messageService.add(
           {
+            key: 'toast',
             severity: 'success',
-            summary: 'Paciente',
+            summary: 'Lote',
             detail: 'cadastrado com sucesso!',
           },
-        ];
+        );
         this.limparFormulario();
       },
       (e) => {
@@ -91,20 +92,20 @@ export class CadastrarLoteComponent implements OnInit {
         msg.push({
           severity: 'error',
           summary: 'ERRO',
-          detail: e.error.userMessage,
+          detail: e.error.userMessage
         });
         //Erro de cada atributo
         var erros = e.error.objects;
-        erros.forEach(function (value) {
-          msg.push({
-            severity: 'error',
-            summary: 'ERRO',
-            detail: value.userMessage,
-          });
+        erros.forEach(function (elemento) {
+          msg.push(
+            {
+              severity: 'error',
+              summary: 'ERRO',
+              detail: elemento.userMessage
+            });
         });
-        this.mensagem = msg;
-      }
-    );
+        this.messageService.addAll(msg);
+      });
   }
 
   listarVacinas() {

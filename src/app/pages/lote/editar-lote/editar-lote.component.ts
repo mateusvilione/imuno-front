@@ -1,3 +1,4 @@
+import { VacinaModel } from './../../vacina/model/vacina-model';
 import { LoteRepository } from '../../lote/repository/lote-repository';
 import { LoteModel } from './../../lote/model/lote-model';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { VacinaRepository } from '../../vacina/repository/vacina-repository';
 
 @Component({
   selector: 'app-editar-lote',
@@ -19,13 +21,17 @@ export class EditarLoteComponent implements OnInit {
 
   mensagem: Message[] = [];
 
+  vacinas: VacinaModel[] = [];
+
   operacao: boolean = true;
 
   lote: LoteModel;
 
   constructor(
     private repository: LoteRepository,
+    private messageService: MessageService,
     private route: ActivatedRoute,
+    private vacinaRepository: VacinaRepository,
     private title: Title,
     private fb: FormBuilder) { }
 
@@ -34,6 +40,8 @@ export class EditarLoteComponent implements OnInit {
 
     // const codigo = this.service.jwtPayload.usuario_id;
 
+
+    this.listarVacinas();
     this.iniciarFormulario();
 
     this.title.setTitle('Editar Perfil');
@@ -49,7 +57,7 @@ export class EditarLoteComponent implements OnInit {
       id: [null],
       administradorId: [null],
       codigo: ['', Validators.required],
-      dataEntrada: [ '', Validators.required],
+      dataEntrada: ['', Validators.required],
       dataFabricacao: ['', Validators.required],
       dataValidade: ['', Validators.required],
       postoId: ['', Validators.required],
@@ -58,7 +66,7 @@ export class EditarLoteComponent implements OnInit {
     });
   }
 
-  carregarLote(codigoCliente: number){
+  carregarLote(codigoCliente: number) {
     this.repository.getLoteById(codigoCliente).subscribe(resposta => {
       this.formulario.controls.id.setValue(resposta.id);
       this.formulario.controls.administradorId.setValue(resposta.administradorId);
@@ -95,14 +103,15 @@ export class EditarLoteComponent implements OnInit {
 
     if (dados.id) {
       this.repository.putLote(dados).subscribe(resposta => {
-        this.mensagem = [
+        this.messageService.add(
           {
+            key: 'toast',
             severity: 'success',
-            summary: 'Paciente',
-            detail: 'cadastrado com sucesso!'
-          }];
+            summary: 'Lote',
+            detail: 'alterado com sucesso!',
+          },
+        );
         this.limparFormulario();
-        this.carregarLote(dados.id);
       },
         (e) => {
           var msg: any[] = [];
@@ -114,19 +123,25 @@ export class EditarLoteComponent implements OnInit {
           });
           //Erro de cada atributo
           var erros = e.error.objects;
-          erros.forEach(function (value) {
+          erros.forEach(function (elemento) {
             msg.push(
               {
                 severity: 'error',
                 summary: 'ERRO',
-                detail: value.userMessage
+                detail: elemento.userMessage
               });
           });
-          this.mensagem = msg;
-        }
-      );
+          this.messageService.addAll(msg);
+        });
     }
   }
+
+  listarVacinas() {
+    this.vacinaRepository.getAllVacinas().then(resposta => {
+      this.vacinas = resposta;
+    });
+  }
+
 
   limparFormulario() {
     this.submitted = false;

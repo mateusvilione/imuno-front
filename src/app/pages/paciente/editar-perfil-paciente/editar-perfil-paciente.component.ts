@@ -29,7 +29,6 @@ export class EditarPerfilPacienteComponent implements OnInit {
     private repository: PacienteRepository,
     private route: ActivatedRoute,
     private messageService: MessageService,
-
     public service: AuthService,
     private title: Title,
     private fb: FormBuilder) { }
