@@ -51,6 +51,7 @@ export class AuthService {
   }
 
   private armazenarId(id: string) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa" + id);
     localStorage.setItem('usuarioId', id);
   }
 
