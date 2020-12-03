@@ -1,5 +1,6 @@
+import { LoteAllModel } from './../model/lote-model';
 import { LoteModel } from '../model/lote-model';
-import { LoteEntity } from './../entity/lote-entity';
+import { LoteAllEntity, LoteEntity } from './../entity/lote-entity';
 import { Mapper } from '../../../base/mapper';
 
 export class LoteMapper extends Mapper<LoteEntity, LoteModel> {
@@ -31,4 +32,32 @@ export class LoteMapper extends Mapper<LoteEntity, LoteModel> {
           vacinaId: param.vacinaId
         };
     }
+
+    mapFromAll(param: LoteAllEntity): LoteAllModel {
+      return {
+        id: param.id,
+        administrador: param.administrador,
+        codigo: param.codigo,
+        dataEntrada: param.dataEntrada,
+        dataFabricacao: param.dataFabricacao,
+        dataValidade: param.dataValidade,
+        posto: param.posto,
+        quantidade: param.quantidade,
+        vacina: param.vacina
+      };
+  }
+
+  mapToAll(param: LoteAllModel): LoteAllEntity {
+      return {
+        id: param.id,
+        administrador: param.administrador,
+        codigo: param.codigo,
+        dataEntrada: param.dataEntrada,
+        dataFabricacao: param.dataFabricacao,
+        dataValidade: param.dataValidade,
+        posto: param.posto,
+        quantidade: param.quantidade,
+        vacina: param.vacina
+      };
+  }
   }

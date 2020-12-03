@@ -81,10 +81,10 @@ export class EditarLoteComponent implements OnInit {
   }
 
   atualizar() {
-    this.submitted = true;
-    if (this.formulario.invalid) {
-      return;
-    }
+    // this.submitted = true;
+    // if (this.formulario.invalid) {
+    //   return;
+    // }
     this.salvar();
   };
 
@@ -112,6 +112,7 @@ export class EditarLoteComponent implements OnInit {
           },
         );
         this.limparFormulario();
+        this.carregarLote(dados.id);
       },
         (e) => {
           var msg: any[] = [];

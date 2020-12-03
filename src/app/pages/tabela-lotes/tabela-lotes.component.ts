@@ -2,6 +2,7 @@ import { LoteModel } from '../caderneta-vacinacao/model/caderneta-model';
 import { Component, OnInit } from '@angular/core';
 import { LoteRepository } from '../lote/repository/lote-repository';
 import { AuthService } from '../../seguranca/auth.service';
+import { LoteAllModel } from '../lote/model/lote-model';
 
 @Component({
   selector: 'app-tabela-lotes',
@@ -9,7 +10,7 @@ import { AuthService } from '../../seguranca/auth.service';
   styleUrls: ['./tabela-lotes.component.css']
 })
 export class TabelaLotesComponent implements OnInit {
-  lotes: LoteModel[] = [];
+  lotes: LoteAllModel[] = [];
 
   constructor(
     private repository: LoteRepository,
@@ -17,10 +18,10 @@ export class TabelaLotesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.carregarVacinas();
+    this.carregarLotes();
   }
 
-  carregarVacinas() {
+  carregarLotes() {
     this.repository.getAllLote().then((resposta) => {
       console.log(resposta);
       this.lotes = resposta;

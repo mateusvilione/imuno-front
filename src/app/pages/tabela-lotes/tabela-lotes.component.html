@@ -12,6 +12,7 @@
       <thead>
         <tr>
           <th scope="col">Código</th>
+          <th scope="col">Vacina</th>
           <th scope="col">Data de entrada</th>
           <th scope="col">Data de Fabricação</th>
           <th scope="col">Data de Validade</th>
@@ -22,6 +23,7 @@
       <tbody>
         <tr *ngFor="let lote of lotes">
           <th scope="row">{{lote.codigo}}</th>
+          <th >{{lote.vacina.nome}}</th>
           <td type="date">{{lote.dataEntrada}}</td>
           <td type="date">{{lote.dataFabricacao}}</td>
           <td type="date">{{lote.dataValidade}}</td>

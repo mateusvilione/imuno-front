@@ -1,7 +1,8 @@
+import { LoteAllModel } from './../model/lote-model';
 import { Observable } from 'rxjs';
 import { LoteMapper } from '../mapper/lote-mapper';
 import { LoteModel } from '../model/lote-model';
-import { LoteEntity } from '../entity/lote-entity';
+import { LoteAllEntity, LoteEntity } from '../entity/lote-entity';
 import { environment } from '../../../../environments/environment';
 import { Injectable } from "@angular/core";
 import { BaseHttpService } from '../../../services/http/base-http.service';
@@ -17,11 +18,11 @@ export class LoteRepository {
 
   constructor(public http: BaseHttpService) { }
 
-  getAllLote(): Promise<LoteModel[]> {
+  getAllLote(): Promise<LoteAllModel[]> {
     return this.http
-      .getAll<LoteEntity[]>(`${environment.URLSERVIDOR}lote`)
+      .getAll<LoteAllEntity[]>(`${environment.URLSERVIDOR}lote`)
       .toPromise().then((x) => {
-        return x.data.map(this.mapper.mapFrom);
+        return x.data.map(this.mapper.mapFromAll);
       });
   }
 
