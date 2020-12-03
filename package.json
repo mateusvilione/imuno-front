@@ -21,7 +21,8 @@
     "@angular/router": "~10.0.6",
     "angular": "^1.8.2",
     "bootstrap": "^4.5.2",
-    "primeng": "^10.0.1",
+    "primeicons": "^4.1.0",
+    "primeng": "^10.0.3",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

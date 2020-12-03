@@ -1,3 +1,5 @@
+import { TabelaLotesComponent } from './pages/tabela-lotes/tabela-lotes.component';
+import { TabelaVacinasComponent } from './pages/tabela-vacinas/tabela-vacinas.component';
 import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -27,25 +29,33 @@ const routes: Routes = [
     data: { roles: ['DH01'] }
   },
   {
+    path: 'vacinas', component: TabelaVacinasComponent, canActivate: [AuthGuard],
+    data: { roles: ['DH01'] }
+  },
+  {
+    path: 'lotes', component: TabelaLotesComponent, canActivate: [AuthGuard],
+    data: { roles: ['DH01'] }
+  },
+  {
     path: 'dashboard-paciente', component: DashboardPacienteComponent, canActivate: [AuthGuard],
     data: { roles: ['DH03'] }
   },
-
   {
     path: 'vacinar', component: VacinarComponent, canActivate: [AuthGuard],
     data: { roles: ['DH02'] }
   },
-
   {
     path: 'caderneta', component: CadernetaVacinacaoComponent, canActivate: [AuthGuard],
     data: { roles: ['DH03'] }
   },
-
   {
     path: 'vacina', component: VacinaComponent, canActivate: [AuthGuard],
     data: { roles: ['DH01'] }
   },
-
+  {
+    path: 'vacina/:codigo', component: VacinaComponent, canActivate: [AuthGuard],
+    data: { roles: ['DH01'] }
+  },
   {
     path: 'lote', component: CadastrarLoteComponent, canActivate: [AuthGuard],
     data: { roles: ['DH01'] }
@@ -54,22 +64,18 @@ const routes: Routes = [
     path: 'lote/:codigo', component: EditarLoteComponent, canActivate: [AuthGuard],
     data: { roles: ['DH01'] }
   },
-
   {
     path: 'posto', component: CadastrarPostoComponent, canActivate: [AuthGuard],
     data: { roles: ['DH01'] }
   },
-
   {
     path: 'posto/:codigo', component: EditarPostoComponent, canActivate: [AuthGuard],
     data: { roles: ['DH01'] }
   },
-
   {
     path: 'paciente/:codigo', component: EditarPerfilPacienteComponent, canActivate: [AuthGuard],
     data: { roles: ['DH03'] }
   },
-
   {
     path: 'funcionario', component: CadastrarFuncionarioComponent, canActivate: [AuthGuard],
     data: { roles: ['DH01'] }
@@ -78,7 +84,6 @@ const routes: Routes = [
     path: 'funcionario/:codigo', component: EditarPerfilFuncionarioComponent, canActivate: [AuthGuard],
     data: { roles: ['DH02'] }
   },
-
   {
     path: 'paciente', component: CadastrarPacienteComponent
   },

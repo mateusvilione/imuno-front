@@ -9,7 +9,8 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { InputMaskModule } from 'primeng/inputmask';
 import { FileUploadModule } from 'primeng/fileupload';
-
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,8 @@ import { VacinaComponent } from './pages/vacina/vacina.component';
 import { CadastrarLoteComponent } from './pages/lote/cadastrar-lote/cadastrar-lote.component';
 import { EditarLoteComponent } from './pages/lote/editar-lote/editar-lote.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { TabelaVacinasComponent } from './pages/tabela-vacinas/tabela-vacinas.component';
+import { TabelaLotesComponent } from './pages/tabela-lotes/tabela-lotes.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     EditarPostoComponent,
     CadastrarLoteComponent,
     EditarLoteComponent,
+    TabelaVacinasComponent,
+    TabelaLotesComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +65,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     FileUploadModule,
     SegurancaModule,
     TemplateModule,
+    ToastModule,
+    ConfirmDialogModule
   ],
   providers: [
     MessageService,

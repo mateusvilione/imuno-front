@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'imuno-front';
+  title = 'imuno';
 
   constructor(private router: Router){ }
 
