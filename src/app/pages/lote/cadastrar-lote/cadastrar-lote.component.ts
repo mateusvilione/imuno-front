@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 import { VacinaRepository } from '../../vacina/repository/vacina-repository';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-cadastrar-lote',
@@ -26,6 +27,7 @@ export class CadastrarLoteComponent implements OnInit {
   constructor(
     private repository: LoteRepository,
     private vacinaRepository: VacinaRepository,
+    public service: AuthService,
     private fb: FormBuilder
   ) {}
 
@@ -60,7 +62,7 @@ export class CadastrarLoteComponent implements OnInit {
 
     const dados = {
       // id: this.formulario.value.id,
-      administradorId: 1, // this.formulario.value.administradorId,
+      administradorId: parseInt(this.service.showId()),
       codigo: this.formulario.value.codigo,
       dataEntrada: this.formulario.value.dataEntrada,
       dataFabricacao: this.formulario.value.dataFabricacao,

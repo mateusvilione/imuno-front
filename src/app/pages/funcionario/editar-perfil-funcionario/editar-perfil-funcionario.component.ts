@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FuncionarioModel } from '../model/funcionario-model';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-editar-perfil-funcionario',
@@ -23,11 +24,12 @@ export class EditarPerfilFuncionarioComponent implements OnInit {
   constructor(
     private repository: FuncionarioRepository,
     private route: ActivatedRoute,
+    public service: AuthService,
     private title: Title,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    const codigoFuncionario = this.route.snapshot.params['codigo'];
+    const codigoFuncionario = parseInt(this.service.showId());
 
     this.iniciarFormulario();
 

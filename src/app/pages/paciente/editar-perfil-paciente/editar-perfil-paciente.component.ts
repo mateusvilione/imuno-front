@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-editar-perfil-paciente',
@@ -28,11 +29,13 @@ export class EditarPerfilPacienteComponent implements OnInit {
     private repository: PacienteRepository,
     private route: ActivatedRoute,
     private messageService: MessageService,
+
+    public service: AuthService,
     private title: Title,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    const codigoCliente = this.route.snapshot.params['codigo'];
+    const codigoCliente = parseInt(this.service.showId());
 
     // const codigo = this.service.jwtPayload.usuario_id;
 

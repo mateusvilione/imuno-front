@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-editar-posto',
@@ -27,6 +28,7 @@ export class EditarPostoComponent implements OnInit {
   constructor(
     private repository: PostoRepository,
     private route: ActivatedRoute,
+    public service: AuthService,
     private title: Title,
     private fb: FormBuilder) { }
 
@@ -102,7 +104,7 @@ export class EditarPostoComponent implements OnInit {
         estado: this.formulario.value.estado,
         cep: this.formulario.value.cep,
       },
-      administradorId: 1 // this.formulario.value.administradorId,
+      administradorId: parseInt(this.service.showId())
     } as PostoModel;
 
     console.log("dados" + dados);

@@ -11,6 +11,7 @@ export class AuthService {
 
   constructor(public repository: AuthRepository, private router: Router) {
     this.carregarToken();
+    this.carregarId();
   }
 
   login(login: string, senha: string) {
@@ -23,14 +24,20 @@ export class AuthService {
 
       console.log('Novo access token criado!' + JSON.stringify(this.jwtPayload));
 
-      if (this.temPermissao('DH01'))
+      if (this.temPermissao('DH01')){
+        this.armazenarId(json['administrador_id']);
         this.router.navigate(['/dashboard-admin']);
+      }
 
-      if (this.temPermissao('DH02'))
-        this.router.navigate(['/dashboard-funcionario']);
+      if (this.temPermissao('DH02')){
+        this.armazenarId(json['funcionario_id']);
+        this.router.navigate(['/vacinar']);
+      }
 
-      if (this.temPermissao('DH03'))
+      if (this.temPermissao('DH03')){
+        this.armazenarId(json['paciente_id']);
         this.router.navigate(['/caderneta']);
+      }
     },
       (e) => {
         console.log(e.error.error_description);
@@ -43,6 +50,10 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
+  private armazenarId(id: string) {
+    localStorage.setItem('usuarioId', id);
+  }
+
   private carregarToken() {
     const token = localStorage.getItem('token');
 
@@ -51,9 +62,22 @@ export class AuthService {
     }
   }
 
+  private carregarId() {
+    const id = localStorage.getItem('usuarioId');
+
+    if (id) {
+      this.armazenarId(id);
+    }
+  }
+
+  public showId() {
+    return localStorage.getItem('usuarioId');
+  }
+
   logout() {
     return this.repository.postLogout().subscribe(resposta => {
       this.limparAccessToken();
+      this.limparAccessId();
       this.router.navigate(['/login']);
     },
       (e) => {
@@ -63,6 +87,11 @@ export class AuthService {
 
   limparAccessToken() {
     localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
+  limparAccessId() {
+    localStorage.removeItem('usuarioId');
     this.jwtPayload = null;
   }
 

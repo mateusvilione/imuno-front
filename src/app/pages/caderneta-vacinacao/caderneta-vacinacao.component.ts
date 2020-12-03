@@ -4,6 +4,7 @@ import { CadernetaRepository } from './repository/caderneta-repository';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { escapeIdentifier } from '@angular/compiler/src/output/abstract_emitter';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-caderneta-vacinacao',
@@ -13,19 +14,13 @@ import { escapeIdentifier } from '@angular/compiler/src/output/abstract_emitter'
 export class CadernetaVacinacaoComponent implements OnInit {
   vacinas: CadernetaModel[] = [];
 
-  @Input()
-  idPaciente: number;
-
   constructor(
-    private repository: CadernetaRepository
+    private repository: CadernetaRepository,
+    public service: AuthService
   ) {}
 
   ngOnInit() {
-    if (this.idPaciente != null) {
-      this.carregarCaderneta(this.idPaciente);
-    } else {
-      this.carregarCaderneta(1);
-    }
+    this.carregarCaderneta(parseInt(this.service.showId()));
   }
 
   carregarCaderneta(id: number) {

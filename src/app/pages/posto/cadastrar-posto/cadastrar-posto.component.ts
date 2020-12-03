@@ -3,6 +3,8 @@ import { PostoRepository } from '../repository/posto-repository';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/seguranca/auth.service';
+import { ParsedVariable } from '@angular/compiler';
 
 @Component({
   selector: 'app-cadastrar-posto',
@@ -23,6 +25,7 @@ export class CadastrarPostoComponent implements OnInit {
 
   constructor(
     private repository: PostoRepository,
+    public service: AuthService,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -57,7 +60,7 @@ export class CadastrarPostoComponent implements OnInit {
   salvar() {
     const dados = {
       // id: this.formulario.value.id,
-      administradorId: 1,   //this.formulario.value.administrador,
+      administradorId: parseInt(this.service.showId()),
       nome: this.formulario.value.nome,
       cnes: this.formulario.value.cnes,
       telefone: this.formulario.value.telefone,

@@ -17,6 +17,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 import { stringify } from '@angular/compiler/src/util';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-vacinar',
@@ -56,6 +57,7 @@ export class VacinarComponent implements OnInit {
     private cadernetaRepository: CadernetaRepository,
     private funcionarioRepository: FuncionarioRepository,
     private loteRepository: LoteRepository,
+    public service: AuthService,
     private messageService: MessageService,
     private fb: FormBuilder
   ) { }
@@ -95,7 +97,7 @@ export class VacinarComponent implements OnInit {
     const dados = {
       dose: this.formulario.value.dose,
       dataVacinacao: this.formulario.value.dataVacinacao,
-      funcionarioId: 1, //this.formulario.value.funcionarioId,
+      funcionarioId: parseInt(this.service.showId()),
       loteId: this.formulario.value.loteId,
       pacienteId: this.pesquisa.value.pacienteId,
       vacinaId: this.formulario.value.vacinaId,

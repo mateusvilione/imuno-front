@@ -1,12 +1,12 @@
 <nav class="navbar navbar-dark sticky-top bg-success flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" *ngIf="service.temPermissao('DH01')" routerLinkActive="ativo"
-    routerLink="/dashboard-admin">IMUNO A</a>
+    routerLink="/dashboard-admin">IMUNO</a>
 
   <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" *ngIf="service.temPermissao('DH02')" routerLinkActive="ativo"
-    routerLink="/dashboard-funcionario">IMUNO F</a>
+    routerLink="/vacinar">IMUNO</a>
 
   <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" *ngIf="service.temPermissao('DH03')" routerLinkActive="ativo"
-    routerLink="/caderneta">IMUNO P</a>
+    routerLink="/caderneta">IMUNO</a>
 
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
     data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,12 +16,15 @@
   <ul class="nav justify-content-end ">
     <li class="nav-item text-nowrap">
       <a class="nav-link text-white" *ngIf="service.temPermissao('DH03')" routerLinkActive="ativo"
-        routerLink="/paciente/{{id}}">Editar Perfil P</a>
-      <a class="nav-link text-white" *ngIf="service.temPermissao('DH02')" routerLinkActive="ativo"
-        routerLink="/funcionario//{{id}}">Editar Perfil F</a>
+        routerLink="/paciente/{{id}}">{{usuario}}</a>
     </li>
-    <li class=" nav-item text-nowrap">
-      <a class="nav-item nav-link">{{usuario}}</a>
+
+    <li class="nav-item text-nowrap">
+      <a class="nav-link text-white" *ngIf="service.temPermissao('DH02')" routerLinkActive="ativo"
+        routerLink="/funcionario//{{id}}">{{usuario}}</a>
+    </li>
+
+    <li class="nav-item text-nowrap">
       <a href="javascript:;" class="nav-item nav-link" (click)="logout()">Logout</a>
     </li>
   </ul>
