@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: var(--cor-padrao-fundo);
+  background-color: var(--cor-padrao-fundo)!important;
 }
 
 .container {

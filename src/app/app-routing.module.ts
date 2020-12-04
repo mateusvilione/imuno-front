@@ -14,7 +14,6 @@ import { EditarPerfilPacienteComponent } from './pages/paciente/editar-perfil-pa
 import { EditarPerfilFuncionarioComponent } from './pages/funcionario/editar-perfil-funcionario/editar-perfil-funcionario.component';
 import { VacinarComponent } from './pages/vacinar/vacinar.component';
 import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
-import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard-paciente.component';
 import { CadastrarLoteComponent } from './pages/lote/cadastrar-lote/cadastrar-lote.component';
 import { EditarLoteComponent } from './pages/lote/editar-lote/editar-lote.component';
 import { EditarPostoComponent } from './pages/posto/editar-posto/editar-posto.component';
@@ -36,10 +35,6 @@ const routes: Routes = [
   {
     path: 'lotes', component: TabelaLotesComponent, canActivate: [AuthGuard],
     data: { roles: ['DH01'] }
-  },
-  {
-    path: 'dashboard-paciente', component: DashboardPacienteComponent, canActivate: [AuthGuard],
-    data: { roles: ['DH03'] }
   },
   {
     path: 'vacinar', component: VacinarComponent, canActivate: [AuthGuard],

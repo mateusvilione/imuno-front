@@ -21,7 +21,6 @@ import { EditarPerfilPacienteComponent } from './pages/paciente/editar-perfil-pa
 import { EditarPerfilFuncionarioComponent } from './pages/funcionario/editar-perfil-funcionario/editar-perfil-funcionario.component';
 import { VacinarComponent } from './pages/vacinar/vacinar.component';
 import { DashboardFuncionarioComponent } from './pages/dashboard-funcionario/dashboard-funcionario.component';
-import { DashboardPacienteComponent } from './pages/dashboard-paciente/dashboard-paciente.component';
 import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component';
 import { CadastrarPostoComponent } from './pages/posto/cadastrar-posto/cadastrar-posto.component';
 import { EditarPostoComponent } from './pages/posto/editar-posto/editar-posto.component';
@@ -43,7 +42,6 @@ import { CadastrarVacinaComponent } from './pages/vacina/cadastrar-vacina/cadast
     EditarPerfilFuncionarioComponent,
     VacinarComponent,
     DashboardFuncionarioComponent,
-    DashboardPacienteComponent,
     DashboardAdminComponent,
     CadastrarPostoComponent,
     EditarPostoComponent,

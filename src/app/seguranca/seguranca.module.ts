@@ -8,6 +8,9 @@ import { CommonModule } from '@angular/common';
 
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { TemplateModule } from '../template/template.module';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [LoginFormComponent],
@@ -16,9 +19,12 @@ import { LoginFormComponent } from './login-form/login-form.component';
     SegurancaRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TemplateModule,
+    ToastModule,
+    ConfirmDialogModule
   ],
-  providers:[
+  providers: [
     AuthService,
     AuthGuard,
   ]

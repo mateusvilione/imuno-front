@@ -40,7 +40,6 @@ export class EditarLoteComponent implements OnInit {
 
     // const codigo = this.service.jwtPayload.usuario_id;
 
-
     this.listarVacinas();
     this.iniciarFormulario();
 

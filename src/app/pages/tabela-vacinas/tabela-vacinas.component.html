@@ -1,29 +1,28 @@
-<div class="container">
-
-  <div class="container-sm p-4 mt-5 bg-white">
-    <div>
-      <a href="vacina" style="float: left;" class="btn btn-secondary entrar col-4">Cadastrar Vacina</a>
-    </div>
-
-  <br>
-  <br>
-
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Vacina</th>
-          <th scope="col">Prevenção</th>
-          <th scope="col">Editar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let vacina of vacinas">
-          <th scope="row">{{vacina.nome}}</th>
-          <td>{{vacina.prevencao}}</td>
-          <td><a href="vacina/{{vacina.id}}"> <i class="pi pi-pencil"></i> </a></td>
-        </tr>
-      </tbody>
-    </table>
-
+<div class="container-sm p-4 mt-5 bg-white">
+  <div class="d-flex">
+    <a style="margin-right: 15px;" href="/dashboard-admin" class="btn btn-secondary entrar col-6"><i
+        class="pi pi-arrow-left"></i> Voltar</a>
+    <a href="vacina" style="float: left;" class="btn btn-success entrar col-6">Cadastrar Vacina</a>
   </div>
+
+  <br>
+  <br>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Vacina</th>
+        <th scope="col">Prevenção</th>
+        <th scope="col">Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vacina of vacinas">
+        <th scope="row">{{vacina.nome}}</th>
+        <td>{{vacina.prevencao}}</td>
+        <td><a href="vacina/{{vacina.id}}"> <i class="pi pi-pencil"></i> </a></td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>

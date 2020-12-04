@@ -1,5 +1,4 @@
-<div class="container">
-  <form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="atualizar()">
+<form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="atualizar()">
 
     <h2>Editar Lote</h2>
 
@@ -61,13 +60,14 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <a href="lotes" class="btn btn-secondary entrar col-12">Limpar</a>
+        <button type="reset" class="btn btn-primary entrar col-12">Limpar</button>
       </div>
       <div class="form-group col-md-6">
         <button type="submit" class="btn btn-success entrar col-12">Cadastrar</button>
       </div>
     </div>
+    <div style="padding: 0;" class="form-group col-md-12">
+      <a style="width: 100%; margin: 0;" href="/dashboard-admin" class="btn btn-secondary entrar"><i class="pi pi-arrow-left"></i> Voltar</a>
+    </div>
 
   </form>
-
-</div>

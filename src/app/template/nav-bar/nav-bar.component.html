@@ -1,31 +1,27 @@
 <nav class="navbar navbar-dark sticky-top bg-success flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" *ngIf="service.temPermissao('DH01')" routerLinkActive="ativo"
+
+  <a style="background-color: #28a745 !important;" class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" *ngIf="service.temPermissao('DH01')" routerLinkActive="ativo"
     routerLink="/dashboard-admin">IMUNO</a>
 
-  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" *ngIf="service.temPermissao('DH02')" routerLinkActive="ativo"
+  <a style="background-color: #28a745 !important;" class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" *ngIf="service.temPermissao('DH02')" routerLinkActive="ativo"
     routerLink="/vacinar">IMUNO</a>
 
-  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" *ngIf="service.temPermissao('DH03')" routerLinkActive="ativo"
+  <a style="background-color: #28a745 !important;" class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" *ngIf="service.temPermissao('DH03')" routerLinkActive="ativo"
     routerLink="/caderneta">IMUNO</a>
-
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
-    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
   <ul class="nav justify-content-end ">
     <li class="nav-item text-nowrap">
-      <a class="nav-link text-white" *ngIf="service.temPermissao('DH03')" routerLinkActive="ativo"
-        routerLink="/paciente/{{id}}">{{usuario}}</a>
+      <a style="background-color: #28a745 !important;" class="nav-link text-white" *ngIf="service.temPermissao('DH03')" routerLinkActive="ativo"
+        routerLink="/paciente/{{id}}"><i style="margin: 0 5px;" class="pi pi-cog"></i> {{usuario}}</a>
     </li>
 
     <li class="nav-item text-nowrap">
-      <a class="nav-link text-white" *ngIf="service.temPermissao('DH02')" routerLinkActive="ativo"
-        routerLink="/funcionario//{{id}}">{{usuario}}</a>
+      <a style="background-color: #28a745 !important;" class="nav-link text-white" *ngIf="service.temPermissao('DH02')" routerLinkActive="ativo"
+        routerLink="/funcionario/{{id}}"><i class="pi pi-cog"></i> {{usuario}}</a>
     </li>
 
     <li class="nav-item text-nowrap">
-      <a href="javascript:;" class="nav-item nav-link" (click)="logout()">Logout</a>
+      <a style="background-color: #28a745 !important;" style="color: aliceblue;" href="javascript:;" class="nav-item nav-link" (click)="logout()"><i class="pi pi-sign-out"></i></a>
     </li>
   </ul>
 </nav>

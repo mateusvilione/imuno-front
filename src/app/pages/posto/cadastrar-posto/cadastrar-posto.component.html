@@ -1,100 +1,100 @@
-<!-- <app-header [caminho]="3" [caminhoLogout]="3"></app-header> -->
+<form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="cadastrar()">
 
-<div class="container">
+  <h2>Cadastrar Posto</h2>
 
-  <form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="cadastrar()">
-
-    <h2>Cadastrar Posto</h2>
-
-    <div class="form-group">
-      <label for="nome" style="float: left;">Nome do Posto:</label>
-      <input type="text" class="form-control" id="nome" formControlName="nome" [class]="(submitted && formulario.get('nome').errors) ||
+  <div class="form-group">
+    <label for="nome" style="float: left;">Nome do Posto:</label>
+    <input type="text" class="form-control" id="nome" formControlName="nome" [class]="(submitted && formulario.get('nome').errors) ||
             (formulario.get('nome').errors && formulario.get('nome').dirty) ? 'is-invalid' :
             formulario.get('nome').dirty ? 'is-valid' : ''" />
-      <div *ngIf="formulario.get('nome').errors?.required" class="invalid-feedback">Nome é obrigatório</div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="cnes" style="float: left;">CNES:</label>
-        <input type="text" class="form-control" id="cnes" formControlName="cnes" [class]="(submitted && formulario.get('cnes').errors) ||
+    <div *ngIf="formulario.get('nome').errors?.required" class="invalid-feedback">Nome é obrigatório</div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="cnes" style="float: left;">CNES:</label>
+      <input type="text" class="form-control" id="cnes" formControlName="cnes" [class]="(submitted && formulario.get('cnes').errors) ||
             (formulario.get('cnes').errors && formulario.get('cnes').dirty) ? 'is-invalid' :
             formulario.get('cnes').dirty ? 'is-valid' : ''">
-        <div *ngIf="formulario.get('cnes').errors?.required" class="invalid-feedback">CNES é obrigatório</div>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="telefone">Telefone:</label>
-        <input type="tel" class="form-control" id="telefone" formControlName="telefone" mask="(99)99999-9999" [class]="(submitted && formulario.get('telefone').errors) ||
+      <div *ngIf="formulario.get('cnes').errors?.required" class="invalid-feedback">CNES é obrigatório</div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="telefone">Telefone:</label>
+      <input type="tel" class="form-control" id="telefone" formControlName="telefone" mask="(99)99999-9999" [class]="(submitted && formulario.get('telefone').errors) ||
             (formulario.get('telefone').errors && formulario.get('telefone').dirty) ? 'is-invalid' :
             formulario.get('telefone').dirty ? 'is-valid' : ''">
-        <div *ngIf="formulario.get('telefone').errors?.required" class="invalid-feedback">Telefone é obrigatório</div>
-      </div>
+      <div *ngIf="formulario.get('telefone').errors?.required" class="invalid-feedback">Telefone é obrigatório</div>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label for="logradouro">Logradouro:</label>
-      <input type="text" class="form-control" id="logradouro" formControlName="logradouro" [class]="(submitted && formulario.get('logradouro').errors) ||
+  <div class="form-group">
+    <label for="logradouro">Logradouro:</label>
+    <input type="text" class="form-control" id="logradouro" formControlName="logradouro" [class]="(submitted && formulario.get('logradouro').errors) ||
             (formulario.get('logradouro').errors && formulario.get('logradouro').dirty) ? 'is-invalid' :
             formulario.get('logradouro').dirty ? 'is-valid' : ''">
-      <div *ngIf="formulario.get('logradouro').errors?.required" class="invalid-feedback">Logradouro é obrigatório</div>
+    <div *ngIf="formulario.get('logradouro').errors?.required" class="invalid-feedback">Logradouro é obrigatório
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-2">
-        <label for="numero">Número:</label>
-        <input type="number" class="form-control" min="0" id="numero" formControlName="numero" [class]="(submitted && formulario.get('numero').errors) ||
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label for="numero">Número:</label>
+      <input type="number" class="form-control" min="0" id="numero" formControlName="numero" [class]="(submitted && formulario.get('numero').errors) ||
             (formulario.get('numero').errors && formulario.get('numero').dirty) ? 'is-invalid' :
             formulario.get('numero').dirty ? 'is-valid' : ''">
-        <div *ngIf="formulario.get('numero').errors?.required" class="invalid-feedback">Número é obrigatório</div>
-      </div>
-      <div class="form-group col-md-4">
-        <label for="complemento">Complemento:</label>
-        <input type="text" class="form-control" id="complemento" formControlName="complemento" [class]="(submitted && formulario.get('complemento').errors) ||
+      <div *ngIf="formulario.get('numero').errors?.required" class="invalid-feedback">Número é obrigatório</div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="complemento">Complemento:</label>
+      <input type="text" class="form-control" id="complemento" formControlName="complemento" [class]="(submitted && formulario.get('complemento').errors) ||
             (formulario.get('complemento').errors && formulario.get('complemento').dirty) ? 'is-invalid' :
             formulario.get('complemento').dirty ? 'is-valid' : ''">
-        <div *ngIf="formulario.get('complemento').errors?.required" class="invalid-feedback">Complemento é obrigatório
-        </div>
+      <div *ngIf="formulario.get('complemento').errors?.required" class="invalid-feedback">Complemento é obrigatório
       </div>
-      <div class="form-group col-md-6">
-        <label for="bairro">Bairro:</label>
-        <input type="text" class="form-control" id="bairro" formControlName="bairro" [class]="(submitted && formulario.get('bairro').errors) ||
+    </div>
+    <div class="form-group col-md-6">
+      <label for="bairro">Bairro:</label>
+      <input type="text" class="form-control" id="bairro" formControlName="bairro" [class]="(submitted && formulario.get('bairro').errors) ||
             (formulario.get('bairro').errors && formulario.get('bairro').dirty) ? 'is-invalid' :
             formulario.get('bairro').dirty ? 'is-valid' : ''">
-        <div *ngIf="formulario.get('bairro').errors?.required" class="invalid-feedback">Bairro é obrigatório</div>
-      </div>
+      <div *ngIf="formulario.get('bairro').errors?.required" class="invalid-feedback">Bairro é obrigatório</div>
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="cidade">Cidade:</label>
-        <input type="text" class="form-control" id="cidade" formControlName="cidade" [class]="(submitted && formulario.get('cidade').errors) ||
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="cidade">Cidade:</label>
+      <input type="text" class="form-control" id="cidade" formControlName="cidade" [class]="(submitted && formulario.get('cidade').errors) ||
             (formulario.get('cidade').errors && formulario.get('cidade').dirty) ? 'is-invalid' :
             formulario.get('cidade').dirty ? 'is-valid' : ''">
-        <div *ngIf="formulario.get('cidade').errors?.required" class="invalid-feedback">Cidade é obrigatório</div>
-      </div>
-      <div class="form-group col-md-2">
-        <label for="estado">Estado:</label>
-        <input type="text" class="form-control" id="estado" formControlName="estado" [class]="(submitted && formulario.get('estado').errors) ||
+      <div *ngIf="formulario.get('cidade').errors?.required" class="invalid-feedback">Cidade é obrigatório</div>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="estado">Estado:</label>
+      <input type="text" class="form-control" id="estado" formControlName="estado" [class]="(submitted && formulario.get('estado').errors) ||
             (formulario.get('estado').errors && formulario.get('estado').dirty) ? 'is-invalid' :
             formulario.get('estado').dirty ? 'is-valid' : ''">
-        <div *ngIf="formulario.get('estado').errors?.required" class="invalid-feedback">Estado é obrigatório</div>
-      </div>
-      <div class="form-group col-md-4">
-        <label for="cep">CEP:</label>
-        <input type="text" class="form-control" id="cep" formControlName="cep" [class]="(submitted && formulario.get('cep').errors) ||
+      <div *ngIf="formulario.get('estado').errors?.required" class="invalid-feedback">Estado é obrigatório</div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="cep">CEP:</label>
+      <input type="text" class="form-control" id="cep" formControlName="cep" [class]="(submitted && formulario.get('cep').errors) ||
             (formulario.get('cep').errors && formulario.get('cep').dirty) ? 'is-invalid' :
             formulario.get('cep').dirty ? 'is-valid' : ''">
-        <div *ngIf="formulario.get('cep').errors?.required" class="invalid-feedback">CEP é obrigatório</div>
-      </div>
+      <div *ngIf="formulario.get('cep').errors?.required" class="invalid-feedback">CEP é obrigatório</div>
     </div>
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
-      </div>
-      <div class="form-group col-md-6">
-        <button type="submit" class="btn btn-success entrar col-12" [class]="operacao ? 'btn-primary' : 'btn-success'">
-          Salvar
-        </button>
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <button type="reset" class="btn btn-primary entrar col-12">Limpar</button>
     </div>
+    <div class="form-group col-md-6">
+      <button type="submit" class="btn btn-success entrar col-12" [class]="operacao ? 'btn-primary' : 'btn-success'">
+        Salvar
+      </button>
+    </div>
+  </div>
+  <div style="padding: 0;" class="form-group col-md-12">
+    <a style="width: 100%; margin: 0;" href="/dashboard-admin" class="btn btn-secondary entrar"><i
+        class="pi pi-arrow-left"></i> Voltar</a>
+  </div>
 
-  </form>
-</div>
+</form>

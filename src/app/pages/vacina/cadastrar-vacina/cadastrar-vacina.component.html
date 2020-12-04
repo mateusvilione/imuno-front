@@ -1,36 +1,38 @@
-<div class="container">
-  <form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="cadastrar()">
+<form class="container-sm p-4 mt-5 bg-white" [formGroup]="formulario" (ngSubmit)="cadastrar()">
 
-    <h2>Cadastrar Vacina</h2>
+  <h2>Cadastrar Vacina</h2>
 
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label for="nome" style="float: left;">Vacina:</label>
-        <input type="text" class="form-control" id="nome" formControlName="nome" [class]="(submitted && formulario.get('nome').errors) ||
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="nome" style="float: left;">Vacina:</label>
+      <input type="text" class="form-control" id="nome" formControlName="nome" [class]="(submitted && formulario.get('nome').errors) ||
             (formulario.get('nome').errors && formulario.get('nome').dirty) ? 'is-invalid' :
             formulario.get('nome').dirty ? 'is-valid' : ''" />
-        <div *ngIf="formulario.get('nome').errors?.required" class="invalid-feedback">Nome da vacina é obrigatório</div>
-      </div>
+      <div *ngIf="formulario.get('nome').errors?.required" class="invalid-feedback">Nome da vacina é obrigatório</div>
+    </div>
 
-      <div class="form-group col-md-12">
-        <label for="prevencao">Prevenção:</label>
-        <textarea class="form-control" id="prevencao" formControlName="prevencao" [class]="(submitted && formulario.get('prevencao').errors) ||
+    <div class="form-group col-md-12">
+      <label for="prevencao">Prevenção:</label>
+      <textarea class="form-control" id="prevencao" formControlName="prevencao" [class]="(submitted && formulario.get('prevencao').errors) ||
             (formulario.get('prevencao').errors && formulario.get('prevencao').dirty) ? 'is-invalid' :
             formulario.get('prevencao').dirty ? 'is-valid' : ''"></textarea>
-        <div *ngIf="formulario.get('prevencao').errors?.required" class="invalid-feedback">Prevenção é obrigatório</div>
-      </div>
+      <div *ngIf="formulario.get('prevencao').errors?.required" class="invalid-feedback">Prevenção é obrigatório</div>
     </div>
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <button type="reset" class="btn btn-secondary entrar col-12">Limpar</button>
-      </div>
-      <div class="form-group col-md-6">
-        <button type="submit" class="btn btn-success entrar col-12" [class]="operacao ? 'btn-primary' : 'btn-success'">
-          Salvar
-        </button>
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <button type="reset" class="btn btn-primary entrar col-12">Limpar</button>
     </div>
+    <div class="form-group col-md-6">
+      <button type="submit" class="btn btn-success entrar col-12" [class]="operacao ? 'btn-primary' : 'btn-success'">
+        Salvar
+      </button>
+    </div>
+  </div>
+  <div style="padding: 0;" class="form-group col-md-12">
+    <a style="width: 100%; margin: 0;" href="/dashboard-admin" class="btn btn-secondary entrar"><i
+        class="pi pi-arrow-left"></i> Voltar</a>
+  </div>
 
-  </form>
-</div>
+</form>
