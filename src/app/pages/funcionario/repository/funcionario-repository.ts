@@ -24,6 +24,14 @@ export class FuncionarioRepository {
           .pipe(map((x) => this.mapper.mapFrom2(x.data)));
       }
 
+      getAllFuncionarios(): Promise<FuncionarioModel[]> {
+        return this.http
+          .getAll<FuncionarioEntity[]>(`${environment.URLSERVIDOR}funcionario`)
+          .toPromise().then((x) => {
+            return x.data.map(this.mapper.mapFrom);
+          });
+      }
+
       postFuncionario(param: FuncionarioModel) {
         return this.http
           .post<FuncionarioEntity>(`${environment.URLSERVIDOR}funcionario`, this.mapper.mapTo(param))

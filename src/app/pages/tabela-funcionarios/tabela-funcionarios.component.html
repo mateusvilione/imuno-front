@@ -1,0 +1,32 @@
+<div class="container-sm p-4 mt-5 bg-white">
+  <div class="d-flex">
+    <a style="margin-right: 15px;" href="/dashboard-admin" class="btn btn-secondary entrar col-6"><i
+        class="pi pi-arrow-left"></i> Voltar</a>
+    <a href="funcionario" style="float: left;" class="btn btn-success entrar col-6">Cadastrar Funcionário</a>
+  </div>
+
+  <br>
+  <br>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">COREN</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Telefone emergência</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let funcionario of funcionarios">
+        <th scope="row">{{funcionario.nome}}</th>
+        <td>{{funcionario.coren}}</td>
+        <td>{{funcionario.email}}</td>
+        <td>{{funcionario.telefone}}</td>
+        <td>{{funcionario.telefoneEmergencia}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

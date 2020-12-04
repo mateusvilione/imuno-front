@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { PostoMapper } from './../mapper/posto-mapper';
-import { PostoModel } from './../model/posto-model';
-import { PostoEntity } from './../entity/posto-entity';
+import { PostoModel, PostoAllModel } from './../model/posto-model';
+import { PostoEntity, PostoAllEntity } from './../entity/posto-entity';
 import { environment } from '../../../../environments/environment';
 import { Injectable } from "@angular/core";
 
@@ -21,6 +21,12 @@ export class PostoRepository {
   getPostoById(id: number): Observable<PostoModel> {
     return this.http
       .getAll<PostoModel>(`${environment.URLSERVIDOR}posto/${id}`)
+      .pipe(map((x) => this.mapper.mapFrom(x.data)));
+  }
+
+  getAllPostos(administradorId: number): Observable<PostoAllModel> {
+    return this.http
+      .getAll<PostoAllModel>(`${environment.URLSERVIDOR}posto/admin/${administradorId}`)
       .pipe(map((x) => this.mapper.mapFrom(x.data)));
   }
 

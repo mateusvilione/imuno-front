@@ -1,8 +1,11 @@
-import { Message, MessageService } from 'primeng/api';
+import { PostoRepository } from './../../posto/repository/posto-repository';
+import { AuthService } from 'src/app/seguranca/auth.service';
+import { MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuncionarioRepository } from '../repository/funcionario-repository';
 import { Component, OnInit } from '@angular/core';
 import { FuncionarioModel } from '../model/funcionario-model';
+import { PostoAllModel } from '../../posto/model/posto-model';
 
 @Component({
   selector: 'app-cadastrar-funcionario',
@@ -12,17 +15,22 @@ import { FuncionarioModel } from '../model/funcionario-model';
 export class CadastrarFuncionarioComponent implements OnInit {
   public formulario: FormGroup;
 
+  postos: number = 0;
+
   public submitted: boolean = false;
 
   operacao: boolean = true;
 
   constructor(
     private repository: FuncionarioRepository,
+    private postoRepository: PostoRepository,
     private messageService: MessageService,
+    private service: AuthService,
     private fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit(): void {
+    this.carregarPosto()
     this.iniciarFormulario();
   }
 
@@ -100,40 +108,49 @@ export class CadastrarFuncionarioComponent implements OnInit {
         estado: this.formulario.value.estado,
         cep: this.formulario.value.cep,
       },
-      postoId: 1,
+      postoId: this.postos,
     } as FuncionarioModel;
 
     console.log('dados' + dados);
 
-    this.repository.postFuncionario(dados).subscribe(resposta => {
-      this.messageService.add(
-        {
+    this.repository.postFuncionario(dados).subscribe(
+      (resposta) => {
+        this.messageService.add({
           key: 'toast',
           severity: 'success',
           summary: 'Funcionario',
-          detail: 'cadastrado com sucesso!'
+          detail: 'cadastrado com sucesso!',
         });
-      this.limparFormulario();
-    },
+        this.limparFormulario();
+      },
       (e) => {
         var msg: any[] = [];
         //Erro Principal
         msg.push({
           severity: 'error',
           summary: 'ERRO',
-          detail: e.error.userMessage
+          detail: e.error.userMessage,
         });
         //Erro de cada atributo
         var erros = e.error.objects;
         erros.forEach(function (elemento) {
-          msg.push(
-            {
-              severity: 'error',
-              summary: 'ERRO',
-              detail: elemento.userMessage
-            });
+          msg.push({
+            severity: 'error',
+            summary: 'ERRO',
+            detail: elemento.userMessage,
+          });
         });
         this.messageService.addAll(msg);
+      }
+    );
+  }
+
+  carregarPosto() {
+    this.postoRepository
+      .getAllPostos(parseInt(this.service.showId()))
+      .subscribe((resposta) => {
+        console.log("bbbbbbbbbbbbbbb" + resposta.id);
+        this.postos = resposta.id;
       });
   }
 

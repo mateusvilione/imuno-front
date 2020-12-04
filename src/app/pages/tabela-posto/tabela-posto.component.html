@@ -1,0 +1,30 @@
+<div class="container-sm p-4 mt-5 bg-white">
+  <div class="d-flex">
+    <a style="margin-right: 15px;" href="/dashboard-admin" class="btn btn-secondary entrar col-6"><i
+        class="pi pi-arrow-left"></i> Voltar</a>
+    <a href="posto" style="float: left;" class="btn btn-success entrar col-6">Cadastrar Posto</a>
+  </div>
+
+  <br>
+  <br>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">CNES</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let posto of postos">
+        <th scope="row">{{posto.cnes}}</th>
+        <td>{{posto.nome}}</td>
+        <td>{{posto.telefone}}</td>
+        <td><a href="posto/{{posto.id}}"> <i class="pi pi-pencil"></i> </a></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
